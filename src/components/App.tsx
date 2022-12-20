@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 
 const App: React.FC = () => {
-    const [content, setContent] = useState(`Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`);
+    const [content, setContent] = useState(`Lorem ipsum dolor sit amet, <i>consectetur</i> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`);
 
     const editorRef = useRef<HTMLDivElement>(null);
 
@@ -11,8 +11,20 @@ const App: React.FC = () => {
     }, []);
 
     const handleSelection = () => {
-        let sel = document.getSelection();
-        console.log("selection: " + sel);
+        let selectedContent = "";
+        let selectionData = window.getSelection();
+
+        if (selectionData?.rangeCount) {
+            let container = document.createElement("div");
+
+            for (let i = 0; i < selectionData.rangeCount; ++i) {
+                container.appendChild(selectionData.getRangeAt(i).cloneContents());
+            }
+
+            selectedContent = container.innerHTML;
+        }
+
+        console.log(selectedContent);
     }
 
     return (
@@ -20,11 +32,11 @@ const App: React.FC = () => {
             <button>RED</button>
             <button>GREEN</button>
             <button>BLUE</button>
-            <div 
+            <div
                 ref={editorRef}
-                contentEditable="true" 
-                style={{ whiteSpace: "pre-wrap" }} 
-                onInput={(event) => setContent(event.currentTarget.innerHTML)} 
+                contentEditable="true"
+                style={{ whiteSpace: "pre-wrap" }}
+                onInput={(event) => setContent(event.currentTarget.innerHTML)}
                 onSelect={handleSelection} />
         </>
     )
