@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 
 const App: React.FC = () => {
     const [content, setContent] = useState(`Lorem ipsum dolor sit amet, <i>consectetur</i> adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.`);
+    const [selectedContent, setSelectedContent] = useState("");
 
     const editorRef = useRef<HTMLDivElement>(null);
 
@@ -11,7 +12,6 @@ const App: React.FC = () => {
     }, []);
 
     const handleSelection = () => {
-        let selectedContent = "";
         let selectionData = window.getSelection();
 
         if (selectionData?.rangeCount) {
@@ -21,10 +21,8 @@ const App: React.FC = () => {
                 container.appendChild(selectionData.getRangeAt(i).cloneContents());
             }
 
-            selectedContent = container.innerHTML;
+            setSelectedContent(container.innerHTML);
         }
-
-        console.log(selectedContent);
     }
 
     return (
