@@ -12,7 +12,7 @@ const App: React.FC = () => {
     }, []);
 
     const handleSelection = () => {
-        let selectionData = window.getSelection();
+        let selectionData = document.getSelection();
 
         if (selectionData?.rangeCount) {
             let container = document.createElement("div");
