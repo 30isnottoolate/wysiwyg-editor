@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Editor, EditorState } from 'draft-js';
 import 'draft-js/dist/Draft.css';
+import './App.css';
 
 const App: React.FC = () => {
     const [editorState, setEditorState] = useState(() => EditorState.createEmpty());
