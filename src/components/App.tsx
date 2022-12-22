@@ -8,6 +8,8 @@ const App: React.FC = () => {
     return (
         <>
             <button onClick={() => {}}><b>B</b></button>
+            <button onClick={() => {}}><i>I</i></button>
+            <button onClick={() => {}}><u>U</u></button>
             <Editor editorState={editorState} onChange={setEditorState} />
         </>
     );
