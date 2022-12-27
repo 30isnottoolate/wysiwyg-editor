@@ -1,25 +1,39 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
 
-    const toggleFormat = (format: string) => {
+    const applyFormat = (format: string) => {
         const selection = window.getSelection();
 
         if (selection && selection.rangeCount) {
             const range = selection.getRangeAt(0);
-            const newNode = document.createElement(format);
-            newNode.appendChild(range.extractContents());
-            range.insertNode(newNode);
+            const formatNode = document.createElement(format);
+
+            formatNode.appendChild(range.extractContents());
+            range.insertNode(formatNode);
         }
     };
 
+    const applyColor = () => {
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount) {
+            const range = selection.getRangeAt(0);
+            const colorNode = document.createElement("span");
+
+            colorNode.style.color = fontColor;
+            colorNode.appendChild(range.extractContents());
+            range.insertNode(colorNode);
+        }
+    }
+
     return (
         <div>
-            <button onClick={() => toggleFormat("b")}><b>B</b></button>
-            <button onClick={() => toggleFormat("i")}><i>I</i></button>
-            <button onClick={() => toggleFormat("u")}><u>U</u></button>
-            <button style={{ backgroundColor: fontColor }}>C</button>
+            <button onClick={() => applyFormat("b")}><b>B</b></button>
+            <button onClick={() => applyFormat("i")}><i>I</i></button>
+            <button onClick={() => applyFormat("u")}><u>U</u></button>
+            <button onClick={() => applyColor()} style={{ backgroundColor: fontColor }}>C</button>
             <input type="color" onChange={(event) => setFontColor(event.currentTarget.value)} />
             <div id="editor" contentEditable={true} />
         </div>
