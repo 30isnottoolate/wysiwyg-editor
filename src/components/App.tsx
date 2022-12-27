@@ -1,7 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect, BaseSyntheticEvent } from "react";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
+
+    const editorRef = useRef<HTMLDivElement>(null);
+
+    /* useEffect(() => {
+        if (editorRef.current) {
+            editorRef.current.addEventListener("keydown", (event) => {
+                if (event.data === null) {
+                    event.preventDefault();
+                    insertEnter();
+                }
+                console.log(event.key);
+            })
+        }
+
+        return () => {
+            if (editorRef.current) {
+                editorRef.current.removeEventListener("beforeinput", () => { });
+            }
+        }
+    }, []); */
 
     const applyFormat = (format: string) => {
         const selection = window.getSelection();
@@ -51,6 +71,13 @@ const App: React.FC = () => {
         }
     }
 
+    const handleEnterKey = (event) => {
+        if (event.data === "\n") {
+            event.preventDefault();
+            insertEnter();
+        }
+    }
+
     const removeColor = () => {
         let sel = document.getSelection();
         let candidates = document?.querySelectorAll("span");
@@ -88,7 +115,7 @@ const App: React.FC = () => {
             <input type="color" onChange={(event) => setFontColor(event.currentTarget.value)} />
             <button onClick={() => removeColor()}>rem</button>
             <button onClick={() => insertEnter()}>enter</button>
-            <div id="editor" contentEditable={true} style={{ whiteSpace: "pre-wrap" }} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            <div id="editor" ref={editorRef} contentEditable={true} onBeforeInput={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
