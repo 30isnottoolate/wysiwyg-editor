@@ -2,7 +2,7 @@ import React, {useState} from "react";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
-    
+
     const toggleFormat = (format: string) => {
         const selection = window.getSelection();
 
@@ -20,6 +20,7 @@ const App: React.FC = () => {
             <button onClick={() => toggleFormat("i")}><i>I</i></button>
             <button onClick={() => toggleFormat("u")}><u>U</u></button>
             <button style={{ backgroundColor: fontColor }}>C</button>
+            <input type="color" onChange={(event) => setFontColor(event.currentTarget.value)} />
             <div id="editor" contentEditable={true} />
         </div>
     )
