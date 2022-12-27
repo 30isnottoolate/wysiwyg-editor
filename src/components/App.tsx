@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useState} from "react";
 
 const App: React.FC = () => {
+    const [fontColor, setFontColor] = useState("#ff0000");
+    
     const toggleFormat = (format: string) => {
         const selection = window.getSelection();
 
@@ -17,7 +19,7 @@ const App: React.FC = () => {
             <button onClick={() => toggleFormat("b")}><b>B</b></button>
             <button onClick={() => toggleFormat("i")}><i>I</i></button>
             <button onClick={() => toggleFormat("u")}><u>U</u></button>
-            <button style={{ backgroundColor: "#ff0000" }}>C</button>
+            <button style={{ backgroundColor: fontColor }}>C</button>
             <div id="editor" contentEditable={true} />
         </div>
     )
