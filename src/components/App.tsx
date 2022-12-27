@@ -1,27 +1,9 @@
-import React, { useState, useRef, useEffect, BaseSyntheticEvent } from "react";
+import React, { useState, useRef } from "react";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
 
     const editorRef = useRef<HTMLDivElement>(null);
-
-    /* useEffect(() => {
-        if (editorRef.current) {
-            editorRef.current.addEventListener("keydown", (event) => {
-                if (event.data === null) {
-                    event.preventDefault();
-                    insertEnter();
-                }
-                console.log(event.key);
-            })
-        }
-
-        return () => {
-            if (editorRef.current) {
-                editorRef.current.removeEventListener("beforeinput", () => { });
-            }
-        }
-    }, []); */
 
     const applyFormat = (format: string) => {
         const selection = window.getSelection();
