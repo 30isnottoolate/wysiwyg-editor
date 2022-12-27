@@ -53,8 +53,8 @@ const App: React.FC = () => {
         }
     }
 
-    const handleEnterKey = (event) => {
-        if (event.data === "\n") {
+    const handleEnterKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
+        if (event.key === "Enter") {
             event.preventDefault();
             insertEnter();
         }
@@ -97,7 +97,7 @@ const App: React.FC = () => {
             <input type="color" onChange={(event) => setFontColor(event.currentTarget.value)} />
             <button onClick={() => removeColor()}>rem</button>
             <button onClick={() => insertEnter()}>enter</button>
-            <div id="editor" ref={editorRef} contentEditable={true} onBeforeInput={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            <div id="editor" ref={editorRef} contentEditable={true} onKeyDown={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
