@@ -30,9 +30,11 @@ const App: React.FC = () => {
 
     const removeFormat = () => {
         const selection = window.getSelection();
+
         if (selection && selection.rangeCount) {
-            let range = selection.getRangeAt(0);
-            let selectedTextNode = document.createTextNode(range.toString());
+            const range = selection.getRangeAt(0);
+            const selectedTextNode = document.createTextNode(range.toString());
+
             range.deleteContents();
             range.insertNode(selectedTextNode);
             range.selectNode(selectedTextNode);
@@ -49,7 +51,12 @@ const App: React.FC = () => {
             <button onClick={() => removeFormat()}>X</button>
             <button onClick={() => applyColor()} style={{ backgroundColor: fontColor }}>C</button>
             <input type="color" onChange={(event) => setFontColor(event.currentTarget.value)} />
-            <div id="editor" contentEditable={true} />
+            <div id="editor" contentEditable={true} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
+                nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
+                sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
         </div>
     )
 }
