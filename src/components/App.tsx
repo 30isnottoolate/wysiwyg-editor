@@ -41,7 +41,7 @@ const App: React.FC = () => {
 
         if (selection && selection.rangeCount) {
             const range = selection.getRangeAt(0);
-            const selectedTextNode = document.createTextNode(`\n`);
+            const selectedTextNode = document.createTextNode(`\n\r`);
 
             range.deleteContents();
             range.insertNode(selectedTextNode);
