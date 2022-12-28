@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import "./App.css";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
