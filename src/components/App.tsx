@@ -46,7 +46,7 @@ const App: React.FC = () => {
             range.insertNode(selectedTextNode);
             range.selectNode(selectedTextNode);
 
-            range.collapse(true);
+            range.collapse(false);
 
             selection.removeAllRanges();
             selection.addRange(range);
