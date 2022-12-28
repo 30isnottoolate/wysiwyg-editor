@@ -97,7 +97,6 @@ const App: React.FC = () => {
             <button onClick={() => applyColor()} style={{ backgroundColor: fontColor }}>C</button>
             <input type="color" onChange={(event) => setFontColor(event.currentTarget.value)} />
             <button onClick={() => removeColor()}>rem</button>
-            <button onClick={() => insertEnter()}>enter</button>
             <div id="editor" ref={editorRef} contentEditable={true} onKeyDown={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
