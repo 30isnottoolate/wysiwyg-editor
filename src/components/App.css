@@ -1,5 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
 * {
     box-sizing: border-box;
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
     user-select: none;
