@@ -94,10 +94,10 @@ const App: React.FC = () => {
             <button onClick={() => applyFormat("i")}><i>I</i></button>
             <button onClick={() => applyFormat("u")}><u>U</u></button>
             <button onClick={() => removeFormat()}>X</button>
-            <button onClick={() => applyColor()} style={{ backgroundColor: fontColor }}>C</button>
-            <input type="color" onChange={(event) => setFontColor(event.currentTarget.value)} />
+            <button onClick={() => applyColor()} style={{ color: fontColor }}>C</button>
+            <input type="color" value={fontColor} onChange={(event) => setFontColor(event.currentTarget.value)} />
             <button onClick={() => removeColor()}>rem</button>
-            <div id="editor" ref={editorRef} contentEditable={true} onKeyDown={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            <div id="editor" ref={editorRef} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
