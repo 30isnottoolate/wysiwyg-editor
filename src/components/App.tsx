@@ -41,11 +41,29 @@ const App: React.FC = () => {
 
         if (selection && selection.rangeCount) {
             const range = selection.getRangeAt(0);
-            const selectedTextNode = document.createTextNode(`\n\r`);
+            const textNode = document.createTextNode(`\n\r`);
 
             range.deleteContents();
-            range.insertNode(selectedTextNode);
-            range.selectNode(selectedTextNode);
+            range.insertNode(textNode);
+            range.selectNode(textNode);
+
+            range.collapse(false);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
+    const insertTab = () => {
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount) {
+            const range = selection.getRangeAt(0);
+            const textNode = document.createTextNode(`\t`);
+
+            range.deleteContents();
+            range.insertNode(textNode);
+            range.selectNode(textNode);
 
             range.collapse(false);
 
@@ -58,6 +76,9 @@ const App: React.FC = () => {
         if (event.key === "Enter") {
             event.preventDefault();
             insertEnter();
+        } else if (event.key === "Tab") {
+            event.preventDefault();
+            insertTab();
         }
     }
 
@@ -97,7 +118,8 @@ const App: React.FC = () => {
             <button onClick={() => applyColor()} style={{ color: fontColor }}>C</button>
             <input type="color" value={fontColor} onChange={(event) => setFontColor(event.currentTarget.value)} />
             <button onClick={() => removeColor()}>rem</button>
-            <div id="editor" ref={editorRef} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+            <div id="editor" ref={editorRef} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                 dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
