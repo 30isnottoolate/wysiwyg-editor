@@ -1,4 +1,5 @@
 import React, { useState, useRef } from "react";
+import { isConditionalExpression } from "typescript";
 import "./App.css";
 
 const App: React.FC = () => {
@@ -31,6 +32,45 @@ const App: React.FC = () => {
             range.deleteContents();
             range.insertNode(selectedTextNode);
             range.selectNode(selectedTextNode);
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
+    const removeFormatExperimental = () => {
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount) {
+            const range = selection.getRangeAt(0);
+            const newNode = document.createDocumentFragment();
+
+            newNode.appendChild(range.extractContents());
+
+            const extractChildren = (node: ChildNode) => {
+                if (node.hasChildNodes()) {
+                    let nodes: Node[] = [];
+
+                    node.childNodes.forEach((childNode) => {
+                        nodes.push(childNode);
+                    });
+
+                    node.replaceWith(...nodes);
+                }
+            }
+
+            const removeTag = (node: Node) => {
+                if (node.hasChildNodes()) {
+
+                    node.childNodes.forEach((childNode) => {
+                        extractChildren(childNode);
+                    });
+                }
+            }
+
+            removeTag(newNode);
+
+            range.insertNode(newNode);
+            //range.selectNode(newNode);
             selection.removeAllRanges();
             selection.addRange(range);
         }
@@ -82,17 +122,6 @@ const App: React.FC = () => {
         }
     }
 
-    const removeColor = () => {
-        let sel = document.getSelection();
-        let candidates = document?.querySelectorAll("span");
-
-        candidates?.forEach((candidate) => {
-            if (sel?.containsNode(candidate, true)) {
-                candidate.replaceWith(document.createTextNode(candidate.innerHTML));
-            }
-        });
-    }
-
     const applyColor = () => {
         const selection = window.getSelection();
 
@@ -117,7 +146,7 @@ const App: React.FC = () => {
             <button onClick={() => removeFormat()}>X</button>
             <button onClick={() => applyColor()} style={{ color: fontColor }}>C</button>
             <input type="color" value={fontColor} onChange={(event) => setFontColor(event.currentTarget.value)} />
-            <button onClick={() => removeColor()}>rem</button>
+            <button onClick={() => removeFormatExperimental()}>rem</button>
             <div id="editor" ref={editorRef} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
