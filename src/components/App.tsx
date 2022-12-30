@@ -1,5 +1,4 @@
 import React, { useState, useRef } from "react";
-import { isConditionalExpression } from "typescript";
 import "./App.css";
 
 const App: React.FC = () => {
