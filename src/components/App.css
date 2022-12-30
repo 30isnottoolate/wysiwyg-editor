@@ -14,3 +14,7 @@
     user-select: initial;
 }
 
+#editor > * {
+    user-select: initial;
+}
+
