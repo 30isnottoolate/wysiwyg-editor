@@ -47,38 +47,45 @@ const App: React.FC = () => {
             newNode.append(range.extractContents());
 
             const extractChildren = (node: ChildNode) => {
+
                 if (node.hasChildNodes() && node.nodeName === "SPAN") {
                     let nodes: Node[] = [];
-
                     let frag = document.createDocumentFragment();
 
                     node.childNodes.forEach((childNode) => {
                         nodes.push(childNode);
                     });
 
-                    node.replaceWith(...nodes);
-                    //frag.append(...nodes);
+                    //node.replaceWith(...nodes);
+                    frag.append(...nodes);
+
+                    return frag;
                     //node.replaceWith(frag);
                 }
             }
 
             const removeTag = (node: DocumentFragment) => {
                 if (node.hasChildNodes()) {
+                    let nodes: any[] = [];
 
                     node.childNodes.forEach((childNode) => {
                         //console.log(childNode);
-                        extractChildren(childNode);
+                        if (childNode.hasChildNodes() && childNode.nodeName === "SPAN") {
+                            nodes.push(extractChildren(childNode));
+                        } else {
+                            nodes.push(childNode);
+                        }
                     });
 
-                    /* while (node.firstChild) {
+                    while (node.firstChild) {
                         node.removeChild(node.firstChild);
-                    } */
+                    }
+
+                    node.append(...nodes);
                 }
-                
             }
 
             removeTag(newNode);
-            //removeTag(newNode);
 
             range.insertNode(newNode);
             //range.selectNode(newNode);
@@ -123,7 +130,7 @@ const App: React.FC = () => {
         }
     }
 
-    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { ///////!!!
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
             insertEnter();
