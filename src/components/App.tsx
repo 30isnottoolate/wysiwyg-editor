@@ -44,30 +44,41 @@ const App: React.FC = () => {
             const range = selection.getRangeAt(0);
             const newNode = document.createDocumentFragment();
 
-            newNode.appendChild(range.extractContents());
+            newNode.append(range.extractContents());
 
             const extractChildren = (node: ChildNode) => {
-                if (node.hasChildNodes()) {
+                if (node.hasChildNodes() && node.nodeName === "SPAN") {
                     let nodes: Node[] = [];
+
+                    let frag = document.createDocumentFragment();
 
                     node.childNodes.forEach((childNode) => {
                         nodes.push(childNode);
                     });
 
                     node.replaceWith(...nodes);
+                    //frag.append(...nodes);
+                    //node.replaceWith(frag);
                 }
             }
 
-            const removeTag = (node: Node) => {
+            const removeTag = (node: DocumentFragment) => {
                 if (node.hasChildNodes()) {
 
                     node.childNodes.forEach((childNode) => {
+                        //console.log(childNode);
                         extractChildren(childNode);
                     });
+
+                    /* while (node.firstChild) {
+                        node.removeChild(node.firstChild);
+                    } */
                 }
+                
             }
 
             removeTag(newNode);
+            //removeTag(newNode);
 
             range.insertNode(newNode);
             //range.selectNode(newNode);
@@ -112,7 +123,7 @@ const App: React.FC = () => {
         }
     }
 
-    const handleEnterKey = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => { ///////!!!
         if (event.key === "Enter") {
             event.preventDefault();
             insertEnter();
@@ -147,7 +158,7 @@ const App: React.FC = () => {
             <button onClick={() => applyColor()} style={{ color: fontColor }}>C</button>
             <input type="color" value={fontColor} onChange={(event) => setFontColor(event.currentTarget.value)} />
             <button onClick={() => removeFormatExperimental()}>rem</button>
-            <div id="editor" ref={editorRef} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleEnterKey(event)} style={{ whiteSpace: "pre-wrap" }} >
+            <div id="editor" ref={editorRef} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleKeyDown(event)} style={{ whiteSpace: "pre-wrap" }} >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
