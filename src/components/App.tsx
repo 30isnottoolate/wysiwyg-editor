@@ -1,10 +1,8 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
-
-    const editorRef = useRef<HTMLDivElement>(null);
 
     const applyStyle = (style: string) => {
         const selection = window.getSelection();
@@ -182,7 +180,6 @@ const App: React.FC = () => {
             </div>
             <div
                 id="editor"
-                ref={editorRef}
                 spellCheck={false}
                 contentEditable={true}
                 suppressContentEditableWarning={true}
