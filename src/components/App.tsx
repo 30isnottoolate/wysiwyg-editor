@@ -180,8 +180,7 @@ const App: React.FC = () => {
                 spellCheck={false}
                 contentEditable={true}
                 suppressContentEditableWarning={true}
-                onKeyDown={event => handleKeyDown(event)}
-                style={{ whiteSpace: "pre-wrap" }} >
+                onKeyDown={event => handleKeyDown(event)} >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
