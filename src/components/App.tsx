@@ -21,7 +21,7 @@ const App: React.FC = () => {
         }
     }
 
-    const removeFormat = () => {
+    const removeAllFormatting = () => {
         const selection = window.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
@@ -157,7 +157,7 @@ const App: React.FC = () => {
                 <button
                     className="tool"
                     title="Remove All Formating"
-                    onClick={() => removeFormat()}>
+                    onClick={() => removeAllFormatting()}>
                     X
                 </button>
                 <button
