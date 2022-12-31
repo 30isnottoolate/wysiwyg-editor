@@ -154,10 +154,10 @@ const App: React.FC = () => {
                     className="tool"
                     onClick={() => applyColor()}
                     style={{ color: fontColor }}>
-                    C
+                    A
                 </button>
                 <input
-                    className="tool"
+                    className="tool color-tool"
                     type="color"
                     value={fontColor}
                     onChange={(event) => setFontColor(event.currentTarget.value)}
@@ -165,7 +165,7 @@ const App: React.FC = () => {
                 <button
                     className="tool"
                     onClick={() => removeFormatExperimental()}>
-                    rem
+                    X
                 </button>
             </div>
             <div
