@@ -121,7 +121,7 @@ const App: React.FC = () => {
 
             range.insertNode(colorNode);
             range.selectNode(colorNode);
-            
+
             selection.removeAllRanges();
             selection.addRange(range);
         }
@@ -129,13 +129,15 @@ const App: React.FC = () => {
 
     return (
         <div>
-            <button onClick={() => applyFormat("b")}><b>B</b></button>
-            <button onClick={() => applyFormat("i")}><i>I</i></button>
-            <button onClick={() => applyFormat("u")}><u>U</u></button>
-            <button onClick={() => removeFormat()}>X</button>
-            <button onClick={() => applyColor()} style={{ color: fontColor }}>C</button>
-            <input type="color" value={fontColor} onChange={(event) => setFontColor(event.currentTarget.value)} />
-            <button onClick={() => removeFormatExperimental()}>rem</button>
+            <div className="toolbar">
+                <button className="tool" onClick={() => applyFormat("b")}><b>B</b></button>
+                <button className="tool" onClick={() => applyFormat("i")}><i>I</i></button>
+                <button className="tool" onClick={() => applyFormat("u")}><u>U</u></button>
+                <button className="tool" onClick={() => removeFormat()}>X</button>
+                <button className="tool" onClick={() => applyColor()} style={{ color: fontColor }}>C</button>
+                <input className="tool" type="color" value={fontColor} onChange={(event) => setFontColor(event.currentTarget.value)} />
+                <button className="tool" onClick={() => removeFormatExperimental()}>rem</button>
+            </div>
             <div id="editor" ref={editorRef} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleKeyDown(event)} style={{ whiteSpace: "pre-wrap" }} >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
