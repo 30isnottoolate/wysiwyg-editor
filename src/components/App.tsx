@@ -41,34 +41,22 @@ const App: React.FC = () => {
 
         if (selection && selection.rangeCount) {
             const range = selection.getRangeAt(0);
-            const newNode = document.createDocumentFragment();
+            const selectedFrag = document.createDocumentFragment();
 
-            newNode.append(range.extractContents());
+            selectedFrag.append(range.extractContents());
 
             const extractChildren = (node: ChildNode) => {
+                let fragOfChildren = document.createDocumentFragment();
+                fragOfChildren.append(...node.childNodes);
 
-                if (node.hasChildNodes() && node.nodeName === "SPAN") {
-                    let nodes: Node[] = [];
-                    let frag = document.createDocumentFragment();
-
-                    node.childNodes.forEach((childNode) => {
-                        nodes.push(childNode);
-                    });
-
-                    //node.replaceWith(...nodes);
-                    frag.append(...nodes);
-
-                    return frag;
-                    //node.replaceWith(frag);
-                }
+                return fragOfChildren;
             }
 
             const removeTag = (node: DocumentFragment) => {
                 if (node.hasChildNodes()) {
-                    let nodes: any[] = [];
+                    let nodes: (ChildNode | DocumentFragment)[] = [];
 
                     node.childNodes.forEach((childNode) => {
-                        //console.log(childNode);
                         if (childNode.hasChildNodes() && childNode.nodeName === "SPAN") {
                             nodes.push(extractChildren(childNode));
                         } else {
@@ -84,9 +72,9 @@ const App: React.FC = () => {
                 }
             }
 
-            removeTag(newNode);
+            removeTag(selectedFrag);
 
-            range.insertNode(newNode);
+            range.insertNode(selectedFrag);
             //range.selectNode(newNode);
             selection.removeAllRanges();
             selection.addRange(range);
