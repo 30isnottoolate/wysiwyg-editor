@@ -6,12 +6,12 @@ const App: React.FC = () => {
 
     const editorRef = useRef<HTMLDivElement>(null);
 
-    const applyFormat = (format: string) => {
+    const applyStyle = (style: string) => {
         const selection = window.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
-            const formatNode = document.createElement(format);
+            const formatNode = document.createElement(style);
 
             formatNode.appendChild(range.extractContents());
             range.insertNode(formatNode);
@@ -139,19 +139,19 @@ const App: React.FC = () => {
                 <button
                     className="tool"
                     title="Bold"
-                    onClick={() => applyFormat("b")}>
+                    onClick={() => applyStyle("b")}>
                     <b>B</b>
                 </button>
                 <button
                     className="tool"
                     title="Italic"
-                    onClick={() => applyFormat("i")}>
+                    onClick={() => applyStyle("i")}>
                     <i>I</i>
                 </button>
                 <button
                     className="tool"
                     title="Underline"
-                    onClick={() => applyFormat("u")}>
+                    onClick={() => applyStyle("u")}>
                     <u>U</u>
                 </button>
                 <button
