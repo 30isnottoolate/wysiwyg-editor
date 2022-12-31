@@ -132,26 +132,31 @@ const App: React.FC = () => {
             <div className="toolbar">
                 <button
                     className="tool"
+                    title="Bold"
                     onClick={() => applyFormat("b")}>
                     <b>B</b>
                 </button>
                 <button
                     className="tool"
+                    title="Italic"
                     onClick={() => applyFormat("i")}>
                     <i>I</i>
                 </button>
                 <button
                     className="tool"
+                    title="Underline"
                     onClick={() => applyFormat("u")}>
                     <u>U</u>
                 </button>
                 <button
                     className="tool"
+                    title="Remove All Formating"
                     onClick={() => removeFormat()}>
                     X
                 </button>
                 <button
                     className="tool"
+                    title="Color Font"
                     onClick={() => applyColor()}
                     style={{ color: fontColor }}>
                     A
@@ -164,6 +169,7 @@ const App: React.FC = () => {
                 />
                 <button
                     className="tool"
+                    title="Remove Color"
                     onClick={() => removeFormatExperimental()}>
                     X
                 </button>
