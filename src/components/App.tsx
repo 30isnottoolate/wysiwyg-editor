@@ -138,7 +138,7 @@ const App: React.FC = () => {
                 <input className="tool" type="color" value={fontColor} onChange={(event) => setFontColor(event.currentTarget.value)} />
                 <button className="tool" onClick={() => removeFormatExperimental()}>rem</button>
             </div>
-            <div id="editor" ref={editorRef} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleKeyDown(event)} style={{ whiteSpace: "pre-wrap" }} >
+            <div id="editor" ref={editorRef} spellCheck={false} contentEditable={true} suppressContentEditableWarning={true} onKeyDown={event => handleKeyDown(event)} style={{ whiteSpace: "pre-wrap" }} >
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                 nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
