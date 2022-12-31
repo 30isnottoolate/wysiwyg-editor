@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
 
 * {
     box-sizing: border-box;
-    font-family: "Roboto", Arial, Helvetica, sans-serif;
     padding: 0;
     margin: 0;
     user-select: none;
@@ -15,26 +14,29 @@
 }
 
 .tool {
-    font-size: 14px;
-    font-family: "Raleway", Arial, sans-serif;
     width: 25px;
     height: 25px;
-    vertical-align: middle;    
+    vertical-align: middle;
     margin-right: 5px;
 }
 
-.tool > b, i, u, span {
-    font-family: "Raleway", Arial, sans-serif;
+.tool,
+.tool > b,
+.tool > i,
+.tool > u,
+.tool > span {
+    font-size: 15px;
+    font-family: "Work Sans", Arial, sans-serif;
 }
 
 #editor {
+    font-family: "Roboto", Arial, Helvetica, sans-serif;
     width: calc(100vw - 20px);
     padding: 10px;
     margin: 10px;
     user-select: initial;
 }
 
-#editor > * {
+#editor>* {
     user-select: initial;
 }
-
