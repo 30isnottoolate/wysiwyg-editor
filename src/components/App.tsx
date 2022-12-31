@@ -9,7 +9,7 @@ const App: React.FC = () => {
     const applyFormat = (format: string) => {
         const selection = window.getSelection();
 
-        if (selection && selection.rangeCount) {
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
             const formatNode = document.createElement(format);
 
@@ -24,7 +24,7 @@ const App: React.FC = () => {
     const removeFormat = () => {
         const selection = window.getSelection();
 
-        if (selection && selection.rangeCount) {
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
             const selectedTextNode = document.createTextNode(range.toString());
 
@@ -39,7 +39,7 @@ const App: React.FC = () => {
     const removeFormatExperimental = () => {
         const selection = window.getSelection();
 
-        if (selection && selection.rangeCount) {
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
             const selectedFrag = document.createDocumentFragment();
 
@@ -112,14 +112,16 @@ const App: React.FC = () => {
     const applyColor = () => {
         const selection = window.getSelection();
 
-        if (selection && selection.rangeCount) {
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
             const colorNode = document.createElement("span");
 
             colorNode.style.color = fontColor;
             colorNode.appendChild(range.extractContents());
+
             range.insertNode(colorNode);
             range.selectNode(colorNode);
+            
             selection.removeAllRanges();
             selection.addRange(range);
         }
