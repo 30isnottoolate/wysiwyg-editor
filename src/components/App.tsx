@@ -81,6 +81,24 @@ const App: React.FC = () => {
         }
     }
 
+    const insertText = (text: string) => {
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount) {
+            const range = selection.getRangeAt(0);
+            const textNode = document.createTextNode(text);
+
+            range.deleteContents();
+            range.insertNode(textNode);
+            range.selectNode(textNode);
+
+            range.collapse(false);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
     const insertEnter = () => {
         const selection = window.getSelection();
 
@@ -120,10 +138,10 @@ const App: React.FC = () => {
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
-            insertEnter();
+            insertText(`\n\r`);
         } else if (event.key === "Tab") {
             event.preventDefault();
-            insertTab();
+            insertText(`\t`);
         }
     }
 
