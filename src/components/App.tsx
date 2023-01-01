@@ -12,8 +12,11 @@ const App: React.FC = () => {
             const formatNode = document.createElement(style);
 
             formatNode.appendChild(range.extractContents());
+
+            range.deleteContents();
             range.insertNode(formatNode);
             range.selectNode(formatNode);
+
             selection.removeAllRanges();
             selection.addRange(range);
         }
@@ -29,6 +32,7 @@ const App: React.FC = () => {
             range.deleteContents();
             range.insertNode(selectedTextNode);
             range.selectNode(selectedTextNode);
+
             selection.removeAllRanges();
             selection.addRange(range);
         }
@@ -45,6 +49,7 @@ const App: React.FC = () => {
 
             removeTag(selectedFrag, "SPAN");
 
+            range.deleteContents();
             range.insertNode(selectedFrag);
 
             selection.removeAllRanges();
@@ -76,7 +81,6 @@ const App: React.FC = () => {
             range.deleteContents();
             range.insertNode(textNode);
             range.selectNode(textNode);
-
             range.collapse(false);
 
             selection.removeAllRanges();
