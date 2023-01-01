@@ -32,6 +32,7 @@ const App: React.FC = () => {
             colorNode.style.color = fontColor;
             colorNode.appendChild(range.extractContents());
 
+            range.deleteContents();
             range.insertNode(colorNode);
             range.selectNode(colorNode);
 
@@ -142,6 +143,12 @@ const App: React.FC = () => {
                     title="Underline"
                     onClick={() => applyFormatting("u")}>
                     <u>U</u>
+                </button>
+                <button
+                    className="tool"
+                    title="Strikethrough"
+                    onClick={() => applyFormatting("s")}>
+                    <s>S</s>
                 </button>
                 <button
                     className="tool"
