@@ -38,7 +38,7 @@ const App: React.FC = () => {
         }
     }
 
-    const removeFormatExperimental = () => {
+    const removeFormatting = (formatting: string) => {
         const selection = window.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
@@ -47,7 +47,7 @@ const App: React.FC = () => {
 
             selectedFrag.append(range.extractContents());
 
-            removeTag(selectedFrag, "SPAN");
+            removeTag(selectedFrag, formatting);
 
             range.deleteContents();
             range.insertNode(selectedFrag);
@@ -165,7 +165,7 @@ const App: React.FC = () => {
                 <button
                     className="tool"
                     title="Remove Color"
-                    onClick={() => removeFormatExperimental()}>
+                    onClick={() => removeFormatting("SPAN")}>
                     X
                 </button>
             </div>
