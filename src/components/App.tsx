@@ -4,7 +4,7 @@ import "./App.css";
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
 
-    const applyStyle = (style: string) => {
+    const applyFormatting = (style: string) => {
         const selection = window.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
@@ -22,19 +22,35 @@ const App: React.FC = () => {
         }
     }
 
-    const removeAllFormatting = () => {
+    const applyColor = () => {
         const selection = window.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
-            const selectedTextNode = document.createTextNode(range.toString());
+            const colorNode = document.createElement("span");
 
-            range.deleteContents();
-            range.insertNode(selectedTextNode);
-            range.selectNode(selectedTextNode);
+            colorNode.style.color = fontColor;
+            colorNode.appendChild(range.extractContents());
+
+            range.insertNode(colorNode);
+            range.selectNode(colorNode);
 
             selection.removeAllRanges();
             selection.addRange(range);
+        }
+    }
+
+    const removeTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
+        if (node.hasChildNodes()) {
+
+            node.childNodes.forEach((childNode) => {
+                if (childNode.hasChildNodes() && childNode.nodeName === tag) {
+                    childNode.replaceWith(...childNode.childNodes);
+                    removeTag(node, tag);
+                } else if (childNode.hasChildNodes()) {
+                    removeTag(childNode, tag);
+                }
+            });
         }
     }
 
@@ -57,17 +73,19 @@ const App: React.FC = () => {
         }
     }
 
-    const removeTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
-        if (node.hasChildNodes()) {
+    const removeAllFormatting = () => {
+        const selection = window.getSelection();
 
-            node.childNodes.forEach((childNode) => {
-                if (childNode.hasChildNodes() && childNode.nodeName === tag) {
-                    childNode.replaceWith(...childNode.childNodes);
-                    removeTag(node, tag);
-                } else if (childNode.hasChildNodes()) {
-                    removeTag(childNode, tag);
-                }
-            });
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+            const selectedTextNode = document.createTextNode(range.toString());
+
+            range.deleteContents();
+            range.insertNode(selectedTextNode);
+            range.selectNode(selectedTextNode);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
         }
     }
 
@@ -104,43 +122,25 @@ const App: React.FC = () => {
         }
     }
 
-    const applyColor = () => {
-        const selection = window.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-            const colorNode = document.createElement("span");
-
-            colorNode.style.color = fontColor;
-            colorNode.appendChild(range.extractContents());
-
-            range.insertNode(colorNode);
-            range.selectNode(colorNode);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-    }
-
     return (
         <div>
             <div className="toolbar">
                 <button
                     className="tool"
                     title="Bold"
-                    onClick={() => applyStyle("b")}>
+                    onClick={() => applyFormatting("b")}>
                     <b>B</b>
                 </button>
                 <button
                     className="tool"
                     title="Italic"
-                    onClick={() => applyStyle("i")}>
+                    onClick={() => applyFormatting("i")}>
                     <i>I</i>
                 </button>
                 <button
                     className="tool"
                     title="Underline"
-                    onClick={() => applyStyle("u")}>
+                    onClick={() => applyFormatting("u")}>
                     <u>U</u>
                 </button>
                 <button
