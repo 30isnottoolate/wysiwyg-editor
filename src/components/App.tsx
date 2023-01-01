@@ -152,6 +152,18 @@ const App: React.FC = () => {
                 </button>
                 <button
                     className="tool"
+                    title="Superscript"
+                    onClick={() => applyFormatting("sup")}>
+                    A<sup>2</sup>
+                </button>
+                <button
+                    className="tool"
+                    title="Subscript"
+                    onClick={() => applyFormatting("sub")}>
+                    A<sub>2</sub>
+                </button>
+                <button
+                    className="tool"
                     title="Remove All Formating"
                     onClick={() => removeAllFormatting()}>
                     X
