@@ -43,26 +43,26 @@ const App: React.FC = () => {
 
             selectedFrag.append(range.extractContents());
 
-            const removeTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
-                if (node.hasChildNodes()) {
-
-                    node.childNodes.forEach((childNode) => {
-                        if (childNode.hasChildNodes() && childNode.nodeName === tag) {
-                            childNode.replaceWith(...childNode.childNodes);
-                            removeTag(node, tag);
-                        } else if (childNode.hasChildNodes()) {
-                            removeTag(childNode, tag);
-                        }
-                    });
-                }
-            }
-
             removeTag(selectedFrag, "SPAN");
 
             range.insertNode(selectedFrag);
 
             selection.removeAllRanges();
             selection.addRange(range);
+        }
+    }
+
+    const removeTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
+        if (node.hasChildNodes()) {
+
+            node.childNodes.forEach((childNode) => {
+                if (childNode.hasChildNodes() && childNode.nodeName === tag) {
+                    childNode.replaceWith(...childNode.childNodes);
+                    removeTag(node, tag);
+                } else if (childNode.hasChildNodes()) {
+                    removeTag(childNode, tag);
+                }
+            });
         }
     }
 
