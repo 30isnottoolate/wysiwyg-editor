@@ -133,7 +133,7 @@ const App: React.FC = () => {
                     <b>B</b>
                 </button>
                 <button
-                    className="tool"
+                    className="tool italic"
                     title="Italic"
                     onClick={() => applyFormatting("i")}>
                     <i>I</i>
@@ -175,12 +175,15 @@ const App: React.FC = () => {
                     style={{ color: fontColor }}>
                     A
                 </button>
-                <input
-                    className="tool color-tool"
-                    type="color"
-                    value={fontColor}
-                    onChange={(event) => setFontColor(event.currentTarget.value)}
-                />
+                <div className="color-tool" style={{backgroundColor: fontColor}}>
+                    <div className="color-button"></div>
+                    <input
+                        className="color-input"
+                        type="color"
+                        value={fontColor}
+                        onChange={(event) => setFontColor(event.currentTarget.value)}
+                    />
+                </div>
                 <button
                     className="tool"
                     title="Remove Color"
