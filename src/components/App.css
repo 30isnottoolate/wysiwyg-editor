@@ -21,7 +21,7 @@ body {
 .color-tool {
     width: 25px;
     height: 25px;
-    border: 1px solid #475569;
+    border: 1px solid #94a3b8;
     border-radius: 2px;
     margin-right: 5px;
     vertical-align: middle;
@@ -35,7 +35,7 @@ body {
 .tool:hover,
 .color-tool:hover {
     background-color: #f1f5f9;
-    border-color: #334155;
+    border-color: #64748b;
 }
 
 .tool:active,
@@ -86,16 +86,21 @@ body {
 }
 
 #editor-container {
+    display: grid;
+    justify-items: center;
     background-color: #d1d5db;
+    width: calc(100vw);
+    height: calc(100vh - 65px);
     padding: 25px;
     border-top: 1px solid #a1a1aa;
+    overflow: scroll;
 }
 
 #editor {
     background-color: #f9fafb;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
-    width: calc(100vw - 70px);
-    height: calc(100vh - 136px);
+    width: 210mm;
+    height: 297mm;
     padding: 75px;
     margin: 10px;
     box-shadow: 3px 3px 6px 3px #6b728066;
