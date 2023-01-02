@@ -116,3 +116,33 @@ body {
 #editor > * {
     user-select: initial;
 }
+
+.window-container {
+    display: grid;
+    justify-items: center;
+    align-items: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.options-window {
+    background-color: #e4e4e7;
+    width: 500px;
+    height: 300px;
+    padding: 25px;
+}
+
+.color-table {
+    display: grid;
+    grid-template-columns: repeat(10, 15px);
+    grid-template-rows: 15px;
+}
+
+.color-square {
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+}
