@@ -8,6 +8,10 @@
     user-select: none;
 }
 
+body {
+    background-color: #e4e4e7;
+}
+
 .toolbar {
     padding: 10px;
     margin: 10px;
@@ -81,16 +85,29 @@
     transform: translate(11px, 9px);
 }
 
+#editor-container {
+    background-color: #d1d5db;
+    padding: 25px;
+    border-top: 1px solid #a1a1aa;
+}
 
 #editor {
+    background-color: #f9fafb;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
-    width: calc(100vw - 20px);
-    padding: 10px;
+    width: calc(100vw - 70px);
+    height: calc(100vh - 136px);
+    padding: 75px;
     margin: 10px;
+    box-shadow: 3px 3px 6px 3px #6b728066;
     white-space: pre-wrap;
     user-select: initial;
 }
 
-#editor>* {
+#editor, #editor:focus {
+    border: 1px solid #9ca3af;
+    outline: none;
+}
+
+#editor > * {
     user-select: initial;
 }
