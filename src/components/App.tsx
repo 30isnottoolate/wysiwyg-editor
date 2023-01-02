@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
+
+    const colorRef = useRef<HTMLInputElement>(null);
 
     const applyFormatting = (style: string) => {
         const selection = window.getSelection();
@@ -175,9 +177,13 @@ const App: React.FC = () => {
                     style={{ color: fontColor }}>
                     A
                 </button>
-                <div className="color-tool" style={{backgroundColor: fontColor}}>
+                <div
+                    className="color-tool"
+                    style={{ backgroundColor: fontColor }}
+                    onClick={() => colorRef.current && colorRef.current.click()}>
                     <div className="color-button"></div>
                     <input
+                        ref={colorRef}
                         className="color-input"
                         type="color"
                         value={fontColor}
