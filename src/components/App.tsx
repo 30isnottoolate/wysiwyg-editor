@@ -213,6 +213,63 @@ const App: React.FC = () => {
                     <br />
                 </div>
             </div>
+            <div className="window-container">
+                <div className="options-window">
+                    <p>Default</p>
+                    <div className="color-table">
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                        <div className="color-square" />
+                    </div>
+                </div>
+            </div>
         </>
     )
 }
