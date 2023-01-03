@@ -9,6 +9,15 @@ const App: React.FC = () => {
 
     const colorRef = useRef<HTMLInputElement>(null);
     const customColorRef0 = useRef<HTMLInputElement>(null);
+    const customColorRef1 = useRef<HTMLInputElement>(null);
+    const customColorRef2 = useRef<HTMLInputElement>(null);
+    const customColorRef3 = useRef<HTMLInputElement>(null);
+    const customColorRef4 = useRef<HTMLInputElement>(null);
+    const customColorRef5 = useRef<HTMLInputElement>(null);
+    const customColorRef6 = useRef<HTMLInputElement>(null);
+    const customColorRef7 = useRef<HTMLInputElement>(null);
+    const customColorRef8 = useRef<HTMLInputElement>(null);
+    const customColorRef9 = useRef<HTMLInputElement>(null);
 
     const applyFormatting = (style: string) => {
         const selection = window.getSelection();
@@ -294,15 +303,114 @@ const App: React.FC = () => {
                                 onChange={(event) => setCustomColor(0, event.currentTarget.value)}
                             />
                         </div>
-                        <div className="color-square" style={{ backgroundColor: customColors[1] }} />
-                        <div className="color-square" style={{ backgroundColor: customColors[2] }} />
-                        <div className="color-square" style={{ backgroundColor: customColors[3] }} />
-                        <div className="color-square" style={{ backgroundColor: customColors[4] }} />
-                        <div className="color-square" style={{ backgroundColor: customColors[5] }} />
-                        <div className="color-square" style={{ backgroundColor: customColors[6] }} />
-                        <div className="color-square" style={{ backgroundColor: customColors[7] }} />
-                        <div className="color-square" style={{ backgroundColor: customColors[8] }} />
-                        <div className="color-square" style={{ backgroundColor: customColors[9] }} />
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[1] }}
+                            onDoubleClick={() => customColorRef1.current && customColorRef1.current.click()} >
+                            <input
+                                ref={customColorRef1}
+                                className="color-input"
+                                type="color"
+                                value={customColors[1]}
+                                onChange={(event) => setCustomColor(1, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[2] }}
+                            onDoubleClick={() => customColorRef2.current && customColorRef2.current.click()} >
+                            <input
+                                ref={customColorRef2}
+                                className="color-input"
+                                type="color"
+                                value={customColors[2]}
+                                onChange={(event) => setCustomColor(2, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[3] }}
+                            onDoubleClick={() => customColorRef3.current && customColorRef3.current.click()} >
+                            <input
+                                ref={customColorRef3}
+                                className="color-input"
+                                type="color"
+                                value={customColors[3]}
+                                onChange={(event) => setCustomColor(3, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[4] }}
+                            onDoubleClick={() => customColorRef4.current && customColorRef4.current.click()} >
+                            <input
+                                ref={customColorRef4}
+                                className="color-input"
+                                type="color"
+                                value={customColors[4]}
+                                onChange={(event) => setCustomColor(4, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[5] }}
+                            onDoubleClick={() => customColorRef5.current && customColorRef5.current.click()} >
+                            <input
+                                ref={customColorRef5}
+                                className="color-input"
+                                type="color"
+                                value={customColors[5]}
+                                onChange={(event) => setCustomColor(5, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[6] }}
+                            onDoubleClick={() => customColorRef6.current && customColorRef6.current.click()} >
+                            <input
+                                ref={customColorRef6}
+                                className="color-input"
+                                type="color"
+                                value={customColors[6]}
+                                onChange={(event) => setCustomColor(6, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[7] }}
+                            onDoubleClick={() => customColorRef7.current && customColorRef7.current.click()} >
+                            <input
+                                ref={customColorRef7}
+                                className="color-input"
+                                type="color"
+                                value={customColors[7]}
+                                onChange={(event) => setCustomColor(7, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[8] }}
+                            onDoubleClick={() => customColorRef8.current && customColorRef8.current.click()} >
+                            <input
+                                ref={customColorRef8}
+                                className="color-input"
+                                type="color"
+                                value={customColors[8]}
+                                onChange={(event) => setCustomColor(8, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[9] }}
+                            onDoubleClick={() => customColorRef9.current && customColorRef9.current.click()} >
+                            <input
+                                ref={customColorRef9}
+                                className="color-input"
+                                type="color"
+                                value={customColors[9]}
+                                onChange={(event) => setCustomColor(9, event.currentTarget.value)}
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
