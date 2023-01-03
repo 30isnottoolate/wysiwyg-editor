@@ -233,7 +233,7 @@ const App: React.FC = () => {
                 </div>
             </div>
             <div className="window-container">
-                <div className="options-window">
+                <div className="colors-window">
                     <p>Default color</p>
                     <div className="color-square default-color" style={{ backgroundColor: "#000000" }} />
                     <p>Color presets</p>

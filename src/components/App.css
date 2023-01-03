@@ -129,7 +129,7 @@ body {
     height: 100vh;
 }
 
-.options-window {
+.colors-window {
     background-color: #e4e4e7;
     width: 191px;
     height: 260px;
@@ -138,7 +138,7 @@ body {
     box-shadow: 3px 3px 6px 1px #6b728066;
 }
 
-.options-window > p {
+.colors-window > p {
     font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
     margin-bottom: 5px;
 }
