@@ -3,6 +3,9 @@ import "./App.css";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
+    const [customColors, setCustomColors] = useState(
+        ["#000000", "#000000", "#000000", "#000000", "#000000", 
+        "#000000", "#000000", "#000000", "#000000", "#000000"]);
 
     const colorRef = useRef<HTMLInputElement>(null);
 
