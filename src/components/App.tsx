@@ -157,6 +157,11 @@ const App: React.FC = () => {
         setCustomColors(customColorArray);
     }
 
+    const handleColorSelection = (event) => {
+        setFontColor(event.currentTarget.style.backgroundColor);
+        setColorWindowActive(false);
+    }
+
     return (
         <>
             <div className="toolbar">
@@ -210,16 +215,18 @@ const App: React.FC = () => {
                     A
                 </button>
                 <div
-                    className="color-tool"
-                    onClick={() => setColorWindowActive(true)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 16 16">
-                        <polygon points="0,0 8,10 16,0 8,10 0,0" style={{fill: "none", stroke: "#000000", strokeWidth: "3px"}} />
-                    </svg>
+                    className="color-tool" >
+                    <button onClick={() => setColorWindowActive(true)}>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 16 16">
+                            <polygon points="0,0 8,10 16,0 8,10 0,0" style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }} />
+                        </svg>
+                    </button>
+
                     {colorWindowActive &&
                         <div className="colors-window">
                             <p>Color presets</p>
                             <div className="color-table">
-                                <div className="color-square" style={{ backgroundColor: "#737373" }} />
+                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#737373" }} />
                                 <div className="color-square" style={{ backgroundColor: "#ffffff" }} />
                                 <div className="color-square" style={{ backgroundColor: "#fca5a5" }} />
                                 <div className="color-square" style={{ backgroundColor: "#fdba74" }} />
