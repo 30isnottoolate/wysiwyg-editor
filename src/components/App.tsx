@@ -234,8 +234,6 @@ const App: React.FC = () => {
             </div>
             <div className="window-container">
                 <div className="colors-window">
-                    <p>Default color</p>
-                    <div className="color-square default-color" style={{ backgroundColor: "#000000" }} />
                     <p>Color presets</p>
                     <div className="color-table">
                         <div className="color-square" style={{ backgroundColor: "#737373" }} />
@@ -278,7 +276,7 @@ const App: React.FC = () => {
                         <div className="color-square" style={{ backgroundColor: "#0369a1" }} />
                         <div className="color-square" style={{ backgroundColor: "#7e22ce" }} />
                         <div className="color-square" style={{ backgroundColor: "#a21caf" }} />
-                        <div className="color-square" style={{ backgroundColor: "#171717" }} />
+                        <div className="color-square" style={{ backgroundColor: "#000000" }} />
                         <div className="color-square" style={{ backgroundColor: "#a3a3a3" }} />
                         <div className="color-square" style={{ backgroundColor: "#7f1d1d" }} />
                         <div className="color-square" style={{ backgroundColor: "#9a3412" }} />
