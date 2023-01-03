@@ -150,6 +150,11 @@ body {
     border: 1px solid #a1a1aa;
 }
 
+.color-square:hover {
+    border: 1px solid #000000;
+    box-shadow: 0px 0px 0px 1px #ffffff inset;
+}
+
 .default-color {
     margin-bottom: 15px;
 }
