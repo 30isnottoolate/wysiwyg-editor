@@ -4,10 +4,11 @@ import "./App.css";
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
     const [customColors, setCustomColors] = useState(
-        ["#000000", "#000000", "#000000", "#000000", "#000000", 
-        "#000000", "#000000", "#000000", "#000000", "#000000"]);
+        ["#000000", "#000000", "#000000", "#000000", "#000000",
+            "#000000", "#000000", "#000000", "#000000", "#000000"]);
 
     const colorRef = useRef<HTMLInputElement>(null);
+    const customColorRef0 = useRef<HTMLInputElement>(null);
 
     const applyFormatting = (style: string) => {
         const selection = window.getSelection();
@@ -128,6 +129,12 @@ const App: React.FC = () => {
         }
     }
 
+    const setCustomColor = (index: number, color: string) => {
+        const customColorArray = [...customColors];
+        customColorArray[index] = color;
+        setCustomColors(customColorArray);
+    }
+
     return (
         <>
             <div className="toolbar">
@@ -219,72 +226,83 @@ const App: React.FC = () => {
             <div className="window-container">
                 <div className="options-window">
                     <p>Default color</p>
-                    <div className="color-square default-color" style={{backgroundColor: "#000000"}} />
+                    <div className="color-square default-color" style={{ backgroundColor: "#000000" }} />
                     <p>Color presets</p>
                     <div className="color-table">
-                        <div className="color-square" style={{backgroundColor: "#737373"}} />
-                        <div className="color-square" style={{backgroundColor: "#ffffff"}} />
-                        <div className="color-square" style={{backgroundColor: "#fca5a5"}} />
-                        <div className="color-square" style={{backgroundColor: "#fdba74"}} />
-                        <div className="color-square" style={{backgroundColor: "#fef08a"}} />
-                        <div className="color-square" style={{backgroundColor: "#bef264"}} />
-                        <div className="color-square" style={{backgroundColor: "#86efac"}} />
-                        <div className="color-square" style={{backgroundColor: "#7dd3fc"}} />
-                        <div className="color-square" style={{backgroundColor: "#d8b4fe"}} />
-                        <div className="color-square" style={{backgroundColor: "#f0abfc"}} />
-                        <div className="color-square" style={{backgroundColor: "#525252"}} />
-                        <div className="color-square" style={{backgroundColor: "#f5f5f5"}} />
-                        <div className="color-square" style={{backgroundColor: "#f87171"}} />
-                        <div className="color-square" style={{backgroundColor: "#fb923c"}} />
-                        <div className="color-square" style={{backgroundColor: "#facc15"}} />
-                        <div className="color-square" style={{backgroundColor: "#a3e635"}} />
-                        <div className="color-square" style={{backgroundColor: "#4ade80"}} />
-                        <div className="color-square" style={{backgroundColor: "#38bdf8"}} />
-                        <div className="color-square" style={{backgroundColor: "#c084fc"}} />
-                        <div className="color-square" style={{backgroundColor: "#e879f9"}} />
-                        <div className="color-square" style={{backgroundColor: "#404040"}} />
-                        <div className="color-square" style={{backgroundColor: "#e5e5e5"}} />
-                        <div className="color-square" style={{backgroundColor: "#ef4444"}} />
-                        <div className="color-square" style={{backgroundColor: "#f97316"}} />
-                        <div className="color-square" style={{backgroundColor: "#eab308"}} />
-                        <div className="color-square" style={{backgroundColor: "#84cc16"}} />
-                        <div className="color-square" style={{backgroundColor: "#22c55e"}} />
-                        <div className="color-square" style={{backgroundColor: "#0ea5e9"}} />
-                        <div className="color-square" style={{backgroundColor: "#a855f7"}} />
-                        <div className="color-square" style={{backgroundColor: "#d946ef"}} />
-                        <div className="color-square" style={{backgroundColor: "#262626"}} />
-                        <div className="color-square" style={{backgroundColor: "#d4d4d4"}} />
-                        <div className="color-square" style={{backgroundColor: "#b91c1c"}} />
-                        <div className="color-square" style={{backgroundColor: "#ea580c"}} />
-                        <div className="color-square" style={{backgroundColor: "#ca8a04"}} />
-                        <div className="color-square" style={{backgroundColor: "#65a30d"}} />
-                        <div className="color-square" style={{backgroundColor: "#15803d"}} />
-                        <div className="color-square" style={{backgroundColor: "#0369a1"}} />
-                        <div className="color-square" style={{backgroundColor: "#7e22ce"}} />
-                        <div className="color-square" style={{backgroundColor: "#a21caf"}} />
-                        <div className="color-square" style={{backgroundColor: "#171717"}} />
-                        <div className="color-square" style={{backgroundColor: "#a3a3a3"}} />
-                        <div className="color-square" style={{backgroundColor: "#7f1d1d"}} />
-                        <div className="color-square" style={{backgroundColor: "#9a3412"}} />
-                        <div className="color-square" style={{backgroundColor: "#713f12"}} />
-                        <div className="color-square" style={{backgroundColor: "#3f6212"}} />
-                        <div className="color-square" style={{backgroundColor: "#14532d"}} />
-                        <div className="color-square" style={{backgroundColor: "#0c4a6e"}} />
-                        <div className="color-square" style={{backgroundColor: "#581c87"}} />
-                        <div className="color-square" style={{backgroundColor: "#701a75"}} />
+                        <div className="color-square" style={{ backgroundColor: "#737373" }} />
+                        <div className="color-square" style={{ backgroundColor: "#ffffff" }} />
+                        <div className="color-square" style={{ backgroundColor: "#fca5a5" }} />
+                        <div className="color-square" style={{ backgroundColor: "#fdba74" }} />
+                        <div className="color-square" style={{ backgroundColor: "#fef08a" }} />
+                        <div className="color-square" style={{ backgroundColor: "#bef264" }} />
+                        <div className="color-square" style={{ backgroundColor: "#86efac" }} />
+                        <div className="color-square" style={{ backgroundColor: "#7dd3fc" }} />
+                        <div className="color-square" style={{ backgroundColor: "#d8b4fe" }} />
+                        <div className="color-square" style={{ backgroundColor: "#f0abfc" }} />
+                        <div className="color-square" style={{ backgroundColor: "#525252" }} />
+                        <div className="color-square" style={{ backgroundColor: "#f5f5f5" }} />
+                        <div className="color-square" style={{ backgroundColor: "#f87171" }} />
+                        <div className="color-square" style={{ backgroundColor: "#fb923c" }} />
+                        <div className="color-square" style={{ backgroundColor: "#facc15" }} />
+                        <div className="color-square" style={{ backgroundColor: "#a3e635" }} />
+                        <div className="color-square" style={{ backgroundColor: "#4ade80" }} />
+                        <div className="color-square" style={{ backgroundColor: "#38bdf8" }} />
+                        <div className="color-square" style={{ backgroundColor: "#c084fc" }} />
+                        <div className="color-square" style={{ backgroundColor: "#e879f9" }} />
+                        <div className="color-square" style={{ backgroundColor: "#404040" }} />
+                        <div className="color-square" style={{ backgroundColor: "#e5e5e5" }} />
+                        <div className="color-square" style={{ backgroundColor: "#ef4444" }} />
+                        <div className="color-square" style={{ backgroundColor: "#f97316" }} />
+                        <div className="color-square" style={{ backgroundColor: "#eab308" }} />
+                        <div className="color-square" style={{ backgroundColor: "#84cc16" }} />
+                        <div className="color-square" style={{ backgroundColor: "#22c55e" }} />
+                        <div className="color-square" style={{ backgroundColor: "#0ea5e9" }} />
+                        <div className="color-square" style={{ backgroundColor: "#a855f7" }} />
+                        <div className="color-square" style={{ backgroundColor: "#d946ef" }} />
+                        <div className="color-square" style={{ backgroundColor: "#262626" }} />
+                        <div className="color-square" style={{ backgroundColor: "#d4d4d4" }} />
+                        <div className="color-square" style={{ backgroundColor: "#b91c1c" }} />
+                        <div className="color-square" style={{ backgroundColor: "#ea580c" }} />
+                        <div className="color-square" style={{ backgroundColor: "#ca8a04" }} />
+                        <div className="color-square" style={{ backgroundColor: "#65a30d" }} />
+                        <div className="color-square" style={{ backgroundColor: "#15803d" }} />
+                        <div className="color-square" style={{ backgroundColor: "#0369a1" }} />
+                        <div className="color-square" style={{ backgroundColor: "#7e22ce" }} />
+                        <div className="color-square" style={{ backgroundColor: "#a21caf" }} />
+                        <div className="color-square" style={{ backgroundColor: "#171717" }} />
+                        <div className="color-square" style={{ backgroundColor: "#a3a3a3" }} />
+                        <div className="color-square" style={{ backgroundColor: "#7f1d1d" }} />
+                        <div className="color-square" style={{ backgroundColor: "#9a3412" }} />
+                        <div className="color-square" style={{ backgroundColor: "#713f12" }} />
+                        <div className="color-square" style={{ backgroundColor: "#3f6212" }} />
+                        <div className="color-square" style={{ backgroundColor: "#14532d" }} />
+                        <div className="color-square" style={{ backgroundColor: "#0c4a6e" }} />
+                        <div className="color-square" style={{ backgroundColor: "#581c87" }} />
+                        <div className="color-square" style={{ backgroundColor: "#701a75" }} />
                     </div>
                     <p>Custom colors</p>
                     <div className="custom-color-row">
-                        <div className="color-square" style={{backgroundColor: customColors[0]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[1]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[2]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[3]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[4]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[5]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[6]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[7]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[8]}} />
-                        <div className="color-square" style={{backgroundColor: customColors[9]}} />
+                        <div
+                            className="color-square"
+                            style={{ backgroundColor: customColors[0] }}
+                            onDoubleClick={() => customColorRef0.current && customColorRef0.current.click()} >
+                            <input
+                                ref={customColorRef0}
+                                className="color-input"
+                                type="color"
+                                value={customColors[0]}
+                                onChange={(event) => setCustomColor(0, event.currentTarget.value)}
+                            />
+                        </div>
+                        <div className="color-square" style={{ backgroundColor: customColors[1] }} />
+                        <div className="color-square" style={{ backgroundColor: customColors[2] }} />
+                        <div className="color-square" style={{ backgroundColor: customColors[3] }} />
+                        <div className="color-square" style={{ backgroundColor: customColors[4] }} />
+                        <div className="color-square" style={{ backgroundColor: customColors[5] }} />
+                        <div className="color-square" style={{ backgroundColor: customColors[6] }} />
+                        <div className="color-square" style={{ backgroundColor: customColors[7] }} />
+                        <div className="color-square" style={{ backgroundColor: customColors[8] }} />
+                        <div className="color-square" style={{ backgroundColor: customColors[9] }} />
                     </div>
                 </div>
             </div>
