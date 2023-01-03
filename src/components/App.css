@@ -20,8 +20,7 @@ body {
 
 .tool,
 .color-tool {
-    width: 25px;
-    height: 25px;
+    text-align: center;
     border: 1px solid #94a3b8;
     border-radius: 2px;
     margin-right: 5px;
@@ -31,6 +30,8 @@ body {
 
 .tool {
     background-color: #e2e8f0;
+    width: 25px;
+    height: 25px;
 }
 
 .tool:hover,
@@ -65,8 +66,18 @@ body {
     font-family: "Work Sans", Arial, sans-serif;
 }
 
+.font-color {
+    margin-right: -1px;
+}
+
 .color-tool {
     display: inline-block;
+    font-size: 14px;
+    text-align: left;
+    width: 15px;
+    height: 25px;
+    padding-left: 2px;
+    padding-top: 6px;
 }
 
 .color-button {
@@ -130,12 +141,15 @@ body {
 }
 
 .colors-window {
+    position: absolute;
     background-color: #e4e4e7;
     width: 191px;
     height: 203px;
+    z-index: 100;
     padding: 20px 15px;
     border: 1px solid #a1a1aa;
     box-shadow: 3px 3px 6px 1px #6b728066;
+    transform: translate(4.5px, -8px);
 }
 
 .colors-window > p {

@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 
-const DEFAULT_CUSTOM_COLORS = 
-["#000000", "#000000", "#000000", "#000000", "#000000",
-"#000000", "#000000", "#000000", "#000000", "#000000"];
+const DEFAULT_CUSTOM_COLORS =
+    ["#000000", "#000000", "#000000", "#000000", "#000000",
+        "#000000", "#000000", "#000000", "#000000", "#000000"];
 
 const App: React.FC = () => {
+    const [colorWindowActive, setColorWindowActive] = useState(false);
     const [fontColor, setFontColor] = useState("#ff0000");
     const [customColors, setCustomColors] = useState(() => {
         if (localStorage["customColors"] && localStorage["customColors"].split(",").length === 10) {
@@ -203,24 +204,198 @@ const App: React.FC = () => {
                     X
                 </button>
                 <button
-                    className="tool"
-                    title="Color Font"
+                    className="tool font-color"
+                    title="Font Color"
                     onClick={() => applyColor()}
                     style={{ color: fontColor }}>
                     A
                 </button>
                 <div
                     className="color-tool"
-                    style={{ backgroundColor: fontColor }}
-                    onClick={() => colorRef.current && colorRef.current.click()}>
-                    <div className="color-button"></div>
-                    <input
-                        ref={colorRef}
-                        className="color-input"
-                        type="color"
-                        value={fontColor}
-                        onChange={(event) => setFontColor(event.currentTarget.value)}
-                    />
+                    onClick={() => setColorWindowActive(true)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" /* fill="#000000" */ viewBox="0 0 16 16">
+                        <polygon points="0,0 8,10 16,0 8,10 0,0" style={{fill: "none", stroke: "#000000", strokeWidth: "3px"}} />
+                    </svg>
+                    {colorWindowActive &&
+                        <div className="colors-window">
+                            <p>Color presets</p>
+                            <div className="color-table">
+                                <div className="color-square" style={{ backgroundColor: "#737373" }} />
+                                <div className="color-square" style={{ backgroundColor: "#ffffff" }} />
+                                <div className="color-square" style={{ backgroundColor: "#fca5a5" }} />
+                                <div className="color-square" style={{ backgroundColor: "#fdba74" }} />
+                                <div className="color-square" style={{ backgroundColor: "#fef08a" }} />
+                                <div className="color-square" style={{ backgroundColor: "#bef264" }} />
+                                <div className="color-square" style={{ backgroundColor: "#86efac" }} />
+                                <div className="color-square" style={{ backgroundColor: "#7dd3fc" }} />
+                                <div className="color-square" style={{ backgroundColor: "#d8b4fe" }} />
+                                <div className="color-square" style={{ backgroundColor: "#f0abfc" }} />
+                                <div className="color-square" style={{ backgroundColor: "#525252" }} />
+                                <div className="color-square" style={{ backgroundColor: "#f5f5f5" }} />
+                                <div className="color-square" style={{ backgroundColor: "#f87171" }} />
+                                <div className="color-square" style={{ backgroundColor: "#fb923c" }} />
+                                <div className="color-square" style={{ backgroundColor: "#facc15" }} />
+                                <div className="color-square" style={{ backgroundColor: "#a3e635" }} />
+                                <div className="color-square" style={{ backgroundColor: "#4ade80" }} />
+                                <div className="color-square" style={{ backgroundColor: "#38bdf8" }} />
+                                <div className="color-square" style={{ backgroundColor: "#c084fc" }} />
+                                <div className="color-square" style={{ backgroundColor: "#e879f9" }} />
+                                <div className="color-square" style={{ backgroundColor: "#404040" }} />
+                                <div className="color-square" style={{ backgroundColor: "#e5e5e5" }} />
+                                <div className="color-square" style={{ backgroundColor: "#ef4444" }} />
+                                <div className="color-square" style={{ backgroundColor: "#f97316" }} />
+                                <div className="color-square" style={{ backgroundColor: "#eab308" }} />
+                                <div className="color-square" style={{ backgroundColor: "#84cc16" }} />
+                                <div className="color-square" style={{ backgroundColor: "#22c55e" }} />
+                                <div className="color-square" style={{ backgroundColor: "#0ea5e9" }} />
+                                <div className="color-square" style={{ backgroundColor: "#a855f7" }} />
+                                <div className="color-square" style={{ backgroundColor: "#d946ef" }} />
+                                <div className="color-square" style={{ backgroundColor: "#262626" }} />
+                                <div className="color-square" style={{ backgroundColor: "#d4d4d4" }} />
+                                <div className="color-square" style={{ backgroundColor: "#b91c1c" }} />
+                                <div className="color-square" style={{ backgroundColor: "#ea580c" }} />
+                                <div className="color-square" style={{ backgroundColor: "#ca8a04" }} />
+                                <div className="color-square" style={{ backgroundColor: "#65a30d" }} />
+                                <div className="color-square" style={{ backgroundColor: "#15803d" }} />
+                                <div className="color-square" style={{ backgroundColor: "#0369a1" }} />
+                                <div className="color-square" style={{ backgroundColor: "#7e22ce" }} />
+                                <div className="color-square" style={{ backgroundColor: "#a21caf" }} />
+                                <div className="color-square" style={{ backgroundColor: "#000000" }} />
+                                <div className="color-square" style={{ backgroundColor: "#a3a3a3" }} />
+                                <div className="color-square" style={{ backgroundColor: "#7f1d1d" }} />
+                                <div className="color-square" style={{ backgroundColor: "#9a3412" }} />
+                                <div className="color-square" style={{ backgroundColor: "#713f12" }} />
+                                <div className="color-square" style={{ backgroundColor: "#3f6212" }} />
+                                <div className="color-square" style={{ backgroundColor: "#14532d" }} />
+                                <div className="color-square" style={{ backgroundColor: "#0c4a6e" }} />
+                                <div className="color-square" style={{ backgroundColor: "#581c87" }} />
+                                <div className="color-square" style={{ backgroundColor: "#701a75" }} />
+                            </div>
+                            <p>Custom colors</p>
+                            <div className="custom-color-row">
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[0] }}
+                                    onDoubleClick={() => customColorRef0.current && customColorRef0.current.click()} >
+                                    <input
+                                        ref={customColorRef0}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[0]}
+                                        onChange={(event) => setCustomColor(0, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[1] }}
+                                    onDoubleClick={() => customColorRef1.current && customColorRef1.current.click()} >
+                                    <input
+                                        ref={customColorRef1}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[1]}
+                                        onChange={(event) => setCustomColor(1, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[2] }}
+                                    onDoubleClick={() => customColorRef2.current && customColorRef2.current.click()} >
+                                    <input
+                                        ref={customColorRef2}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[2]}
+                                        onChange={(event) => setCustomColor(2, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[3] }}
+                                    onDoubleClick={() => customColorRef3.current && customColorRef3.current.click()} >
+                                    <input
+                                        ref={customColorRef3}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[3]}
+                                        onChange={(event) => setCustomColor(3, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[4] }}
+                                    onDoubleClick={() => customColorRef4.current && customColorRef4.current.click()} >
+                                    <input
+                                        ref={customColorRef4}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[4]}
+                                        onChange={(event) => setCustomColor(4, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[5] }}
+                                    onDoubleClick={() => customColorRef5.current && customColorRef5.current.click()} >
+                                    <input
+                                        ref={customColorRef5}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[5]}
+                                        onChange={(event) => setCustomColor(5, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[6] }}
+                                    onDoubleClick={() => customColorRef6.current && customColorRef6.current.click()} >
+                                    <input
+                                        ref={customColorRef6}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[6]}
+                                        onChange={(event) => setCustomColor(6, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[7] }}
+                                    onDoubleClick={() => customColorRef7.current && customColorRef7.current.click()} >
+                                    <input
+                                        ref={customColorRef7}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[7]}
+                                        onChange={(event) => setCustomColor(7, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[8] }}
+                                    onDoubleClick={() => customColorRef8.current && customColorRef8.current.click()} >
+                                    <input
+                                        ref={customColorRef8}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[8]}
+                                        onChange={(event) => setCustomColor(8, event.currentTarget.value)}
+                                    />
+                                </div>
+                                <div
+                                    className="color-square"
+                                    style={{ backgroundColor: customColors[9] }}
+                                    onDoubleClick={() => customColorRef9.current && customColorRef9.current.click()} >
+                                    <input
+                                        ref={customColorRef9}
+                                        className="color-input"
+                                        type="color"
+                                        value={customColors[9]}
+                                        onChange={(event) => setCustomColor(9, event.currentTarget.value)}
+                                    />
+                                </div>
+                            </div>
+                        </div>
+                    }
                 </div>
                 <button
                     className="tool"
@@ -245,186 +420,9 @@ const App: React.FC = () => {
                     <br />
                 </div>
             </div>
-            <div className="window-container">
-                <div className="colors-window">
-                    <p>Color presets</p>
-                    <div className="color-table">
-                        <div className="color-square" style={{ backgroundColor: "#737373" }} />
-                        <div className="color-square" style={{ backgroundColor: "#ffffff" }} />
-                        <div className="color-square" style={{ backgroundColor: "#fca5a5" }} />
-                        <div className="color-square" style={{ backgroundColor: "#fdba74" }} />
-                        <div className="color-square" style={{ backgroundColor: "#fef08a" }} />
-                        <div className="color-square" style={{ backgroundColor: "#bef264" }} />
-                        <div className="color-square" style={{ backgroundColor: "#86efac" }} />
-                        <div className="color-square" style={{ backgroundColor: "#7dd3fc" }} />
-                        <div className="color-square" style={{ backgroundColor: "#d8b4fe" }} />
-                        <div className="color-square" style={{ backgroundColor: "#f0abfc" }} />
-                        <div className="color-square" style={{ backgroundColor: "#525252" }} />
-                        <div className="color-square" style={{ backgroundColor: "#f5f5f5" }} />
-                        <div className="color-square" style={{ backgroundColor: "#f87171" }} />
-                        <div className="color-square" style={{ backgroundColor: "#fb923c" }} />
-                        <div className="color-square" style={{ backgroundColor: "#facc15" }} />
-                        <div className="color-square" style={{ backgroundColor: "#a3e635" }} />
-                        <div className="color-square" style={{ backgroundColor: "#4ade80" }} />
-                        <div className="color-square" style={{ backgroundColor: "#38bdf8" }} />
-                        <div className="color-square" style={{ backgroundColor: "#c084fc" }} />
-                        <div className="color-square" style={{ backgroundColor: "#e879f9" }} />
-                        <div className="color-square" style={{ backgroundColor: "#404040" }} />
-                        <div className="color-square" style={{ backgroundColor: "#e5e5e5" }} />
-                        <div className="color-square" style={{ backgroundColor: "#ef4444" }} />
-                        <div className="color-square" style={{ backgroundColor: "#f97316" }} />
-                        <div className="color-square" style={{ backgroundColor: "#eab308" }} />
-                        <div className="color-square" style={{ backgroundColor: "#84cc16" }} />
-                        <div className="color-square" style={{ backgroundColor: "#22c55e" }} />
-                        <div className="color-square" style={{ backgroundColor: "#0ea5e9" }} />
-                        <div className="color-square" style={{ backgroundColor: "#a855f7" }} />
-                        <div className="color-square" style={{ backgroundColor: "#d946ef" }} />
-                        <div className="color-square" style={{ backgroundColor: "#262626" }} />
-                        <div className="color-square" style={{ backgroundColor: "#d4d4d4" }} />
-                        <div className="color-square" style={{ backgroundColor: "#b91c1c" }} />
-                        <div className="color-square" style={{ backgroundColor: "#ea580c" }} />
-                        <div className="color-square" style={{ backgroundColor: "#ca8a04" }} />
-                        <div className="color-square" style={{ backgroundColor: "#65a30d" }} />
-                        <div className="color-square" style={{ backgroundColor: "#15803d" }} />
-                        <div className="color-square" style={{ backgroundColor: "#0369a1" }} />
-                        <div className="color-square" style={{ backgroundColor: "#7e22ce" }} />
-                        <div className="color-square" style={{ backgroundColor: "#a21caf" }} />
-                        <div className="color-square" style={{ backgroundColor: "#000000" }} />
-                        <div className="color-square" style={{ backgroundColor: "#a3a3a3" }} />
-                        <div className="color-square" style={{ backgroundColor: "#7f1d1d" }} />
-                        <div className="color-square" style={{ backgroundColor: "#9a3412" }} />
-                        <div className="color-square" style={{ backgroundColor: "#713f12" }} />
-                        <div className="color-square" style={{ backgroundColor: "#3f6212" }} />
-                        <div className="color-square" style={{ backgroundColor: "#14532d" }} />
-                        <div className="color-square" style={{ backgroundColor: "#0c4a6e" }} />
-                        <div className="color-square" style={{ backgroundColor: "#581c87" }} />
-                        <div className="color-square" style={{ backgroundColor: "#701a75" }} />
-                    </div>
-                    <p>Custom colors</p>
-                    <div className="custom-color-row">
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[0] }}
-                            onDoubleClick={() => customColorRef0.current && customColorRef0.current.click()} >
-                            <input
-                                ref={customColorRef0}
-                                className="color-input"
-                                type="color"
-                                value={customColors[0]}
-                                onChange={(event) => setCustomColor(0, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[1] }}
-                            onDoubleClick={() => customColorRef1.current && customColorRef1.current.click()} >
-                            <input
-                                ref={customColorRef1}
-                                className="color-input"
-                                type="color"
-                                value={customColors[1]}
-                                onChange={(event) => setCustomColor(1, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[2] }}
-                            onDoubleClick={() => customColorRef2.current && customColorRef2.current.click()} >
-                            <input
-                                ref={customColorRef2}
-                                className="color-input"
-                                type="color"
-                                value={customColors[2]}
-                                onChange={(event) => setCustomColor(2, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[3] }}
-                            onDoubleClick={() => customColorRef3.current && customColorRef3.current.click()} >
-                            <input
-                                ref={customColorRef3}
-                                className="color-input"
-                                type="color"
-                                value={customColors[3]}
-                                onChange={(event) => setCustomColor(3, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[4] }}
-                            onDoubleClick={() => customColorRef4.current && customColorRef4.current.click()} >
-                            <input
-                                ref={customColorRef4}
-                                className="color-input"
-                                type="color"
-                                value={customColors[4]}
-                                onChange={(event) => setCustomColor(4, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[5] }}
-                            onDoubleClick={() => customColorRef5.current && customColorRef5.current.click()} >
-                            <input
-                                ref={customColorRef5}
-                                className="color-input"
-                                type="color"
-                                value={customColors[5]}
-                                onChange={(event) => setCustomColor(5, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[6] }}
-                            onDoubleClick={() => customColorRef6.current && customColorRef6.current.click()} >
-                            <input
-                                ref={customColorRef6}
-                                className="color-input"
-                                type="color"
-                                value={customColors[6]}
-                                onChange={(event) => setCustomColor(6, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[7] }}
-                            onDoubleClick={() => customColorRef7.current && customColorRef7.current.click()} >
-                            <input
-                                ref={customColorRef7}
-                                className="color-input"
-                                type="color"
-                                value={customColors[7]}
-                                onChange={(event) => setCustomColor(7, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[8] }}
-                            onDoubleClick={() => customColorRef8.current && customColorRef8.current.click()} >
-                            <input
-                                ref={customColorRef8}
-                                className="color-input"
-                                type="color"
-                                value={customColors[8]}
-                                onChange={(event) => setCustomColor(8, event.currentTarget.value)}
-                            />
-                        </div>
-                        <div
-                            className="color-square"
-                            style={{ backgroundColor: customColors[9] }}
-                            onDoubleClick={() => customColorRef9.current && customColorRef9.current.click()} >
-                            <input
-                                ref={customColorRef9}
-                                className="color-input"
-                                type="color"
-                                value={customColors[9]}
-                                onChange={(event) => setCustomColor(9, event.currentTarget.value)}
-                            />
-                        </div>
-                    </div>
-                </div>
-            </div>
+            {/* <div className="window-container">
+                
+            </div> */}
         </>
     )
 }
