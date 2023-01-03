@@ -131,9 +131,9 @@ body {
 
 .options-window {
     background-color: #e4e4e7;
-    width: 211px;
-    height: 300px;
-    padding: 25px;
+    width: 191px;
+    height: 260px;
+    padding: 20px 15px;
     border: 1px solid #a1a1aa;
     box-shadow: 3px 3px 6px 1px #6b728066;
 }
