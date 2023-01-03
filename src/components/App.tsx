@@ -275,16 +275,16 @@ const App: React.FC = () => {
                     </div>
                     <p>Custom colors</p>
                     <div className="custom-color-row">
-                        <div className="color-square" />
-                        <div className="color-square" />
-                        <div className="color-square" />
-                        <div className="color-square" />
-                        <div className="color-square" />
-                        <div className="color-square" />
-                        <div className="color-square" />
-                        <div className="color-square" />
-                        <div className="color-square" />
-                        <div className="color-square" />
+                        <div className="color-square" style={{backgroundColor: customColors[0]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[1]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[2]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[3]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[4]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[5]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[6]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[7]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[8]}} />
+                        <div className="color-square" style={{backgroundColor: customColors[9]}} />
                     </div>
                 </div>
             </div>
