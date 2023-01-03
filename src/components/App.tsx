@@ -17,7 +17,6 @@ const App: React.FC = () => {
         }
     });
 
-    const colorRef = useRef<HTMLInputElement>(null);
     const customColorRef0 = useRef<HTMLInputElement>(null);
     const customColorRef1 = useRef<HTMLInputElement>(null);
     const customColorRef2 = useRef<HTMLInputElement>(null);
@@ -213,7 +212,7 @@ const App: React.FC = () => {
                 <div
                     className="color-tool"
                     onClick={() => setColorWindowActive(true)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" /* fill="#000000" */ viewBox="0 0 16 16">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 16 16">
                         <polygon points="0,0 8,10 16,0 8,10 0,0" style={{fill: "none", stroke: "#000000", strokeWidth: "3px"}} />
                     </svg>
                     {colorWindowActive &&
