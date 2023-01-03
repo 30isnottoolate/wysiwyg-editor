@@ -1,11 +1,20 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
+
+const DEFAULT_CUSTOM_COLORS = 
+["#000000", "#000000", "#000000", "#000000", "#000000",
+"#000000", "#000000", "#000000", "#000000", "#000000"];
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
-    const [customColors, setCustomColors] = useState(
-        ["#000000", "#000000", "#000000", "#000000", "#000000",
-            "#000000", "#000000", "#000000", "#000000", "#000000"]);
+    const [customColors, setCustomColors] = useState(() => {
+        if (localStorage["customColors"] && localStorage["customColors"].split(",").length === 10) {
+            return localStorage["customColors"].split(",");
+        } else {
+            localStorage["customColors"] = DEFAULT_CUSTOM_COLORS.toString();
+            return DEFAULT_CUSTOM_COLORS;
+        }
+    });
 
     const colorRef = useRef<HTMLInputElement>(null);
     const customColorRef0 = useRef<HTMLInputElement>(null);
@@ -18,6 +27,10 @@ const App: React.FC = () => {
     const customColorRef7 = useRef<HTMLInputElement>(null);
     const customColorRef8 = useRef<HTMLInputElement>(null);
     const customColorRef9 = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        localStorage["customColors"] = customColors.toString();
+    }, [customColors]);
 
     const applyFormatting = (style: string) => {
         const selection = window.getSelection();
