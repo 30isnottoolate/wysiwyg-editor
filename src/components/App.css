@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Work+Sans:wght@500&display=swap');
 
 * {
@@ -130,19 +131,33 @@ body {
 
 .options-window {
     background-color: #e4e4e7;
-    width: 500px;
+    width: 211px;
     height: 300px;
     padding: 25px;
+    border: 1px solid #a1a1aa;
+    box-shadow: 3px 3px 6px 1px #6b728066;
 }
 
-.color-table {
-    display: grid;
-    grid-template-columns: repeat(10, 15px);
-    grid-template-rows: 15px;
+.options-window > p {
+    font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
+    margin-bottom: 5px;
 }
 
 .color-square {
     display: inline-block;
     width: 15px;
     height: 15px;
+    border: 1px solid #a1a1aa;
+}
+
+.default-color {
+    margin-bottom: 15px;
+}
+
+.color-table, .custom-color-row {
+    display: grid;
+    grid-template-columns: repeat(10, 15px);
+    grid-template-rows: 15px;
+    gap: 1px;
+    margin-bottom: 15px;
 }
