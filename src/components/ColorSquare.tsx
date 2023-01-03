@@ -2,16 +2,16 @@ import React from 'react';
 
 interface ColorSquareProps {
     clickHandler: (event: React.MouseEvent) => void;
-    bgColor: string;
+    color: string;
 }
 
-const ColorSquare: React.FC<ColorSquareProps> = ({clickHandler, bgColor}: ColorSquareProps) => {
+const ColorSquare: React.FC<ColorSquareProps> = ({clickHandler, color}: ColorSquareProps) => {
 
     return (
         <div
             className="color-square"
             onClick={event => clickHandler(event)}
-            style={{ backgroundColor: bgColor }}
+            style={{ backgroundColor: color }}
         />
     );
 }

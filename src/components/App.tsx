@@ -229,56 +229,7 @@ const App: React.FC = () => {
                         <div className="colors-window">
                             <p>Color presets</p>
                             <div className="color-table">
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#737373" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#ffffff" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#fca5a5" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#fdba74" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#fef08a" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#bef264" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#86efac" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#7dd3fc" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#d8b4fe" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#f0abfc" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#525252" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#f5f5f5" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#f87171" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#fb923c" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#facc15" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#a3e635" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#4ade80" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#38bdf8" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#c084fc" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#e879f9" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#404040" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#e5e5e5" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#ef4444" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#f97316" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#eab308" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#84cc16" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#22c55e" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#0ea5e9" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#a855f7" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#d946ef" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#262626" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#d4d4d4" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#b91c1c" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#ea580c" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#ca8a04" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#65a30d" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#15803d" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#0369a1" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#7e22ce" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#a21caf" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#000000" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#a3a3a3" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#7f1d1d" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#9a3412" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#713f12" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#3f6212" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#14532d" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#0c4a6e" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#581c87" }} />
-                                <div className="color-square" onClick={event => handleColorSelection(event)} style={{ backgroundColor: "#701a75" }} />
+                                {colors.map((item, index) => <ColorSquare key={index} clickHandler={handleColorSelection} color={item} />)}
                             </div>
                             <p>Custom colors</p>
                             <div className="custom-color-row">
