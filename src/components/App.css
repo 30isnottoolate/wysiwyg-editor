@@ -143,13 +143,13 @@ body {
 .colors-window {
     position: absolute;
     background-color: #e4e4e7;
-    width: 191px;
-    height: 203px;
+    width: 200px;
+    height: 202.5px;
     z-index: 100;
     padding: 20px 15px;
     border: 1px solid #a1a1aa;
     box-shadow: 3px 3px 6px 1px #6b728066;
-    transform: translate(4.5px, -8px);
+    transform: translate(4px, -14px) translateZ(0px);
 }
 
 .colors-window > p {
@@ -177,6 +177,6 @@ body {
     display: grid;
     grid-template-columns: repeat(10, 15px);
     grid-template-rows: 15px;
-    gap: 1px;
+    gap: 2px;
     margin-bottom: 15px;
 }
