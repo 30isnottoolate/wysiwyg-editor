@@ -236,7 +236,6 @@ const App: React.FC = () => {
                             <polygon points="0,0 8,10 16,0 8,10 0,0" style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }} />
                         </svg>
                     </button>
-
                     {colorWindowActive &&
                         <div className="colors-window">
                             <p>Color presets</p>
@@ -261,7 +260,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[1] }}
-                                    onDoubleClick={() => customColorRef1.current && customColorRef1.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef1)} >
                                     <input
                                         ref={customColorRef1}
                                         className="color-input"
@@ -273,7 +273,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[2] }}
-                                    onDoubleClick={() => customColorRef2.current && customColorRef2.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef2)} >
                                     <input
                                         ref={customColorRef2}
                                         className="color-input"
@@ -285,7 +286,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[3] }}
-                                    onDoubleClick={() => customColorRef3.current && customColorRef3.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef3)} >
                                     <input
                                         ref={customColorRef3}
                                         className="color-input"
@@ -297,7 +299,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[4] }}
-                                    onDoubleClick={() => customColorRef4.current && customColorRef4.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef4)} >
                                     <input
                                         ref={customColorRef4}
                                         className="color-input"
@@ -309,7 +312,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[5] }}
-                                    onDoubleClick={() => customColorRef5.current && customColorRef5.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef5)} >
                                     <input
                                         ref={customColorRef5}
                                         className="color-input"
@@ -321,7 +325,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[6] }}
-                                    onDoubleClick={() => customColorRef6.current && customColorRef6.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef6)} >
                                     <input
                                         ref={customColorRef6}
                                         className="color-input"
@@ -333,7 +338,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[7] }}
-                                    onDoubleClick={() => customColorRef7.current && customColorRef7.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef7)} >
                                     <input
                                         ref={customColorRef7}
                                         className="color-input"
@@ -345,7 +351,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[8] }}
-                                    onDoubleClick={() => customColorRef8.current && customColorRef8.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef8)} >
                                     <input
                                         ref={customColorRef8}
                                         className="color-input"
@@ -357,7 +364,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[9] }}
-                                    onDoubleClick={() => customColorRef9.current && customColorRef9.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef9)} >
                                     <input
                                         ref={customColorRef9}
                                         className="color-input"
