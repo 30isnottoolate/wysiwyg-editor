@@ -20,7 +20,7 @@ const colors = [
     "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
 
 const App: React.FC = () => {
-    const [colorWindowActive, setColorWindowActive] = useState(false);
+    const [colorPickerActive, setColorPickerActive] = useState(false);
     const [fontColor, setFontColor] = useState("#ff0000");
     const [customColors, setCustomColors] = useState(() => {
         if (localStorage["customColors"] && localStorage["customColors"].split(",").length === 10) {
@@ -173,13 +173,13 @@ const App: React.FC = () => {
 
     const handleColorSelection = (event: React.MouseEvent<HTMLDivElement>) => {
         setFontColor(event.currentTarget.style.backgroundColor);
-        setColorWindowActive(false);
+        setColorPickerActive(false);
     }
 
     const handleCustomColorSelection = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.detail === 1) {
             setFontColor(event.currentTarget.style.backgroundColor);
-            setColorWindowActive(false);
+            setColorPickerActive(false);
         }
     }
 
@@ -244,7 +244,7 @@ const App: React.FC = () => {
                     </button>
                     <button
                         className="tool-expander"
-                        onClick={() => setColorWindowActive(true)} >
+                        onClick={() => setColorPickerActive(true)} >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="8"
@@ -256,8 +256,8 @@ const App: React.FC = () => {
                             />
                         </svg>
                     </button>
-                    {colorWindowActive &&
-                        <div className="colors-window">
+                    {colorPickerActive &&
+                        <div className="color-picker">
                             <p>Color presets</p>
                             <div className="color-table">
                                 {colors.map((item, index) => <ColorSquare key={index} clickHandler={handleColorSelection} color={item} />)}

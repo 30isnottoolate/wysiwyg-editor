@@ -34,6 +34,8 @@ body {
 }
 
 .font-color {
+    font-size: 15px;
+    font-family: "Work Sans", Arial, sans-serif;
     width: 25px;
     margin-right: -1px;
 }
@@ -85,7 +87,7 @@ body {
     font-family: "Work Sans", Arial, sans-serif;
 }
 
-.colors-window {
+.color-picker {
     position: absolute;
     background-color: #e4e4e7;
     width: 200px;
@@ -97,7 +99,7 @@ body {
     transform: translate(0px, 5px) translateZ(0px);
 }
 
-.colors-window > p {
+.color-picker > p {
     font-family: "Roboto Condensed", Arial, Helvetica, sans-serif;
     margin-bottom: 5px;
 }
