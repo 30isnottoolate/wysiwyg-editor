@@ -244,7 +244,7 @@ const App: React.FC = () => {
                     </button>
                     <button
                         className="tool-expander"
-                        onClick={() => setColorPickerActive(true)} >
+                        onClick={() => setColorPickerActive(prevState => !prevState)} >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             width="8"
