@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import ColorSquare from "./ColorSquare";
+import CustomColorSquare from "./CustomColorSquare";
 
 const DEFAULT_CUSTOM_COLORS =
     ["#000000", "#000000", "#000000", "#000000", "#000000",
@@ -244,7 +245,14 @@ const App: React.FC = () => {
                             </div>
                             <p>Custom colors</p>
                             <div className="custom-color-row">
-                                <div
+                                <CustomColorSquare
+                                    color={customColors[0]}
+                                    customColorRef={customColorRef0}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                {/* <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[0] }}
                                     onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
@@ -256,7 +264,7 @@ const App: React.FC = () => {
                                         value={customColors[0]}
                                         onChange={(event) => setCustomColor(0, event.currentTarget.value)}
                                     />
-                                </div>
+                                </div> */}
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[1] }}
