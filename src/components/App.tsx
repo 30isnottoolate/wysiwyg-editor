@@ -353,12 +353,6 @@ const App: React.FC = () => {
                         </div>
                     }
                 </div>
-                <button
-                    className="tool"
-                    title="Remove Color"
-                    onClick={() => removeFormatting("SPAN")}>
-                    X
-                </button>
             </div>
             <div id="editor-container">
                 <div
