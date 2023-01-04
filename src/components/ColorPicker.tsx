@@ -1,4 +1,4 @@
-import React, {useState, useRef} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import ColorSquare from "./ColorSquare";
 import CustomColorSquare from "./CustomColorSquare";
 
@@ -44,6 +44,10 @@ const ColorPicker: React.FC<ColorPickerProps> = ({setFontColor, setColorPickerAc
     const customColorRef7 = useRef<HTMLInputElement>(null);
     const customColorRef8 = useRef<HTMLInputElement>(null);
     const customColorRef9 = useRef<HTMLInputElement>(null);
+
+    useEffect(() => {
+        localStorage["customColors"] = customColors.toString();
+    }, [customColors]);
 
     const setCustomColor = (index: number, color: string) => {
         const customColorArray = [...customColors];
