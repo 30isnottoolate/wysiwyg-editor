@@ -3,11 +3,21 @@ import "./App.css";
 import ColorSquare from "./ColorSquare";
 import CustomColorSquare from "./CustomColorSquare";
 
-const DEFAULT_CUSTOM_COLORS =
-    ["#000000", "#000000", "#000000", "#000000", "#000000",
-        "#000000", "#000000", "#000000", "#000000", "#000000"];
+const DEFAULT_CUSTOM_COLORS = [
+    "#000000", "#000000", "#000000", "#000000", "#000000",
+    "#000000", "#000000", "#000000", "#000000", "#000000"];
 
-const colors = ["#737373", "#ffffff", "#fca5a5", "#fdba74", "#fef08a", "#bef264", "#86efac", "#7dd3fc", "#d8b4fe", "#f0abfc", "#525252", "#f5f5f5", "#f87171", "#fb923c", "#facc15", "#a3e635", "#4ade80", "#38bdf8", "#c084fc", "#e879f9", "#404040", "#e5e5e5", "#ef4444", "#f97316", "#eab308", "#84cc16", "#22c55e", "#0ea5e9", "#a855f7", "#d946ef", "#262626", "#d4d4d4", "#b91c1c", "#ea580c", "#ca8a04", "#65a30d", "#15803d", "#0369a1", "#7e22ce", "#a21caf", "#000000", "#a3a3a3", "#7f1d1d", "#9a3412", "#713f12", "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
+const colors = [
+    "#737373", "#ffffff", "#fca5a5", "#fdba74", "#fef08a",
+    "#bef264", "#86efac", "#7dd3fc", "#d8b4fe", "#f0abfc",
+    "#525252", "#f5f5f5", "#f87171", "#fb923c", "#facc15",
+    "#a3e635", "#4ade80", "#38bdf8", "#c084fc", "#e879f9",
+    "#404040", "#e5e5e5", "#ef4444", "#f97316", "#eab308",
+    "#84cc16", "#22c55e", "#0ea5e9", "#a855f7", "#d946ef",
+    "#262626", "#d4d4d4", "#b91c1c", "#ea580c", "#ca8a04",
+    "#65a30d", "#15803d", "#0369a1", "#7e22ce", "#a21caf",
+    "#000000", "#a3a3a3", "#7f1d1d", "#9a3412", "#713f12",
+    "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
 
 const App: React.FC = () => {
     const [colorWindowActive, setColorWindowActive] = useState(false);
@@ -246,70 +256,80 @@ const App: React.FC = () => {
                             <p>Custom colors</p>
                             <div className="custom-color-row">
                                 <CustomColorSquare
-                                    color={customColors[0]}
+                                    colors={customColors}
+                                    colorIndex={0}
                                     customColorRef={customColorRef0}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[1]}
+                                    colors={customColors}
+                                    colorIndex={1}
                                     customColorRef={customColorRef1}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[2]}
+                                    colors={customColors}
+                                    colorIndex={2}
                                     customColorRef={customColorRef2}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[3]}
+                                    colors={customColors}
+                                    colorIndex={3}
                                     customColorRef={customColorRef3}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[4]}
+                                    colors={customColors}
+                                    colorIndex={4}
                                     customColorRef={customColorRef4}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[5]}
+                                    colors={customColors}
+                                    colorIndex={5}
                                     customColorRef={customColorRef5}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[6]}
+                                    colors={customColors}
+                                    colorIndex={6}
                                     customColorRef={customColorRef6}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[7]}
+                                    colors={customColors}
+                                    colorIndex={7}
                                     customColorRef={customColorRef7}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[8]}
+                                    colors={customColors}
+                                    colorIndex={8}
                                     customColorRef={customColorRef8}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
                                 <CustomColorSquare
-                                    color={customColors[9]}
+                                    colors={customColors}
+                                    colorIndex={9}
                                     customColorRef={customColorRef9}
                                     handleCustomColorSelection={handleCustomColorSelection}
                                     handleColorCustomization={handleColorCustomization}
