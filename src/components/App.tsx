@@ -64,6 +64,11 @@ const App: React.FC = () => {
         }
     }
 
+    const applyFontColor = () => {
+        removeFormatting("SPAN");
+        applyColor();
+    }
+
     const applyColor = () => {
         const selection = window.getSelection();
 
@@ -238,7 +243,7 @@ const App: React.FC = () => {
                     <button
                         className="font-color"
                         title="Font Color"
-                        onClick={() => applyColor()}
+                        onClick={() => applyFontColor()}
                         style={{ color: fontColor }}>
                         A
                     </button>
