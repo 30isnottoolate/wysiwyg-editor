@@ -233,18 +233,27 @@ const App: React.FC = () => {
                     onClick={() => removeAllFormatting()}>
                     X
                 </button>
-                <button
-                    className="tool font-color"
-                    title="Font Color"
-                    onClick={() => applyColor()}
-                    style={{ color: fontColor }}>
-                    A
-                </button>
                 <div
                     className="color-tool" >
-                    <button onClick={() => setColorWindowActive(true)}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="9" height="9" viewBox="0 0 16 16">
-                            <polygon points="0,0 8,10 16,0 8,10 0,0" style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }} />
+                    <button
+                        className="font-color"
+                        title="Font Color"
+                        onClick={() => applyColor()}
+                        style={{ color: fontColor }}>
+                        A
+                    </button>
+                    <button
+                        className="tool-expander"
+                        onClick={() => setColorWindowActive(true)} >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="8"
+                            height="8"
+                            viewBox="-1 0 18 12" >
+                            <polygon
+                                points="0,0 8,10 16,0 8,10 0,0"
+                                style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }}
+                            />
                         </svg>
                     </button>
                     {colorWindowActive &&
