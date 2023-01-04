@@ -160,9 +160,21 @@ const App: React.FC = () => {
         setCustomColors(customColorArray);
     }
 
-    const handleColorSelection = (event) => {
+    const handleColorSelection = (event: React.MouseEvent<HTMLDivElement>) => {
         setFontColor(event.currentTarget.style.backgroundColor);
         setColorWindowActive(false);
+    }
+
+    const handleCustomColorSelection = (event: React.MouseEvent<HTMLDivElement>) => {
+        if (event.detail === 1) {
+            setFontColor(event.currentTarget.style.backgroundColor);
+            setColorWindowActive(false);
+        }
+    }
+
+    const handleColorCustomization = (event: React.MouseEvent<HTMLDivElement>, customColorRef: React.RefObject<HTMLInputElement>) => {
+        event.preventDefault();
+        customColorRef.current && customColorRef.current.click();
     }
 
     return (
@@ -236,7 +248,8 @@ const App: React.FC = () => {
                                 <div
                                     className="color-square"
                                     style={{ backgroundColor: customColors[0] }}
-                                    onDoubleClick={() => customColorRef0.current && customColorRef0.current.click()} >
+                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
+                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef0)} >
                                     <input
                                         ref={customColorRef0}
                                         className="color-input"
