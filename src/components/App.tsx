@@ -252,136 +252,69 @@ const App: React.FC = () => {
                                     handleColorCustomization={handleColorCustomization}
                                     setCustomColor={setCustomColor}
                                 />
-                                {/* <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[0] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef0)} >
-                                    <input
-                                        ref={customColorRef0}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[0]}
-                                        onChange={(event) => setCustomColor(0, event.currentTarget.value)}
-                                    />
-                                </div> */}
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[1] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef1)} >
-                                    <input
-                                        ref={customColorRef1}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[1]}
-                                        onChange={(event) => setCustomColor(1, event.currentTarget.value)}
-                                    />
-                                </div>
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[2] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef2)} >
-                                    <input
-                                        ref={customColorRef2}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[2]}
-                                        onChange={(event) => setCustomColor(2, event.currentTarget.value)}
-                                    />
-                                </div>
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[3] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef3)} >
-                                    <input
-                                        ref={customColorRef3}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[3]}
-                                        onChange={(event) => setCustomColor(3, event.currentTarget.value)}
-                                    />
-                                </div>
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[4] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef4)} >
-                                    <input
-                                        ref={customColorRef4}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[4]}
-                                        onChange={(event) => setCustomColor(4, event.currentTarget.value)}
-                                    />
-                                </div>
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[5] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef5)} >
-                                    <input
-                                        ref={customColorRef5}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[5]}
-                                        onChange={(event) => setCustomColor(5, event.currentTarget.value)}
-                                    />
-                                </div>
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[6] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef6)} >
-                                    <input
-                                        ref={customColorRef6}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[6]}
-                                        onChange={(event) => setCustomColor(6, event.currentTarget.value)}
-                                    />
-                                </div>
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[7] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef7)} >
-                                    <input
-                                        ref={customColorRef7}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[7]}
-                                        onChange={(event) => setCustomColor(7, event.currentTarget.value)}
-                                    />
-                                </div>
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[8] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef8)} >
-                                    <input
-                                        ref={customColorRef8}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[8]}
-                                        onChange={(event) => setCustomColor(8, event.currentTarget.value)}
-                                    />
-                                </div>
-                                <div
-                                    className="color-square"
-                                    style={{ backgroundColor: customColors[9] }}
-                                    onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-                                    onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef9)} >
-                                    <input
-                                        ref={customColorRef9}
-                                        className="color-input"
-                                        type="color"
-                                        value={customColors[9]}
-                                        onChange={(event) => setCustomColor(9, event.currentTarget.value)}
-                                    />
-                                </div>
+                                <CustomColorSquare
+                                    color={customColors[1]}
+                                    customColorRef={customColorRef1}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                <CustomColorSquare
+                                    color={customColors[2]}
+                                    customColorRef={customColorRef2}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                <CustomColorSquare
+                                    color={customColors[3]}
+                                    customColorRef={customColorRef3}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                <CustomColorSquare
+                                    color={customColors[4]}
+                                    customColorRef={customColorRef4}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                <CustomColorSquare
+                                    color={customColors[5]}
+                                    customColorRef={customColorRef5}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                <CustomColorSquare
+                                    color={customColors[6]}
+                                    customColorRef={customColorRef6}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                <CustomColorSquare
+                                    color={customColors[7]}
+                                    customColorRef={customColorRef7}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                <CustomColorSquare
+                                    color={customColors[8]}
+                                    customColorRef={customColorRef8}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
+                                <CustomColorSquare
+                                    color={customColors[9]}
+                                    customColorRef={customColorRef9}
+                                    handleCustomColorSelection={handleCustomColorSelection}
+                                    handleColorCustomization={handleColorCustomization}
+                                    setCustomColor={setCustomColor}
+                                />
                             </div>
                         </div>
                     }
