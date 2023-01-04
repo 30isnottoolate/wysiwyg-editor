@@ -1,51 +1,10 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import ColorPicker from "./ColorPicker";
-import ColorSquare from "./ColorSquare";
-import CustomColorSquare from "./CustomColorSquare";
-
-const DEFAULT_CUSTOM_COLORS = [
-    "#000000", "#000000", "#000000", "#000000", "#000000",
-    "#000000", "#000000", "#000000", "#000000", "#000000"];
-
-const colors = [
-    "#737373", "#ffffff", "#fca5a5", "#fdba74", "#fef08a",
-    "#bef264", "#86efac", "#7dd3fc", "#d8b4fe", "#f0abfc",
-    "#525252", "#f5f5f5", "#f87171", "#fb923c", "#facc15",
-    "#a3e635", "#4ade80", "#38bdf8", "#c084fc", "#e879f9",
-    "#404040", "#e5e5e5", "#ef4444", "#f97316", "#eab308",
-    "#84cc16", "#22c55e", "#0ea5e9", "#a855f7", "#d946ef",
-    "#262626", "#d4d4d4", "#b91c1c", "#ea580c", "#ca8a04",
-    "#65a30d", "#15803d", "#0369a1", "#7e22ce", "#a21caf",
-    "#000000", "#a3a3a3", "#7f1d1d", "#9a3412", "#713f12",
-    "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
 
 const App: React.FC = () => {
     const [colorPickerActive, setColorPickerActive] = useState(false);
     const [fontColor, setFontColor] = useState("#ff0000");
-    const [customColors, setCustomColors] = useState(() => {
-        if (localStorage["customColors"] && localStorage["customColors"].split(",").length === 10) {
-            return localStorage["customColors"].split(",");
-        } else {
-            localStorage["customColors"] = DEFAULT_CUSTOM_COLORS.toString();
-            return DEFAULT_CUSTOM_COLORS;
-        }
-    });
-
-    const customColorRef0 = useRef<HTMLInputElement>(null);
-    const customColorRef1 = useRef<HTMLInputElement>(null);
-    const customColorRef2 = useRef<HTMLInputElement>(null);
-    const customColorRef3 = useRef<HTMLInputElement>(null);
-    const customColorRef4 = useRef<HTMLInputElement>(null);
-    const customColorRef5 = useRef<HTMLInputElement>(null);
-    const customColorRef6 = useRef<HTMLInputElement>(null);
-    const customColorRef7 = useRef<HTMLInputElement>(null);
-    const customColorRef8 = useRef<HTMLInputElement>(null);
-    const customColorRef9 = useRef<HTMLInputElement>(null);
-
-    useEffect(() => {
-        localStorage["customColors"] = customColors.toString();
-    }, [customColors]);
 
     const applyFormatting = (style: string) => {
         const selection = window.getSelection();
@@ -169,29 +128,6 @@ const App: React.FC = () => {
             event.preventDefault();
             insertText(`\t`);
         }
-    }
-
-    const setCustomColor = (index: number, color: string) => {
-        const customColorArray = [...customColors];
-        customColorArray[index] = color;
-        setCustomColors(customColorArray);
-    }
-
-    const handleColorSelection = (event: React.MouseEvent<HTMLDivElement>) => {
-        setFontColor(event.currentTarget.style.backgroundColor);
-        setColorPickerActive(false);
-    }
-
-    const handleCustomColorSelection = (event: React.MouseEvent<HTMLDivElement>) => {
-        if (event.detail === 1) {
-            setFontColor(event.currentTarget.style.backgroundColor);
-            setColorPickerActive(false);
-        }
-    }
-
-    const handleColorCustomization = (event: React.MouseEvent<HTMLDivElement>, customColorRef: React.RefObject<HTMLInputElement>) => {
-        event.preventDefault();
-        customColorRef.current && customColorRef.current.click();
     }
 
     return (
