@@ -129,17 +129,6 @@ body {
     user-select: initial;
 }
 
-.window-container {
-    display: grid;
-    justify-items: center;
-    align-items: center;
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100vw;
-    height: 100vh;
-}
-
 .colors-window {
     position: absolute;
     background-color: #e4e4e7;

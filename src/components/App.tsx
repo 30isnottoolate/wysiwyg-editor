@@ -380,9 +380,6 @@ const App: React.FC = () => {
                     <br />
                 </div>
             </div>
-            {/* <div className="window-container">
-                
-            </div> */}
         </>
     )
 }
