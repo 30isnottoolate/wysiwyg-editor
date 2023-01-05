@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import Toolbar from "./Toolbar";
 import ColorPicker from "./ColorPicker";
 
 const App: React.FC = () => {
@@ -132,7 +133,13 @@ const App: React.FC = () => {
 
     return (
         <>
-            <div className="toolbar">
+            <Toolbar
+                applyFormatting={applyFormatting}
+                removeAllFormatting={removeAllFormatting}
+                applyFontColor={applyFontColor}
+                fontColor={fontColor}
+                setFontColor={setFontColor} />
+            {/* <div className="toolbar">
                 <button
                     className="tool"
                     title="Bold"
@@ -205,7 +212,7 @@ const App: React.FC = () => {
                         />
                     }
                 </div>
-            </div>
+            </div> */}
             <div id="editor-container">
                 <div
                     id="editor"

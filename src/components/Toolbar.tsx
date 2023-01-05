@@ -6,7 +6,7 @@ interface ToolbarProps {
     removeAllFormatting: () => void;
     applyFontColor: () => void;
     fontColor: string;
-    setFontColor: () => void;
+    setFontColor: (color: string) => void;
 }
 
 const Toolbar: React.FC<ToolbarProps> = (
