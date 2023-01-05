@@ -1,4 +1,4 @@
-import React, {useState, useRef, useEffect} from "react";
+import React, { useState, useRef, useEffect } from "react";
 import ColorSquare from "./ColorSquare";
 import CustomColorSquare from "./CustomColorSquare";
 
@@ -18,12 +18,14 @@ const colors = [
     "#000000", "#a3a3a3", "#7f1d1d", "#9a3412", "#713f12",
     "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
 
+const customColorIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 interface ColorPickerProps {
-    setFontColor: (color: string) => void; 
+    setFontColor: (color: string) => void;
     setColorPickerActive: (state: boolean) => void;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({setFontColor, setColorPickerActive}: ColorPickerProps) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({ setFontColor, setColorPickerActive }: ColorPickerProps) => {
 
     const [customColors, setCustomColors] = useState(() => {
         if (localStorage["customColors"] && localStorage["customColors"].split(",").length === 10) {
@@ -33,6 +35,8 @@ const ColorPicker: React.FC<ColorPickerProps> = ({setFontColor, setColorPickerAc
             return DEFAULT_CUSTOM_COLORS;
         }
     });
+
+    const customColorRefs = useRef<HTMLInputElement>(null);
 
     const customColorRef0 = useRef<HTMLInputElement>(null);
     const customColorRef1 = useRef<HTMLInputElement>(null);
@@ -80,7 +84,17 @@ const ColorPicker: React.FC<ColorPickerProps> = ({setFontColor, setColorPickerAc
             </div>
             <p>Custom colors</p>
             <div className="custom-color-row">
-                <CustomColorSquare
+                {customColorIndexes.map((index) =>
+                    <CustomColorSquare
+                        key={index}
+                        colors={customColors}
+                        colorIndex={index}
+                        customColorRef={customColorRefs.current && customColorRefs.current[index]}
+                        handleCustomColorSelection={handleCustomColorSelection}
+                        handleColorCustomization={handleColorCustomization}
+                        setCustomColor={setCustomColor}
+                    />)}
+                {/* <CustomColorSquare
                     colors={customColors}
                     colorIndex={0}
                     customColorRef={customColorRef0}
@@ -159,7 +173,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({setFontColor, setColorPickerAc
                     handleCustomColorSelection={handleCustomColorSelection}
                     handleColorCustomization={handleColorCustomization}
                     setCustomColor={setCustomColor}
-                />
+                /> */}
             </div>
         </div>
     );
