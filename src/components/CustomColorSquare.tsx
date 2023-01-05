@@ -1,25 +1,26 @@
 import React from "react";
 
 interface CustomColorSquareProps {
+    index: number;
     colors: string[];
     colorIndex: number;
-    customColorRef: React.RefObject<HTMLInputElement>;
+    colorInputRefs: React.RefObject<HTMLInputElement[]>;
     handleCustomColorSelection: (event: React.MouseEvent<HTMLDivElement>) => void;
-    handleColorCustomization: (event: React.MouseEvent<HTMLDivElement>, customColorRef: React.RefObject<HTMLInputElement>) => void;
+    handleColorCustomization: (event: React.MouseEvent<HTMLDivElement>, index: number) => void;
     setCustomColor: (index: number, value: string) => void;
 }
 
 const CustomColorSquare: React.FC<CustomColorSquareProps> = (
-    {colors, colorIndex, customColorRef, handleCustomColorSelection, handleColorCustomization, setCustomColor}: CustomColorSquareProps) => {
+    { index, colors, colorIndex, colorInputRefs, handleCustomColorSelection, handleColorCustomization, setCustomColor }: CustomColorSquareProps) => {
 
     return (
         <div
             className="color-square"
             style={{ backgroundColor: colors[colorIndex] }}
             onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-            onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, customColorRef)} >
+            onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, index)} >
             <input
-                ref={customColorRef}
+                ref={(element: HTMLInputElement) => colorInputRefs.current && (colorInputRefs.current[index] = element)}
                 className="color-input"
                 type="color"
                 value={colors[colorIndex]}

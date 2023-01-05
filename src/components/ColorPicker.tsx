@@ -2,23 +2,14 @@ import React, { useState, useRef, useEffect } from "react";
 import ColorSquare from "./ColorSquare";
 import CustomColorSquare from "./CustomColorSquare";
 
-const DEFAULT_CUSTOM_COLORS = [
-    "#000000", "#000000", "#000000", "#000000", "#000000",
-    "#000000", "#000000", "#000000", "#000000", "#000000"];
+const DEFAULT_CUSTOM_COLORS = [...Array(10)].map(() => "#000000");
 
 const colors = [
-    "#737373", "#ffffff", "#fca5a5", "#fdba74", "#fef08a",
-    "#bef264", "#86efac", "#7dd3fc", "#d8b4fe", "#f0abfc",
-    "#525252", "#f5f5f5", "#f87171", "#fb923c", "#facc15",
-    "#a3e635", "#4ade80", "#38bdf8", "#c084fc", "#e879f9",
-    "#404040", "#e5e5e5", "#ef4444", "#f97316", "#eab308",
-    "#84cc16", "#22c55e", "#0ea5e9", "#a855f7", "#d946ef",
-    "#262626", "#d4d4d4", "#b91c1c", "#ea580c", "#ca8a04",
-    "#65a30d", "#15803d", "#0369a1", "#7e22ce", "#a21caf",
-    "#000000", "#a3a3a3", "#7f1d1d", "#9a3412", "#713f12",
-    "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
-
-const customColorIndexes = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    "#737373", "#ffffff", "#fca5a5", "#fdba74", "#fef08a", "#bef264", "#86efac", "#7dd3fc", "#d8b4fe", "#f0abfc",
+    "#525252", "#f5f5f5", "#f87171", "#fb923c", "#facc15", "#a3e635", "#4ade80", "#38bdf8", "#c084fc", "#e879f9",
+    "#404040", "#e5e5e5", "#ef4444", "#f97316", "#eab308", "#84cc16", "#22c55e", "#0ea5e9", "#a855f7", "#d946ef",
+    "#262626", "#d4d4d4", "#b91c1c", "#ea580c", "#ca8a04", "#65a30d", "#15803d", "#0369a1", "#7e22ce", "#a21caf",
+    "#000000", "#a3a3a3", "#7f1d1d", "#9a3412", "#713f12", "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
 
 interface ColorPickerProps {
     setFontColor: (color: string) => void;
@@ -36,7 +27,7 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ setFontColor, setColorPickerA
         }
     });
 
-    const customColorRefs = useRef<HTMLInputElement>(null);
+    const colorInputRefs = useRef<HTMLInputElement[]>([]);
 
     useEffect(() => {
         localStorage["customColors"] = customColors.toString();
@@ -60,25 +51,31 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ setFontColor, setColorPickerA
         }
     }
 
-    const handleColorCustomization = (event: React.MouseEvent<HTMLDivElement>, customColorRef: React.RefObject<HTMLInputElement>) => {
+    const handleColorCustomization = (event: React.MouseEvent<HTMLDivElement>, index: number) => {
         event.preventDefault();
-        customColorRef.current && customColorRef.current.click();
+        colorInputRefs.current && colorInputRefs.current[index].click();
     }
 
     return (
         <div className="color-picker">
             <p>Color presets</p>
             <div className="color-table">
-                {colors.map((item, index) => <ColorSquare key={index} clickHandler={handleColorSelection} color={item} />)}
+                {colors.map((item, index) =>
+                    <ColorSquare
+                        key={index}
+                        clickHandler={handleColorSelection}
+                        color={item}
+                    />)}
             </div>
             <p>Custom colors</p>
             <div className="custom-color-row">
-                {customColorIndexes.map((index) =>
+                {[...Array(10).keys()].map((index) =>
                     <CustomColorSquare
                         key={index}
+                        index={index}
                         colors={customColors}
                         colorIndex={index}
-                        customColorRef={customColorRefs.current && customColorRefs.current[index]}
+                        colorInputRefs={colorInputRefs}
                         handleCustomColorSelection={handleCustomColorSelection}
                         handleColorCustomization={handleColorCustomization}
                         setCustomColor={setCustomColor}
