@@ -1,7 +1,6 @@
 import React from "react";
 
 interface CustomColorSquareProps {
-    index: number;
     colors: string[];
     colorIndex: number;
     colorInputRefs: React.RefObject<HTMLInputElement[]>;
@@ -11,16 +10,16 @@ interface CustomColorSquareProps {
 }
 
 const CustomColorSquare: React.FC<CustomColorSquareProps> = (
-    { index, colors, colorIndex, colorInputRefs, handleCustomColorSelection, handleColorCustomization, setCustomColor }: CustomColorSquareProps) => {
+    { colors, colorIndex, colorInputRefs, handleCustomColorSelection, handleColorCustomization, setCustomColor }: CustomColorSquareProps) => {
 
     return (
         <div
             className="color-square"
             style={{ backgroundColor: colors[colorIndex] }}
             onClick={(event: React.MouseEvent<HTMLDivElement>) => handleCustomColorSelection(event)}
-            onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, index)} >
+            onContextMenu={(event: React.MouseEvent<HTMLDivElement>) => handleColorCustomization(event, colorIndex)} >
             <input
-                ref={(element: HTMLInputElement) => colorInputRefs.current && (colorInputRefs.current[index] = element)}
+                ref={(element: HTMLInputElement) => colorInputRefs.current && (colorInputRefs.current[colorIndex] = element)}
                 className="color-input"
                 type="color"
                 value={colors[colorIndex]}

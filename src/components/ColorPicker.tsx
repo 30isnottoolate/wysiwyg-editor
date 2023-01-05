@@ -72,7 +72,6 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ setFontColor, setColorPickerA
                 {[...Array(10).keys()].map((index) =>
                     <CustomColorSquare
                         key={index}
-                        index={index}
                         colors={customColors}
                         colorIndex={index}
                         colorInputRefs={colorInputRefs}
