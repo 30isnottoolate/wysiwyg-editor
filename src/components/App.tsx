@@ -5,12 +5,16 @@ import Toolbar from "./Toolbar";
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
 
-    const applyFormatting = (style: string) => {
+    const applyFormatting = (formatting: string) => {
         const selection = window.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
-            const formatNode = document.createElement(style);
+            const formatNode = document.createElement(formatting);
+
+            if (formatting === "span") {
+                formatNode.style.color = fontColor;
+            }
 
             formatNode.appendChild(range.extractContents());
 
@@ -25,26 +29,7 @@ const App: React.FC = () => {
 
     const applyFontColor = () => {
         removeFormatting("SPAN");
-        applyColor();
-    }
-
-    const applyColor = () => {
-        const selection = window.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-            const colorNode = document.createElement("span");
-
-            colorNode.style.color = fontColor;
-            colorNode.appendChild(range.extractContents());
-
-            range.deleteContents();
-            range.insertNode(colorNode);
-            range.selectNode(colorNode);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
+        applyFormatting("span");
     }
 
     const removeTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
