@@ -5,7 +5,9 @@
 	"main": "index.js",
 	"scripts": {
 		"start": "webpack-dev-server --config webpack.dev.js",
-		"build": "webpack --config webpack.prod.js"
+		"build": "webpack --config webpack.prod.js",
+		"predeploy": "npm run build",
+		"deploy": "gh-pages -d build"
 	},
 	"repository": {
 		"type": "git",
@@ -32,6 +34,7 @@
 		"@types/react-dom": "^18.0.9",
 		"babel-loader": "^9.1.0",
 		"css-loader": "^6.7.3",
+		"gh-pages": "^4.0.0",
 		"html-webpack-plugin": "^5.5.0",
 		"mini-css-extract-plugin": "^2.7.2",
 		"style-loader": "^3.3.1",
