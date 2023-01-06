@@ -114,6 +114,50 @@ const App: React.FC = () => {
         }
     }
 
+    const breakSelectionParent = () => {
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount) {
+            const range = selection.getRangeAt(0);
+
+            if (selection.focusNode?.parentNode === selection.anchorNode?.parentNode && selection.anchorNode?.parentNode?.nodeName !== "DIV") {
+
+                const parentNode = selection.focusNode && selection.focusNode.parentNode;
+
+                const focusNode = selection.focusNode;
+                const anchorNode = selection.anchorNode;
+
+                const focusOffset = selection.focusOffset;
+                const anchorOffset = selection.anchorOffset;
+
+                const selectionFrag = range.cloneContents();
+
+                parentNode && range.setStartBefore(parentNode);
+                focusNode && range.setEnd(focusNode, focusOffset);
+
+                const startFrag = range.cloneContents();
+
+                parentNode && range.setEndAfter(parentNode);
+                anchorNode && range.setStart(anchorNode, anchorOffset);
+
+                const endFrag = range.cloneContents();
+                
+                parentNode && range.setStartBefore(parentNode);
+                parentNode && range.setEndAfter(parentNode);
+
+                startFrag.append(selectionFrag);
+                startFrag.append(endFrag);
+
+                range.deleteContents();
+                range.insertNode(startFrag);
+                
+                selection.removeAllRanges();
+                //selection.addRange(range);
+
+            } else console.log("different parent");
+        }
+    }
+
     return (
         <>
             <Toolbar
@@ -121,8 +165,9 @@ const App: React.FC = () => {
                 removeAllFormatting={removeAllFormatting}
                 applyFontColor={applyFontColor}
                 fontColor={fontColor}
-                setFontColor={setFontColor} 
+                setFontColor={setFontColor}
             />
+            <button onClick={breakSelectionParent}>x</button>
             <div id="editor-container">
                 <div
                     id="editor"
@@ -133,7 +178,7 @@ const App: React.FC = () => {
                     onInput={event => handleInput(event)} >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
+                    nostrud exercitation ullamco <b>laboris nisi ut <i>aliquip ex ea commodo</i> consequat. Duis</b> aute irure
                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
                     sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     <br />
