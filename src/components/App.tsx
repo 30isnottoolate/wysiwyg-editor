@@ -163,13 +163,12 @@ const App: React.FC = () => {
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
 
-            if (selection.anchorNode && selection.anchorNode.parentNode &&
-                selection.focusNode && selection.focusNode.parentNode &&
-                selection.anchorNode.parentNode !== selection.focusNode.parentNode) {
+            if (range.startContainer.parentNode && range.endContainer.parentNode &&
+                range.startContainer.parentNode !== range.endContainer.parentNode) {
 
-                if (selection.anchorNode.parentNode.contains(selection.focusNode.parentNode)) {
+                if (range.startContainer.parentNode.contains(range.endContainer.parentNode)) {
                     console.log("start = ancestor");
-                } else if (selection.focusNode.parentNode.contains(selection.anchorNode.parentNode)) {
+                } else if (range.endContainer.parentNode.contains(range.startContainer.parentNode)) {
                     console.log("end = ancestor");
                 }
             }
