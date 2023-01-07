@@ -162,6 +162,26 @@ const App: React.FC = () => {
         }
     }
 
+    const handleSelection = () => {
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+
+            if (selection.anchorNode && selection.focusNode) {
+                const focusNode = selection.focusNode;
+                const anchorNode = selection.anchorNode;
+                const focusOffset = selection.focusOffset;
+                const anchorOffset = selection.anchorOffset;
+
+                if (anchorNode.compareDocumentPosition(focusNode) === 2) {
+                    range.setStart(focusNode, focusOffset);
+                    range.setEnd(anchorNode, anchorOffset);
+                }
+            }
+        }
+    }
+
     return (
         <>
             <Toolbar
@@ -179,7 +199,8 @@ const App: React.FC = () => {
                     contentEditable={true}
                     suppressContentEditableWarning={true}
                     onKeyDown={event => handleKeyDown(event)}
-                    onInput={event => handleInput(event)} >
+                    onInput={event => handleInput(event)}
+                    onMouseUp={handleSelection} >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                     nostrud exercitation ullamco <b>laboris nisi ut <i>aliquip ex ea commodo</i> consequat. Duis</b> aute irure
