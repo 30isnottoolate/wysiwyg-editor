@@ -117,16 +117,18 @@ const App: React.FC = () => {
     const breakSelectionParent = () => {
         const selection = window.getSelection();
 
-        if (selection && selection.rangeCount) {
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
 
-            if (selection.focusNode?.parentNode === selection.anchorNode?.parentNode && selection.anchorNode?.parentNode?.nodeName !== "DIV") {
+            if (selection.anchorNode && selection.anchorNode.parentNode &&
+                selection.focusNode && selection.focusNode.parentNode &&
+                selection.anchorNode.parentNode === selection.focusNode.parentNode &&
+                selection.anchorNode.parentNode.nodeName !== "DIV") {
 
                 const parentNode = selection.focusNode && selection.focusNode.parentNode;
 
                 const focusNode = selection.focusNode;
                 const anchorNode = selection.anchorNode;
-
                 const focusOffset = selection.focusOffset;
                 const anchorOffset = selection.anchorOffset;
 
@@ -141,18 +143,20 @@ const App: React.FC = () => {
                 anchorNode && range.setStart(anchorNode, anchorOffset);
 
                 const endFrag = range.cloneContents();
-                
+
                 parentNode && range.setStartBefore(parentNode);
                 parentNode && range.setEndAfter(parentNode);
 
-                startFrag.append(selectionFrag);
-                startFrag.append(endFrag);
-
                 range.deleteContents();
+
                 range.insertNode(startFrag);
-                
+                range.collapse(false);
+                range.insertNode(endFrag);
+                range.collapse(true);
+                range.insertNode(selectionFrag);
+
                 selection.removeAllRanges();
-                //selection.addRange(range);
+                selection.addRange(range);
 
             } else console.log("different parent");
         }
