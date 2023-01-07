@@ -56,7 +56,7 @@ const Toolbar: React.FC<ToolbarProps> = (
                 className="tool"
                 title="Remove All Formating"
                 onClick={() => removeAllFormatting()}>
-                X
+                R
             </button>
             <div
                 className="color-tool" >
