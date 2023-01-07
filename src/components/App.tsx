@@ -134,19 +134,15 @@ const App: React.FC = () => {
 
                 const selectionFrag = range.cloneContents();
 
-                parentNode && range.setStartBefore(parentNode);
-                focusNode && range.setEnd(focusNode, focusOffset);
-
+                range.setStartBefore(parentNode);
+                range.setEnd(anchorNode, anchorOffset);
                 const startFrag = range.cloneContents();
 
-                parentNode && range.setEndAfter(parentNode);
-                anchorNode && range.setStart(anchorNode, anchorOffset);
-
+                range.setEndAfter(parentNode);
+                range.setStart(focusNode, focusOffset);
                 const endFrag = range.cloneContents();
 
-                parentNode && range.setStartBefore(parentNode);
-                parentNode && range.setEndAfter(parentNode);
-
+                range.selectNode(parentNode);
                 range.deleteContents();
 
                 range.insertNode(startFrag);
