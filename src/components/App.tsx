@@ -120,26 +120,25 @@ const App: React.FC = () => {
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
 
-            if (selection.anchorNode && selection.anchorNode.parentNode &&
-                selection.focusNode && selection.focusNode.parentNode &&
-                selection.anchorNode.parentNode === selection.focusNode.parentNode &&
-                selection.anchorNode.parentNode.nodeName !== "DIV") {
+            if (range.startContainer.parentNode && range.endContainer.parentNode &&
+                range.startContainer.parentNode === range.endContainer.parentNode &&
+                range.startContainer.parentNode.nodeName !== "DIV") {
 
-                const parentNode = selection.focusNode && selection.focusNode.parentNode;
+                const parentNode = range.startContainer.parentNode;
 
-                const focusNode = selection.focusNode;
-                const anchorNode = selection.anchorNode;
-                const focusOffset = selection.focusOffset;
-                const anchorOffset = selection.anchorOffset;
+                const startNode = range.startContainer;
+                const endNode = range.endContainer;
+                const startOffset = range.startOffset;
+                const endOffset = range.endOffset;
 
                 const selectionFrag = range.cloneContents();
 
                 range.setStartBefore(parentNode);
-                range.setEnd(anchorNode, anchorOffset);
+                range.setEnd(startNode, startOffset);
                 const startFrag = range.cloneContents();
 
                 range.setEndAfter(parentNode);
-                range.setStart(focusNode, focusOffset);
+                range.setStart(endNode, endOffset);
                 const endFrag = range.cloneContents();
 
                 range.selectNode(parentNode);
