@@ -158,6 +158,25 @@ const App: React.FC = () => {
         }
     }
 
+    const breakSelectionParent2 = () => {
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+
+            if (selection.anchorNode && selection.anchorNode.parentNode &&
+                selection.focusNode && selection.focusNode.parentNode &&
+                selection.anchorNode.parentNode !== selection.focusNode.parentNode) {
+
+                if (selection.anchorNode.parentNode.contains(selection.focusNode.parentNode)) {
+                    console.log("start = ancestor");
+                } else if (selection.focusNode.parentNode.contains(selection.anchorNode.parentNode)) {
+                    console.log("end = ancestor");
+                }
+            }
+        }
+    }
+
     const handleSelection = () => {
         const selection = window.getSelection();
 
@@ -188,6 +207,7 @@ const App: React.FC = () => {
                 setFontColor={setFontColor}
             />
             <button onClick={breakSelectionParent}>x</button>
+            <button onClick={breakSelectionParent2}>y</button>
             <div id="editor-container">
                 <div
                     id="editor"
