@@ -1,9 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
+import { readBuilderProgram } from "typescript";
 import "./App.css";
 import Toolbar from "./Toolbar";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
+
+    const editorRef = useRef<HTMLDivElement>(null);
 
     const applyFormatting = (formatting: string) => {
         const selection = window.getSelection();
@@ -102,6 +105,7 @@ const App: React.FC = () => {
         if (event.currentTarget.lastChild && event.currentTarget.lastChild.nodeName !== "BR") {
             event.currentTarget.append(document.createElement("br"));
         }
+        editorRef.current && editorRef.current.normalize();
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -164,13 +168,43 @@ const App: React.FC = () => {
             const range = selection.getRangeAt(0);
 
             if (range.startContainer.parentNode && range.endContainer.parentNode &&
-                range.startContainer.parentNode !== range.endContainer.parentNode) {
+                range.startContainer.parentNode !== range.endContainer.parentNode &&
+                range.startContainer.parentNode.nodeName !== "DIV" && range.endContainer.parentNode.nodeName !== "DIV") {
+
+                let parentNode: Node;
+
+                const startNode = range.startContainer;
+                const endNode = range.endContainer;
+                const startOffset = range.startOffset;
+                const endOffset = range.endOffset;
+
+                const selectionFrag = range.cloneContents();
 
                 if (range.startContainer.parentNode.contains(range.endContainer.parentNode)) {
-                    console.log("start = ancestor");
+                    parentNode = range.startContainer.parentNode;
                 } else if (range.endContainer.parentNode.contains(range.startContainer.parentNode)) {
-                    console.log("end = ancestor");
-                }
+                    parentNode = range.endContainer.parentNode;
+                } else return
+
+                range.setStartBefore(parentNode);
+                range.setEnd(startNode, startOffset);
+                const startFrag = range.cloneContents();
+
+                range.setEndAfter(parentNode);
+                range.setStart(endNode, endOffset);
+                const endFrag = range.cloneContents();
+
+                range.selectNode(parentNode);
+                range.deleteContents();
+
+                range.insertNode(startFrag);
+                range.collapse(false);
+                range.insertNode(endFrag);
+                range.collapse(true);
+                range.insertNode(selectionFrag);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
             }
         }
     }
@@ -198,6 +232,7 @@ const App: React.FC = () => {
             <div id="editor-container">
                 <div
                     id="editor"
+                    ref={editorRef}
                     spellCheck={false}
                     contentEditable={true}
                     suppressContentEditableWarning={true}
