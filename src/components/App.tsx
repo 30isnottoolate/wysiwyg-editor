@@ -63,6 +63,17 @@ const App: React.FC = () => {
         }
     }
 
+    const mergeSiblings = (tag: string) => {
+        if (editorRef.current && editorRef.current.hasChildNodes()) {
+            editorRef.current.childNodes.forEach((childNode) => {
+                if (childNode.nodeName === tag && childNode.lastChild &&
+                    childNode.nextSibling && childNode.nextSibling.nodeName === tag) {
+                    childNode.lastChild.after(...childNode.nextSibling.childNodes);
+                }
+            });
+        }
+    }
+
     const removeFormatting = (formatting: string) => {
         const selection = window.getSelection();
 
@@ -244,6 +255,7 @@ const App: React.FC = () => {
             <button onClick={breakSelectionParent} title="Break Selection Parent (Selection is on the same level)">__1__</button>
             <button onClick={breakSelectionParent2} title="Break Selection Parent (Selection is on different levels">__2__</button>
             <button onClick={() => removeDoubleFormatting("B")} title="Remove Double Formatting">__3__</button>
+            <button onClick={() => mergeSiblings("B")} title="Merge Siblings">__4__</button>
             <div id="editor-container">
                 <div
                     id="editor"
@@ -256,7 +268,7 @@ const App: React.FC = () => {
                     /* onMouseUp={handleSelection} */ >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco <b>laboris <b></b>nisi ut <i>aliquip <b><i>ex</i></b> ea commodo</i> consequat. Duis</b> aute irure
+                    nostrud <b>exercitation ullamco </b><b className="123">laboris <b></b>nisi ut <i>aliquip <b><i>ex</i></b> ea commodo</i> consequat. Duis</b> aute irure
                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
                     sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     <br />
