@@ -81,7 +81,8 @@ const App: React.FC = () => {
     const removeChildlessNodes = (node: Node) => {
         if (node.hasChildNodes()) {
             node.childNodes.forEach(childNode => {
-                if (!childNode.hasChildNodes()) {
+                if (!childNode.hasChildNodes() &&
+                    childNode.nodeName !== "#text" && childNode.nodeName !== "BR") {
                     node.removeChild(childNode);
                     removeChildlessNodes(node);
                 } else {
@@ -95,6 +96,7 @@ const App: React.FC = () => {
         if (editorRef.current) {
             removeDoubleFormatting(editorRef.current, "B");
             mergeSiblings(editorRef.current, "B");
+            removeChildlessNodes(editorRef.current);
             editorRef.current.normalize();
         }
     }
