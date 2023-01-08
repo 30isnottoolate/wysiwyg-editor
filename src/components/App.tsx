@@ -58,6 +58,8 @@ const App: React.FC = () => {
             node.childNodes.forEach(childNode => {
                 if (childNode.nodeName === tag) {
                     removeTag(childNode, tag);
+                } else {
+                    removeDoubleFormatting(childNode, tag);
                 }
             });
         }
@@ -93,9 +95,11 @@ const App: React.FC = () => {
     }
 
     const reformatText = () => {
+        const nodeTags = ["B", "I", "U", "S", "SUP", "SUB"];
+
         if (editorRef.current) {
-            removeDoubleFormatting(editorRef.current, "B");
-            mergeSiblings(editorRef.current, "B");
+            removeDoubleFormatting(editorRef.current, "I");
+            mergeSiblings(editorRef.current, "I");
             removeChildlessNodes(editorRef.current);
             editorRef.current.normalize();
         }
