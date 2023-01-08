@@ -53,6 +53,16 @@ const App: React.FC = () => {
         }
     }
 
+    const removeDoubleFormatting = (tag: string) => {
+        if (editorRef.current && editorRef.current.hasChildNodes()) {
+            editorRef.current.childNodes.forEach(childNode => {
+                if (childNode.nodeName === tag) {
+                    removeTag(childNode, tag);
+                }
+            });
+        }
+    }
+
     const removeFormatting = (formatting: string) => {
         const selection = window.getSelection();
 
@@ -231,8 +241,9 @@ const App: React.FC = () => {
                 fontColor={fontColor}
                 setFontColor={setFontColor}
             />
-            <button onClick={breakSelectionParent}>x</button>
-            <button onClick={breakSelectionParent2}>y</button>
+            <button onClick={breakSelectionParent} title="Break Selection Parent (Selection is on the same level)">__1__</button>
+            <button onClick={breakSelectionParent2} title="Break Selection Parent (Selection is on different levels">__2__</button>
+            <button onClick={() => removeDoubleFormatting("B")} title="Remove Double Formatting">__3__</button>
             <div id="editor-container">
                 <div
                     id="editor"
@@ -245,7 +256,7 @@ const App: React.FC = () => {
                     /* onMouseUp={handleSelection} */ >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco <b>laboris nisi ut <i>aliquip ex ea commodo</i> consequat. Duis</b> aute irure
+                    nostrud exercitation ullamco <b>laboris <b></b>nisi ut <i>aliquip <b><i>ex</i></b> ea commodo</i> consequat. Duis</b> aute irure
                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
                     sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
                     <br />
