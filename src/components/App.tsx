@@ -53,9 +53,9 @@ const App: React.FC = () => {
         }
     }
 
-    const removeDoubleFormatting = (tag: string) => {
-        if (editorRef.current && editorRef.current.hasChildNodes()) {
-            editorRef.current.childNodes.forEach(childNode => {
+    const removeDoubleFormatting = (node: Node, tag: string) => {
+        if (node.hasChildNodes()) {
+            node.childNodes.forEach(childNode => {
                 if (childNode.nodeName === tag) {
                     removeTag(childNode, tag);
                 }
@@ -63,14 +63,26 @@ const App: React.FC = () => {
         }
     }
 
-    const mergeSiblings = (tag: string) => {
-        if (editorRef.current && editorRef.current.hasChildNodes()) {
-            editorRef.current.childNodes.forEach((childNode) => {
+    const mergeSiblings = (node: Node, tag: string) => {
+        if (node.hasChildNodes()) {
+            node.childNodes.forEach((childNode) => {
                 if (childNode.nodeName === tag && childNode.lastChild &&
-                    childNode.nextSibling && childNode.nextSibling.nodeName === tag) {
+                    childNode.nextSibling && childNode.nextSibling.nodeName === tag &&
+                    childNode.nextSibling.hasChildNodes()) {
                     childNode.lastChild.after(...childNode.nextSibling.childNodes);
+                    mergeSiblings(node, tag);
+                } else {
+                    mergeSiblings(childNode, tag);
                 }
             });
+        }
+    }
+
+    const reformatText = () => {
+        if (editorRef.current) {
+            removeDoubleFormatting(editorRef.current, "B");
+            mergeSiblings(editorRef.current, "B");
+            editorRef.current.normalize();
         }
     }
 
@@ -254,8 +266,7 @@ const App: React.FC = () => {
             />
             <button onClick={breakSelectionParent} title="Break Selection Parent (Selection is on the same level)">__1__</button>
             <button onClick={breakSelectionParent2} title="Break Selection Parent (Selection is on different levels">__2__</button>
-            <button onClick={() => removeDoubleFormatting("B")} title="Remove Double Formatting">__3__</button>
-            <button onClick={() => mergeSiblings("B")} title="Merge Siblings">__4__</button>
+            <button onClick={reformatText} title="Reformat Text">__3__</button>
             <div id="editor-container">
                 <div
                     id="editor"
