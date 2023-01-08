@@ -43,7 +43,6 @@ const App: React.FC = () => {
                     childNode.replaceWith(...childNode.childNodes);
                     removeTag(node, tag);
                 } else if (childNode.nodeName === tag && !childNode.hasChildNodes()) {
-                    console.log("node has no children");
                     node.removeChild(childNode);
                     removeTag(node, tag);
                 } else if (childNode.hasChildNodes()) {
