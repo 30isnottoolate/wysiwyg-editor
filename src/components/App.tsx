@@ -65,7 +65,7 @@ const App: React.FC = () => {
 
     const mergeSiblings = (node: Node, tag: string) => {
         if (node.hasChildNodes()) {
-            node.childNodes.forEach((childNode) => {
+            node.childNodes.forEach(childNode => {
                 if (childNode.nodeName === tag && childNode.lastChild &&
                     childNode.nextSibling && childNode.nextSibling.nodeName === tag &&
                     childNode.nextSibling.hasChildNodes()) {
@@ -73,6 +73,19 @@ const App: React.FC = () => {
                     mergeSiblings(node, tag);
                 } else {
                     mergeSiblings(childNode, tag);
+                }
+            });
+        }
+    }
+
+    const removeChildlessNodes = (node: Node) => {
+        if (node.hasChildNodes()) {
+            node.childNodes.forEach(childNode => {
+                if (!childNode.hasChildNodes()) {
+                    node.removeChild(childNode);
+                    removeChildlessNodes(node);
+                } else {
+                    removeChildlessNodes(childNode);
                 }
             });
         }
