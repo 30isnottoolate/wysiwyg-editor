@@ -98,15 +98,14 @@ const App: React.FC = () => {
         const nodeTags = ["B", "I", "U", "S", "SUP", "SUB"];
 
         if (editorRef.current) {
-            const editor = editorRef.current;
 
             nodeTags.forEach(tag => {
-                removeDoubleFormatting(editor, tag);
-                mergeSiblings(editor, tag);
+                editorRef.current && removeDoubleFormatting(editorRef.current, tag);
+                editorRef.current && mergeSiblings(editorRef.current, tag);
             });
-            
-            removeChildlessNodes(editor);
-            editor.normalize();
+
+            removeChildlessNodes(editorRef.current);
+            editorRef.current.normalize();
         }
     }
 
