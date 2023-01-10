@@ -364,7 +364,7 @@ const App: React.FC = () => {
                     suppressContentEditableWarning={true}
                     onKeyDown={event => handleKeyDown(event)}
                     onInput={event => handleInput(event)}
-                    onMouseUp={handleSelection} >
+                    onSelect={handleSelection} >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                     nostrud <b>exercitation ullamco </b><b className="123">laboris <b></b>nisi ut <i>aliquip <b><i>ex</i></b> ea commodo</i> consequat. Duis</b> aute irure
