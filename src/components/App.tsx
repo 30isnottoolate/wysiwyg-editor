@@ -269,12 +269,34 @@ const App: React.FC = () => {
     }
 
     const handleSelection = () => {
-        /* const selection = window.getSelection();
+        const selection = window.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
 
-        } */
+            console.log(doesNodeHaveAncestor(range.startContainer, "B"));
+            console.log(doesNodeHaveAncestor(range.endContainer, "B"));
+        }
+    }
+
+    const doesNodeHaveAncestor = (node: Node, ancestorNodeName: string) => {
+        let answer = false;
+
+        const ancestorFinder = (node: Node, ancestorNodeName: string) => {
+            if (node.parentNode) {
+                if (node.parentNode.nodeName !== ancestorNodeName && node.parentNode.nodeName !== "DIV") {
+                    ancestorFinder(node.parentNode, ancestorNodeName);
+                } else if (node.parentNode.nodeName === ancestorNodeName) {
+                    answer = true;
+                } else if (node.parentNode.nodeName === "DIV") {
+                    answer = false;
+                }
+            }
+        }
+
+        ancestorFinder(node, ancestorNodeName);
+
+        return answer;
     }
 
     return (
@@ -298,7 +320,7 @@ const App: React.FC = () => {
                     suppressContentEditableWarning={true}
                     onKeyDown={event => handleKeyDown(event)}
                     onInput={event => handleInput(event)}
-                    /* onMouseUp={handleSelection} */ >
+                    onMouseUp={handleSelection} >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
                     nostrud <b>exercitation ullamco </b><b className="123">laboris <b></b>nisi ut <i>aliquip <b><i>ex</i></b> ea commodo</i> consequat. Duis</b> aute irure
