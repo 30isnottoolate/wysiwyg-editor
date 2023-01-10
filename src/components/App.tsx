@@ -274,9 +274,9 @@ const App: React.FC = () => {
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
 
-            let nodes = nodesOfSelection(range.startContainer, range.endContainer);
+            let nodes = textNodesOfSelection(range.startContainer, range.endContainer);
 
-            console.log(nodesOfSelection(range.startContainer, range.endContainer));
+            console.log(textNodesOfSelection(range.startContainer, range.endContainer));
 
             nodes.forEach(item => {
                 console.log(doesNodeHaveAncestor(item, "B"));
@@ -304,7 +304,7 @@ const App: React.FC = () => {
         return answer;
     }
 
-    const nodesOfSelection = (startNode: Node, endNode: Node) => {
+    const textNodesOfSelection = (startNode: Node, endNode: Node) => {
         const nodes: Node[] = [];
 
         const siblingsFinder = (startNode: Node, endNode: Node) => {
