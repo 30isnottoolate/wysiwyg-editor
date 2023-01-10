@@ -274,8 +274,13 @@ const App: React.FC = () => {
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
 
-            console.log(doesNodeHaveAncestor(range.startContainer, "B"));
-            console.log(doesNodeHaveAncestor(range.endContainer, "B"));
+            let nodes = nodesOfSelection(range.startContainer, range.endContainer);
+
+            console.log(nodesOfSelection(range.startContainer, range.endContainer));
+
+            nodes.forEach(item => {
+                console.log(doesNodeHaveAncestor(item, "B"));
+            });
         }
     }
 
@@ -297,6 +302,45 @@ const App: React.FC = () => {
         ancestorFinder(node, ancestorNodeName);
 
         return answer;
+    }
+
+    const nodesOfSelection = (startNode: Node, endNode: Node) => {
+        const nodes: Node[] = [];
+
+        const siblingsFinder = (startNode: Node, endNode: Node) => {
+            if (startNode !== endNode) {
+                if (startNode.nodeName === "#text") {
+                    nodes.push(startNode);
+                    if (startNode.nextSibling) {
+                        siblingsFinder(startNode.nextSibling, endNode);
+                    } else if (startNode.parentNode && startNode.parentNode.nextSibling) {
+                        siblingsFinder(startNode.parentNode.nextSibling, endNode);
+                    } else if (startNode.parentNode && !startNode.parentNode.nextSibling) {
+                        siblingsFinder(getAncestorWithNextSibling(startNode.parentNode) || startNode.parentNode, endNode); // !!!
+                    }
+                } else {
+                    if (startNode.firstChild) {
+                        siblingsFinder(startNode.firstChild, endNode);
+                    } else if (startNode.nextSibling) {
+                        siblingsFinder(startNode.nextSibling, endNode);
+                    }
+                }
+            } else {
+                nodes.push(startNode);
+            }
+        }
+
+        siblingsFinder(startNode, endNode);
+
+        return nodes;
+    }
+
+    const getAncestorWithNextSibling = (node: Node) => {
+        if (node.parentNode && node.parentNode.nodeName !== "DIV") {
+            if (node.parentNode.nextSibling) {
+                return node.parentNode.nextSibling;
+            } else getAncestorWithNextSibling(node.parentNode);
+        }
     }
 
     return (
