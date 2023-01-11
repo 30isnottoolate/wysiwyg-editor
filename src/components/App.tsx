@@ -368,6 +368,7 @@ const App: React.FC = () => {
     return (
         <>
             <Toolbar
+                selectionStyle={selectionStyle}
                 applyFormatting={applyFormatting}
                 removeAllFormatting={removeAllFormatting}
                 applyFontColor={applyFontColor}

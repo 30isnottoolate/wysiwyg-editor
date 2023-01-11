@@ -2,6 +2,14 @@ import React, { useState } from "react";
 import ColorPicker from "./ColorPicker";
 
 interface ToolbarProps {
+    selectionStyle: {
+        b: boolean,
+        i: boolean,
+        u: boolean,
+        s: boolean,
+        sup: boolean,
+        sub: boolean
+    };
     applyFormatting: (formatting: string) => void;
     removeAllFormatting: () => void;
     applyFontColor: () => void;
