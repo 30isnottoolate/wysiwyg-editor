@@ -1,16 +1,19 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
 import Toolbar from "./Toolbar";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
-    const [isItBold, setIsItBold] = useState(false);
+    const [selectionStyle, setSelectionStyle] = useState({
+        b: false,
+        i: false,
+        u: false,
+        s: false,
+        sup: false,
+        sub: false,
+    });
 
     const editorRef = useRef<HTMLDivElement>(null);
-
-    useEffect(() => {
-        console.log("BOLD: " + isItBold);
-    }, [isItBold]);
 
     const applyFormatting = (formatting: string) => {
         const selection = window.getSelection();
@@ -277,16 +280,29 @@ const App: React.FC = () => {
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
+            const nodes = textNodesOfSelection(range.startContainer, range.endContainer);
+            const temporaryState = selectionStyle;
 
-            let nodes = textNodesOfSelection(range.startContainer, range.endContainer);
+            temporaryState.b = nodes.every(item => doesNodeHaveAncestor(item, "B"));
+            temporaryState.i = nodes.every(item => doesNodeHaveAncestor(item, "I"));
+            temporaryState.u = nodes.every(item => doesNodeHaveAncestor(item, "U"));
+            temporaryState.s = nodes.every(item => doesNodeHaveAncestor(item, "S"));
+            temporaryState.sup = nodes.every(item => doesNodeHaveAncestor(item, "SUP"));
+            temporaryState.sub = nodes.every(item => doesNodeHaveAncestor(item, "SUB"));
 
-            setIsItBold(nodes.every(item => {
-                return doesNodeHaveAncestor(item, "B");
-            }));
+            setSelectionStyle(temporaryState);
 
+            console.log(selectionStyle);
 
         } else {
-            setIsItBold(false);
+            setSelectionStyle({
+                b: false,
+                i: false,
+                u: false,
+                s: false,
+                sup: false,
+                sub: false,
+            });
         };
     }
 
