@@ -1,12 +1,16 @@
-import React, { useState, useRef } from "react";
-import { readBuilderProgram } from "typescript";
+import React, { useState, useRef, useEffect } from "react";
 import "./App.css";
 import Toolbar from "./Toolbar";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
+    const [isItBold, setIsItBold] = useState(false);
 
     const editorRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        console.log("BOLD: " + isItBold);
+    }, [isItBold]);
 
     const applyFormatting = (formatting: string) => {
         const selection = window.getSelection();
@@ -276,12 +280,14 @@ const App: React.FC = () => {
 
             let nodes = textNodesOfSelection(range.startContainer, range.endContainer);
 
-            console.log(textNodesOfSelection(range.startContainer, range.endContainer));
+            setIsItBold(nodes.every(item => {
+                return doesNodeHaveAncestor(item, "B");
+            }));
 
-            nodes.forEach(item => {
-                console.log(doesNodeHaveAncestor(item, "B"));
-            });
-        }
+
+        } else {
+            setIsItBold(false);
+        };
     }
 
     const doesNodeHaveAncestor = (node: Node, ancestorNodeName: string) => {
