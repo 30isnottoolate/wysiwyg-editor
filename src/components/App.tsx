@@ -4,14 +4,14 @@ import Toolbar from "./Toolbar";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
-    const [selectionStyle, setSelectionStyle] = useState({
-        b: false,
-        i: false,
-        u: false,
-        s: false,
-        sup: false,
-        sub: false,
-    });
+
+    const [isItB, setIsItB] = useState(false);
+    const [isItI, setIsItI] = useState(false);
+    const [isItU, setIsItU] = useState(false);
+    const [isItS, setIsItS] = useState(false);
+    const [isItSup, setIsItSup] = useState(false);
+    const [isItSub, setIsItSub] = useState(false);
+
 
     const editorRef = useRef<HTMLDivElement>(null);
 
@@ -281,28 +281,21 @@ const App: React.FC = () => {
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
             const nodes = textNodesOfSelection(range.startContainer, range.endContainer);
-            const temporaryState = selectionStyle;
 
-            temporaryState.b = nodes.every(item => doesNodeHaveAncestor(item, "B"));
-            temporaryState.i = nodes.every(item => doesNodeHaveAncestor(item, "I"));
-            temporaryState.u = nodes.every(item => doesNodeHaveAncestor(item, "U"));
-            temporaryState.s = nodes.every(item => doesNodeHaveAncestor(item, "S"));
-            temporaryState.sup = nodes.every(item => doesNodeHaveAncestor(item, "SUP"));
-            temporaryState.sub = nodes.every(item => doesNodeHaveAncestor(item, "SUB"));
-
-            setSelectionStyle(temporaryState);
-
-            console.log(selectionStyle);
+            setIsItB(nodes.every(item => doesNodeHaveAncestor(item, "B")));
+            setIsItI(nodes.every(item => doesNodeHaveAncestor(item, "I")));
+            setIsItU(nodes.every(item => doesNodeHaveAncestor(item, "U")));
+            setIsItS(nodes.every(item => doesNodeHaveAncestor(item, "S")));
+            setIsItSup(nodes.every(item => doesNodeHaveAncestor(item, "SUP")));
+            setIsItSub(nodes.every(item => doesNodeHaveAncestor(item, "SUB")));
 
         } else {
-            setSelectionStyle({
-                b: false,
-                i: false,
-                u: false,
-                s: false,
-                sup: false,
-                sub: false,
-            });
+            setIsItB(false);
+            setIsItI(false);
+            setIsItU(false);
+            setIsItS(false);
+            setIsItSup(false);
+            setIsItSub(false);
         };
     }
 
@@ -368,7 +361,6 @@ const App: React.FC = () => {
     return (
         <>
             <Toolbar
-                selectionStyle={selectionStyle}
                 applyFormatting={applyFormatting}
                 removeAllFormatting={removeAllFormatting}
                 applyFontColor={applyFontColor}
