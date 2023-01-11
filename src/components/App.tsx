@@ -361,6 +361,12 @@ const App: React.FC = () => {
     return (
         <>
             <Toolbar
+                isItB={isItB}
+                isItI={isItI}
+                isItU={isItU}
+                isItS={isItS}
+                isItSup={isItSup}
+                isItSub={isItSub}
                 applyFormatting={applyFormatting}
                 removeAllFormatting={removeAllFormatting}
                 applyFontColor={applyFontColor}

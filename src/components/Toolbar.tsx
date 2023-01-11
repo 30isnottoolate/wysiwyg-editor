@@ -1,15 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ColorPicker from "./ColorPicker";
 
 interface ToolbarProps {
-    selectionStyle: {
-        b: boolean,
-        i: boolean,
-        u: boolean,
-        s: boolean,
-        sup: boolean,
-        sub: boolean
-    };
+    isItB: boolean;
+    isItI: boolean;
+    isItU: boolean;
+    isItS: boolean;
+    isItSup: boolean;
+    isItSub: boolean;
     applyFormatting: (formatting: string) => void;
     removeAllFormatting: () => void;
     applyFontColor: () => void;
@@ -18,44 +16,44 @@ interface ToolbarProps {
 }
 
 const Toolbar: React.FC<ToolbarProps> = (
-    { applyFormatting, removeAllFormatting, applyFontColor, fontColor, setFontColor }: ToolbarProps) => {
+    { isItB, isItI, isItU, isItS, isItSup, isItSub, applyFormatting, removeAllFormatting, applyFontColor, fontColor, setFontColor }: ToolbarProps) => {
 
     const [colorPickerActive, setColorPickerActive] = useState(false);
 
     return (
         <div className="toolbar">
             <button
-                className="tool"
+                className={`tool ${isItB ? "highlighted" : ""}`}
                 title="Bold"
                 onClick={() => applyFormatting("b")}>
                 <b>B</b>
             </button>
             <button
-                className="tool italic"
+                className={`tool italic ${isItI ? "highlighted" : ""}`}
                 title="Italic"
                 onClick={() => applyFormatting("i")}>
                 <i>I</i>
             </button>
             <button
-                className="tool"
+                className={`tool ${isItU ? "highlighted" : ""}`}
                 title="Underline"
                 onClick={() => applyFormatting("u")}>
                 <u>U</u>
             </button>
             <button
-                className="tool"
+                className={`tool ${isItS ? "highlighted" : ""}`}
                 title="Strikethrough"
                 onClick={() => applyFormatting("s")}>
                 <s>S</s>
             </button>
             <button
-                className="tool"
+                className={`tool ${isItSup ? "highlighted" : ""}`}
                 title="Superscript"
                 onClick={() => applyFormatting("sup")}>
                 A<sup>2</sup>
             </button>
             <button
-                className="tool"
+                className={`tool ${isItSub ? "highlighted" : ""}`}
                 title="Subscript"
                 onClick={() => applyFormatting("sub")}>
                 A<sub>2</sub>
