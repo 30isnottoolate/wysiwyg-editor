@@ -35,6 +35,7 @@ const App: React.FC = () => {
             selection.removeAllRanges();
             selection.addRange(range);
         }
+        handleSelection();
     }
 
     const applyFontColor = () => {
@@ -299,6 +300,26 @@ const App: React.FC = () => {
         };
     }
 
+    const ancestorOfNode = (node: Node, ancestorNodeName: string) => {
+        let ancestor = node;
+
+        const ancestorFinder = (node: Node, ancestorNodeName: string) => {
+            if (node.parentNode) {
+                if (node.parentNode.nodeName !== ancestorNodeName && node.parentNode.nodeName !== "DIV") {
+                    ancestorFinder(node.parentNode, ancestorNodeName);
+                } else if (node.parentNode.nodeName === ancestorNodeName) {
+                    ancestor = node.parentNode;
+                } else if (node.parentNode.nodeName === "DIV") {
+                    return;
+                }
+            }
+        }
+
+        ancestorFinder(node, ancestorNodeName);
+
+        return ancestor;
+    }
+
     const doesNodeHaveAncestor = (node: Node, ancestorNodeName: string) => {
         let answer = false;
 
@@ -376,6 +397,11 @@ const App: React.FC = () => {
             <button onClick={breakSelectionParent} title="Break Selection Parent (Selection is on the same level)">__1__</button>
             <button onClick={breakSelectionParent2} title="Break Selection Parent (Selection is on different levels">__2__</button>
             <button onClick={reformatText} title="Reformat Text">__3__</button>
+            <button onClick={() =>{
+                const selection = window.getSelection();
+                const range = selection?.getRangeAt(0);
+                console.log(range);
+            }}>X</button>
             <div id="editor-container">
                 <div
                     id="editor"
