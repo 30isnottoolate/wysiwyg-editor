@@ -87,6 +87,10 @@ body {
     font-family: "Work Sans", Arial, sans-serif;
 }
 
+.highlighted {
+    background-color: #cbd5e1; 
+}
+
 .color-picker {
     position: absolute;
     background-color: #e4e4e7;
