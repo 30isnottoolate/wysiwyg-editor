@@ -127,6 +127,40 @@ const App: React.FC = () => {
         }
     }
 
+    const removeAllFormatting2 = () => {
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+            const selectedTextNode = document.createTextNode(range.toString());
+
+            range.deleteContents();
+            range.insertNode(selectedTextNode);
+            range.selectNode(selectedTextNode);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
+    const topAncestorOfNode = (node: Node) => {
+        let ancestor = node;
+
+        const ancestorFinder = (node: Node) => {
+            if (node.parentNode) {
+                if (node.parentNode.nodeName === "DIV") {
+                    ancestor = node;
+                } else {
+                    ancestorFinder(node.parentNode);
+                }
+            }
+        }
+
+        ancestorFinder(node);
+
+        return ancestor;
+    }
+
     const insertText = (text: string) => {
         const selection = window.getSelection();
 
