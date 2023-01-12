@@ -132,14 +132,79 @@ const App: React.FC = () => {
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
-            const selectedTextNode = document.createTextNode(range.toString());
 
-            range.deleteContents();
-            range.insertNode(selectedTextNode);
-            range.selectNode(selectedTextNode);
+            const startNode = range.startContainer;
+            const endNode = range.endContainer;
+            const startOffset = range.startOffset;
+            const endOffset = range.endOffset;
+            const startAncestor = topAncestorOfNode(range.startContainer);
+            const endAncestor = topAncestorOfNode(range.endContainer);
 
-            selection.removeAllRanges();
-            selection.addRange(range);
+            const selectionFrag = range.cloneContents();
+
+            const nodeTags = ["B", "I", "U", "S", "SUP", "SUB"];
+
+            nodeTags.forEach(tag => removeTag(selectionFrag, tag));
+
+            if (startAncestor === startNode && endAncestor === endNode) {
+                range.deleteContents();
+                range.insertNode(selectionFrag);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+            } else if (startAncestor !== startNode && endAncestor === endNode) {
+                range.setStartBefore(startAncestor);
+                range.setEnd(startNode, startOffset);
+                const startFrag = range.cloneContents();
+
+                range.setEnd(endNode, endOffset);
+                range.deleteContents();
+
+                range.insertNode(startFrag);
+                range.collapse(false);
+                range.insertNode(selectionFrag);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+            } else if (startAncestor === startNode && endAncestor !== endNode) {
+                range.setEndAfter(endAncestor);
+                range.setStart(endNode, endOffset);
+                const endFrag = range.cloneContents();
+
+                range.setStart(startNode, startOffset);
+                range.deleteContents();
+
+                range.insertNode(endFrag);
+                range.collapse(true);
+                range.insertNode(selectionFrag);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+            } else if (startAncestor !== startNode && endAncestor !== endNode) {
+                range.setStartBefore(startAncestor);
+                range.setEnd(startNode, startOffset);
+                const startFrag = range.cloneContents();
+
+                range.setEndAfter(endAncestor);
+                range.setStart(endNode, endOffset);
+                const endFrag = range.cloneContents();
+
+                range.setStartBefore(startAncestor);
+                range.setEndAfter(endAncestor);
+                range.deleteContents();
+
+                range.insertNode(startFrag);
+                range.collapse(false);
+                range.insertNode(endFrag);
+                range.collapse(true);
+                range.insertNode(selectionFrag);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
         }
     }
 
@@ -388,7 +453,7 @@ const App: React.FC = () => {
                 isItSub={isItSub}
                 applyFormatting={applyFormatting}
                 removeFormatting={removeFormatting}
-                removeAllFormatting={removeAllFormatting}
+                removeAllFormatting={removeAllFormatting2}
                 applyFontColor={applyFontColor}
                 fontColor={fontColor}
                 setFontColor={setFontColor}
