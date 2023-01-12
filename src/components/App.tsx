@@ -372,18 +372,30 @@ const App: React.FC = () => {
         const siblingsFinder = (startNode: Node, endNode: Node) => {
             if (startNode !== endNode) {
                 if (startNode.nodeName === "#text") {
+                    console.log("1");
+                    console.log(startNode);
                     nodes.push(startNode);
                     if (startNode.nextSibling) {
+                        console.log("1a");
+                        console.log(startNode);
                         siblingsFinder(startNode.nextSibling, endNode);
                     } else if (startNode.parentNode && startNode.parentNode.nextSibling) {
+                        console.log("1b");
+                        console.log(startNode);
                         siblingsFinder(startNode.parentNode.nextSibling, endNode);
                     } else if (startNode.parentNode && !startNode.parentNode.nextSibling) {
-                        siblingsFinder(getAncestorWithNextSibling(startNode.parentNode) || startNode.parentNode, endNode); // !!!
+                        console.log("1c");
+                        console.log(startNode);
+                        siblingsFinder(getAncestorWithNextSibling(startNode), endNode);
                     }
                 } else {
                     if (startNode.firstChild) {
+                        console.log("2a");
+                        console.log(startNode);
                         siblingsFinder(startNode.firstChild, endNode);
                     } else if (startNode.nextSibling) {
+                        console.log("2b");
+                        console.log(startNode);
                         siblingsFinder(startNode.nextSibling, endNode);
                     }
                 }
@@ -398,11 +410,23 @@ const App: React.FC = () => {
     }
 
     const getAncestorWithNextSibling = (node: Node) => {
-        if (node.parentNode && node.parentNode.nodeName !== "DIV") {
-            if (node.parentNode.nextSibling) {
-                return node.parentNode.nextSibling;
-            } else getAncestorWithNextSibling(node.parentNode);
+        let ancestor = node;
+
+        const ancestorFinder = (node: Node) => {
+            if (node.parentNode && node.parentNode.nodeName !== "DIV") {
+                if (node.parentNode.nextSibling) {
+                    ancestor = node.parentNode.nextSibling;
+                } else ancestorFinder(node.parentNode);
+            }
         }
+        
+        ancestorFinder(node);
+
+        if (ancestor === node) {
+            ancestor = topAncestorOfNode(node);
+        }
+
+        return ancestor;
     }
 
     return (
