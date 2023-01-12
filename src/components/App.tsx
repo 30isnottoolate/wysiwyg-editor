@@ -362,8 +362,6 @@ const App: React.FC = () => {
                 const range = selection?.getRangeAt(0);
                 console.log(range);
             }}>X</button>
-            <button onClick={() => applyFormatting("B")}>AF</button>
-            <button onClick={() => removeFormatting("B")}>RF</button>
             <div id="editor-container">
                 <div
                     id="editor"
