@@ -188,6 +188,7 @@ const App: React.FC = () => {
 
                 range.deleteContents();
                 range.insertNode(formatNode);
+                range.selectNode(formatNode);
 
                 selection.removeAllRanges();
                 selection.addRange(range);
@@ -202,16 +203,16 @@ const App: React.FC = () => {
             const range = selection.getRangeAt(0);
             const nodes = textNodesOfSelection(range.startContainer, range.endContainer);
 
-            const startNode = range.startContainer;
-            const endNode = range.endContainer;
-            const startOffset = range.startOffset;
-            const endOffset = range.endOffset;
-            const startParent = ancestorOfNode(range.startContainer, formatting);
-            const endParent = ancestorOfNode(range.endContainer, formatting);
-
-            const selectionFrag = range.cloneContents();
-
             if (nodes.every(item => doesNodeHaveAncestor(item, formatting))) {
+                const startNode = range.startContainer;
+                const endNode = range.endContainer;
+                const startOffset = range.startOffset;
+                const endOffset = range.endOffset;
+                const startParent = ancestorOfNode(range.startContainer, formatting);
+                const endParent = ancestorOfNode(range.endContainer, formatting);
+
+                const selectionFrag = range.cloneContents();
+
                 removeTag(selectionFrag, formatting);
 
                 range.setStartBefore(startParent);
