@@ -32,31 +32,31 @@ const Toolbar: React.FC<ToolbarProps> = (
             <button
                 className={`tool italic ${isItI ? "highlighted" : ""}`}
                 title="Italic"
-                onClick={() => applyFormatting("i")}>
+                onClick={() => isItI ? removeFormatting("I") : applyFormatting("I")}>
                 <i>I</i>
             </button>
             <button
                 className={`tool ${isItU ? "highlighted" : ""}`}
                 title="Underline"
-                onClick={() => applyFormatting("u")}>
+                onClick={() => isItU ? removeFormatting("U") : applyFormatting("U")}>
                 <u>U</u>
             </button>
             <button
                 className={`tool ${isItS ? "highlighted" : ""}`}
                 title="Strikethrough"
-                onClick={() => applyFormatting("s")}>
+                onClick={() => isItS ? removeFormatting("S") : applyFormatting("S")}>
                 <s>S</s>
             </button>
             <button
                 className={`tool ${isItSup ? "highlighted" : ""}`}
                 title="Superscript"
-                onClick={() => applyFormatting("sup")}>
+                onClick={() => isItSup ? removeFormatting("SUP") : applyFormatting("SUP")}>
                 A<sup>2</sup>
             </button>
             <button
                 className={`tool ${isItSub ? "highlighted" : ""}`}
                 title="Subscript"
-                onClick={() => applyFormatting("sub")}>
+                onClick={() => isItSub ? removeFormatting("SUB") : applyFormatting("SUB")}>
                 A<sub>2</sub>
             </button>
             <button
