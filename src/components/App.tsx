@@ -12,7 +12,6 @@ const App: React.FC = () => {
     const [isItSup, setIsItSup] = useState(false);
     const [isItSub, setIsItSub] = useState(false);
 
-
     const editorRef = useRef<HTMLDivElement>(null);
 
     const applyFontColor = () => {
@@ -112,22 +111,6 @@ const App: React.FC = () => {
     }
 
     const removeAllFormatting = () => {
-        const selection = window.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-            const selectedTextNode = document.createTextNode(range.toString());
-
-            range.deleteContents();
-            range.insertNode(selectedTextNode);
-            range.selectNode(selectedTextNode);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-    }
-
-    const removeAllFormatting2 = () => {
         const selection = window.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
@@ -453,7 +436,7 @@ const App: React.FC = () => {
                 isItSub={isItSub}
                 applyFormatting={applyFormatting}
                 removeFormatting={removeFormatting}
-                removeAllFormatting={removeAllFormatting2}
+                removeAllFormatting={removeAllFormatting}
                 applyFontColor={applyFontColor}
                 fontColor={fontColor}
                 setFontColor={setFontColor}
