@@ -161,7 +161,7 @@ const App: React.FC = () => {
         }
     }
 
-    const applyFormatting2 = (formatting: string) => {
+    const applyFormatting = (formatting: string) => {
         const selection = document.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
@@ -194,7 +194,7 @@ const App: React.FC = () => {
         }
     }
 
-    const removeFormatting2 = (formatting: string) => {
+    const removeFormatting = (formatting: string) => {
         const selection = document.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
@@ -349,8 +349,8 @@ const App: React.FC = () => {
                 isItS={isItS}
                 isItSup={isItSup}
                 isItSub={isItSub}
-                applyFormatting={applyFormatting2}
-                removeFormatting={removeFormatting2}
+                applyFormatting={applyFormatting}
+                removeFormatting={removeFormatting}
                 removeAllFormatting={removeAllFormatting}
                 applyFontColor={applyFontColor}
                 fontColor={fontColor}
@@ -362,8 +362,8 @@ const App: React.FC = () => {
                 const range = selection?.getRangeAt(0);
                 console.log(range);
             }}>X</button>
-            <button onClick={() => applyFormatting2("B")}>AF</button>
-            <button onClick={() => removeFormatting2("B")}>RF</button>
+            <button onClick={() => applyFormatting("B")}>AF</button>
+            <button onClick={() => removeFormatting("B")}>RF</button>
             <div id="editor-container">
                 <div
                     id="editor"
