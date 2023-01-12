@@ -15,29 +15,6 @@ const App: React.FC = () => {
 
     const editorRef = useRef<HTMLDivElement>(null);
 
-    const applyFormatting = (formatting: string) => {
-        const selection = window.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-            const formatNode = document.createElement(formatting);
-
-            if (formatting === "span") {
-                formatNode.style.color = fontColor;
-            }
-
-            formatNode.appendChild(range.extractContents());
-
-            range.deleteContents();
-            range.insertNode(formatNode);
-            range.selectNode(formatNode);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-        handleSelection();
-    }
-
     const applyFontColor = () => {
         const selection = window.getSelection();
 
@@ -131,25 +108,6 @@ const App: React.FC = () => {
 
             removeChildlessNodes(editorRef.current);
             editorRef.current.normalize();
-        }
-    }
-
-    const removeFormatting = (formatting: string) => {
-        const selection = window.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-            const selectedFrag = document.createDocumentFragment();
-
-            selectedFrag.append(range.extractContents());
-
-            removeTag(selectedFrag, formatting);
-
-            range.deleteContents();
-            range.insertNode(selectedFrag);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
         }
     }
 
