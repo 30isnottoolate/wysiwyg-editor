@@ -372,30 +372,18 @@ const App: React.FC = () => {
         const siblingsFinder = (startNode: Node, endNode: Node) => {
             if (startNode !== endNode) {
                 if (startNode.nodeName === "#text") {
-                    console.log("1");
-                    console.log(startNode);
                     nodes.push(startNode);
                     if (startNode.nextSibling) {
-                        console.log("1a");
-                        console.log(startNode);
                         siblingsFinder(startNode.nextSibling, endNode);
                     } else if (startNode.parentNode && startNode.parentNode.nextSibling) {
-                        console.log("1b");
-                        console.log(startNode);
                         siblingsFinder(startNode.parentNode.nextSibling, endNode);
                     } else if (startNode.parentNode && !startNode.parentNode.nextSibling) {
-                        console.log("1c");
-                        console.log(startNode);
                         siblingsFinder(getAncestorWithNextSibling(startNode), endNode);
                     }
                 } else {
                     if (startNode.firstChild) {
-                        console.log("2a");
-                        console.log(startNode);
                         siblingsFinder(startNode.firstChild, endNode);
                     } else if (startNode.nextSibling) {
-                        console.log("2b");
-                        console.log(startNode);
                         siblingsFinder(startNode.nextSibling, endNode);
                     }
                 }
