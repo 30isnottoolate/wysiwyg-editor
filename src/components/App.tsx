@@ -149,6 +149,7 @@ const App: React.FC = () => {
             event.currentTarget.append(document.createElement("br"));
         }
         editorRef.current && editorRef.current.normalize();
+        reformatText();
     }
 
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -176,7 +177,7 @@ const App: React.FC = () => {
 
                 range.deleteContents();
                 range.insertNode(formatNode);
-                //range.selectNode(formatNode);
+                range.selectNode(formatNode);
 
                 selection.removeAllRanges();
                 selection.addRange(range);
@@ -252,6 +253,7 @@ const App: React.FC = () => {
             setIsItSub(nodes.every(item => doesNodeHaveAncestor(item, "SUB")));
 
         } else {
+            reformatText();
             setIsItB(false);
             setIsItI(false);
             setIsItU(false);
@@ -356,12 +358,6 @@ const App: React.FC = () => {
                 fontColor={fontColor}
                 setFontColor={setFontColor}
             />
-            <button onClick={reformatText} title="Reformat Text">__3__</button>
-            <button onClick={() => {
-                const selection = document.getSelection();
-                const range = selection?.getRangeAt(0);
-                console.log(range);
-            }}>X</button>
             <div id="editor-container">
                 <div
                     id="editor"
