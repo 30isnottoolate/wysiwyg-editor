@@ -39,8 +39,26 @@ const App: React.FC = () => {
     }
 
     const applyFontColor = () => {
-        removeFormatting("SPAN");
-        applyFormatting("span");
+        const selection = window.getSelection();
+
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+            const selectionFrag = range.cloneContents();
+            const spanNode = document.createElement("SPAN");
+
+            spanNode.style.color = fontColor;
+
+            removeTag(selectionFrag, "SPAN");
+
+            spanNode.appendChild(selectionFrag);
+
+            range.deleteContents();
+            range.insertNode(spanNode);
+            range.selectNode(spanNode);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
     }
 
     const removeTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
