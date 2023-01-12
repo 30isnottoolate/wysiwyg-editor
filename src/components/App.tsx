@@ -290,23 +290,23 @@ const App: React.FC = () => {
                 const endNode = range.endContainer;
                 const startOffset = range.startOffset;
                 const endOffset = range.endOffset;
-                const startParent = ancestorOfNode(range.startContainer, formatting);
-                const endParent = ancestorOfNode(range.endContainer, formatting);
+                const startAncestor = topAncestorOfNode(range.startContainer);
+                const endAncestor = topAncestorOfNode(range.endContainer);
 
                 const selectionFrag = range.cloneContents();
 
                 removeTag(selectionFrag, formatting);
 
-                range.setStartBefore(startParent);
+                range.setStartBefore(startAncestor);
                 range.setEnd(startNode, startOffset);
                 const startFrag = range.cloneContents();
 
-                range.setEndAfter(endParent);
+                range.setEndAfter(endAncestor);
                 range.setStart(endNode, endOffset);
                 const endFrag = range.cloneContents();
 
-                range.setStartBefore(startParent);
-                range.setEndAfter(endParent);
+                range.setStartBefore(startAncestor);
+                range.setEndAfter(endAncestor);
                 range.deleteContents();
 
                 range.insertNode(startFrag);
