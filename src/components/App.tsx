@@ -373,7 +373,8 @@ const App: React.FC = () => {
                 isItS={isItS}
                 isItSup={isItSup}
                 isItSub={isItSub}
-                applyFormatting={applyFormatting}
+                applyFormatting={applyFormatting2}
+                removeFormatting={removeFormatting2}
                 removeAllFormatting={removeAllFormatting}
                 applyFontColor={applyFontColor}
                 fontColor={fontColor}

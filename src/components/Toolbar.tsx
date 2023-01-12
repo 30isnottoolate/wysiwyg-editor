@@ -9,6 +9,7 @@ interface ToolbarProps {
     isItSup: boolean;
     isItSub: boolean;
     applyFormatting: (formatting: string) => void;
+    removeFormatting: (formatting: string) => void;
     removeAllFormatting: () => void;
     applyFontColor: () => void;
     fontColor: string;
@@ -16,7 +17,7 @@ interface ToolbarProps {
 }
 
 const Toolbar: React.FC<ToolbarProps> = (
-    { isItB, isItI, isItU, isItS, isItSup, isItSub, applyFormatting, removeAllFormatting, applyFontColor, fontColor, setFontColor }: ToolbarProps) => {
+    { isItB, isItI, isItU, isItS, isItSup, isItSub, applyFormatting, removeFormatting, removeAllFormatting, applyFontColor, fontColor, setFontColor }: ToolbarProps) => {
 
     const [colorPickerActive, setColorPickerActive] = useState(false);
 
@@ -25,7 +26,7 @@ const Toolbar: React.FC<ToolbarProps> = (
             <button
                 className={`tool ${isItB ? "highlighted" : ""}`}
                 title="Bold"
-                onClick={() => applyFormatting("b")}>
+                onClick={() => isItB ? removeFormatting("B") : applyFormatting("B")}>
                 <b>B</b>
             </button>
             <button
