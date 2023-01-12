@@ -185,6 +185,82 @@ const App: React.FC = () => {
         }
     }
 
+    const applyFormatting2 = (formatting: string) => {
+        const selection = document.getSelection();
+
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+            const nodes = textNodesOfSelection(range.startContainer, range.endContainer);
+
+            const selectionFrag = range.cloneContents();
+            const formatNode = document.createElement(formatting);
+
+            if (nodes.every(item => !doesNodeHaveAncestor(item, formatting))) {
+                formatNode.appendChild(selectionFrag);
+
+                range.deleteContents();
+                range.insertNode(formatNode);
+                //range.selectNode(formatNode);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
+
+            } else if (!nodes.every(item => doesNodeHaveAncestor(item, formatting))) {
+                removeTag(selectionFrag, formatting);
+                formatNode.appendChild(selectionFrag);
+
+                range.deleteContents();
+                range.insertNode(formatNode);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+        }
+    }
+
+    const removeFormatting2 = (formatting: string) => {
+        const selection = document.getSelection();
+
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+            const nodes = textNodesOfSelection(range.startContainer, range.endContainer);
+
+            const startNode = range.startContainer;
+            const endNode = range.endContainer;
+            const startOffset = range.startOffset;
+            const endOffset = range.endOffset;
+            const startParent = ancestorOfNode(range.startContainer, formatting);
+            const endParent = ancestorOfNode(range.endContainer, formatting);
+
+            const selectionFrag = range.cloneContents();
+
+            if (nodes.every(item => doesNodeHaveAncestor(item, formatting))) {
+                removeTag(selectionFrag, formatting);
+
+                range.setStartBefore(startParent);
+                range.setEnd(startNode, startOffset);
+                const startFrag = range.cloneContents();
+
+                range.setEndAfter(endParent);
+                range.setStart(endNode, endOffset);
+                const endFrag = range.cloneContents();
+
+                range.setStartBefore(startParent);
+                range.setEndAfter(endParent);
+                range.deleteContents();
+
+                range.insertNode(startFrag);
+                range.collapse(false);
+                range.insertNode(endFrag);
+                range.collapse(true);
+                range.insertNode(selectionFrag);
+
+                selection.removeAllRanges();
+                selection.addRange(range);
+            }
+        }
+    }
+
     const breakSelectionParent = () => {
         const selection = window.getSelection();
 
@@ -397,11 +473,13 @@ const App: React.FC = () => {
             <button onClick={breakSelectionParent} title="Break Selection Parent (Selection is on the same level)">__1__</button>
             <button onClick={breakSelectionParent2} title="Break Selection Parent (Selection is on different levels">__2__</button>
             <button onClick={reformatText} title="Reformat Text">__3__</button>
-            <button onClick={() =>{
-                const selection = window.getSelection();
+            <button onClick={() => {
+                const selection = document.getSelection();
                 const range = selection?.getRangeAt(0);
                 console.log(range);
             }}>X</button>
+            <button onClick={() => applyFormatting2("B")}>AF</button>
+            <button onClick={() => removeFormatting2("B")}>RF</button>
             <div id="editor-container">
                 <div
                     id="editor"
