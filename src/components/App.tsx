@@ -346,26 +346,6 @@ const App: React.FC = () => {
         };
     }
 
-    const ancestorOfNode = (node: Node, ancestorNodeName: string) => {
-        let ancestor = node;
-
-        const ancestorFinder = (node: Node, ancestorNodeName: string) => {
-            if (node.parentNode) {
-                if (node.parentNode.nodeName !== ancestorNodeName && node.parentNode.nodeName !== "DIV") {
-                    ancestorFinder(node.parentNode, ancestorNodeName);
-                } else if (node.parentNode.nodeName === ancestorNodeName) {
-                    ancestor = node.parentNode;
-                } else if (node.parentNode.nodeName === "DIV") {
-                    return;
-                }
-            }
-        }
-
-        ancestorFinder(node, ancestorNodeName);
-
-        return ancestor;
-    }
-
     const doesNodeHaveAncestor = (node: Node, ancestorNodeName: string) => {
         let answer = false;
 
