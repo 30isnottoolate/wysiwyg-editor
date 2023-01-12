@@ -261,97 +261,6 @@ const App: React.FC = () => {
         }
     }
 
-    const breakSelectionParent = () => {
-        const selection = window.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-
-            if (range.startContainer.parentNode && range.endContainer.parentNode &&
-                range.startContainer.parentNode === range.endContainer.parentNode &&
-                range.startContainer.parentNode.nodeName !== "DIV") {
-
-                const parentNode = range.startContainer.parentNode;
-
-                const startNode = range.startContainer;
-                const endNode = range.endContainer;
-                const startOffset = range.startOffset;
-                const endOffset = range.endOffset;
-
-                const selectionFrag = range.cloneContents();
-
-                range.setStartBefore(parentNode);
-                range.setEnd(startNode, startOffset);
-                const startFrag = range.cloneContents();
-
-                range.setEndAfter(parentNode);
-                range.setStart(endNode, endOffset);
-                const endFrag = range.cloneContents();
-
-                range.selectNode(parentNode);
-                range.deleteContents();
-
-                range.insertNode(startFrag);
-                range.collapse(false);
-                range.insertNode(endFrag);
-                range.collapse(true);
-                range.insertNode(selectionFrag);
-
-                selection.removeAllRanges();
-                selection.addRange(range);
-
-            } else console.log("different parent");
-        }
-    }
-
-    const breakSelectionParent2 = () => {
-        const selection = window.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-
-            if (range.startContainer.parentNode && range.endContainer.parentNode &&
-                range.startContainer.parentNode !== range.endContainer.parentNode &&
-                range.startContainer.parentNode.nodeName !== "DIV" && range.endContainer.parentNode.nodeName !== "DIV") {
-
-                let parentNode: Node;
-
-                const startNode = range.startContainer;
-                const endNode = range.endContainer;
-                const startOffset = range.startOffset;
-                const endOffset = range.endOffset;
-
-                const selectionFrag = range.cloneContents();
-
-                if (range.startContainer.parentNode.contains(range.endContainer.parentNode)) {
-                    parentNode = range.startContainer.parentNode;
-                } else if (range.endContainer.parentNode.contains(range.startContainer.parentNode)) {
-                    parentNode = range.endContainer.parentNode;
-                } else return
-
-                range.setStartBefore(parentNode);
-                range.setEnd(startNode, startOffset);
-                const startFrag = range.cloneContents();
-
-                range.setEndAfter(parentNode);
-                range.setStart(endNode, endOffset);
-                const endFrag = range.cloneContents();
-
-                range.selectNode(parentNode);
-                range.deleteContents();
-
-                range.insertNode(startFrag);
-                range.collapse(false);
-                range.insertNode(endFrag);
-                range.collapse(true);
-                range.insertNode(selectionFrag);
-
-                selection.removeAllRanges();
-                selection.addRange(range);
-            }
-        }
-    }
-
     const handleSelection = () => {
         const selection = window.getSelection();
 
@@ -470,8 +379,6 @@ const App: React.FC = () => {
                 fontColor={fontColor}
                 setFontColor={setFontColor}
             />
-            <button onClick={breakSelectionParent} title="Break Selection Parent (Selection is on the same level)">__1__</button>
-            <button onClick={breakSelectionParent2} title="Break Selection Parent (Selection is on different levels">__2__</button>
             <button onClick={reformatText} title="Reformat Text">__3__</button>
             <button onClick={() => {
                 const selection = document.getSelection();
