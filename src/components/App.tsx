@@ -11,7 +11,7 @@ const App: React.FC = () => {
     const [isItS, setIsItS] = useState(false);
     const [isItSup, setIsItSup] = useState(false);
     const [isItSub, setIsItSub] = useState(false);
-    const [isItSpan, setIsItSpan] = useState({state: false, type: "", value: "", size: 0});
+    const [isItSpan, setIsItSpan] = useState({ state: false, type: "", value: "", size: 0 });
 
     const editorRef = useRef<HTMLDivElement>(null);
 
@@ -193,22 +193,28 @@ const App: React.FC = () => {
         }
     }
 
-    const ancestorOfNode = (node: Node, ancestorNodeName: string) => {
-        let ancestor = node;
+    const ancestorElementOfNode = (node: Node, ancestorNodeName: string) => {
+        let ancestor = node.parentElement;
 
         const ancestorFinder = (node: Node, ancestorNodeName: string) => {
-            if (node.parentNode) {
-                if (node.parentNode.nodeName !== ancestorNodeName && node.parentNode.nodeName !== "DIV") {
-                    ancestorFinder(node.parentNode, ancestorNodeName);
-                } else if (node.parentNode.nodeName === ancestorNodeName) {
-                    ancestor = node.parentNode;
-                } else if (node.parentNode.nodeName === "DIV") {
-                    return;
+            if (node.parentElement) {
+                if (node.parentElement.nodeName !== ancestorNodeName && node.parentElement.nodeName !== "DIV") {
+                    ancestorFinder(node.parentElement, ancestorNodeName);
+                } else if (node.parentElement.nodeName === ancestorNodeName) {
+                    ancestor = node.parentElement;
+                } else if (node.parentElement.nodeName === "DIV") {
+                    ancestor = document.createElement("SPAN");
+                    ancestor.className = "empty";
                 }
             }
         }
 
         ancestorFinder(node, ancestorNodeName);
+
+        if (!ancestor) {
+            ancestor = document.createElement("SPAN");
+            ancestor.className = "empty";
+        }
 
         return ancestor;
     }
@@ -388,6 +394,19 @@ const App: React.FC = () => {
             setIsItSup(nodes.every(item => doesNodeHaveAncestor(item, "SUP")));
             setIsItSub(nodes.every(item => doesNodeHaveAncestor(item, "SUB")));
 
+            if (ancestorElementOfNode(range.startContainer, "SPAN").className !== "empty" &&
+                ancestorElementOfNode(range.startContainer, "SPAN") === ancestorElementOfNode(range.endContainer, "SPAN")) {
+                if (ancestorElementOfNode(range.startContainer, "SPAN").className === "font-color") {
+
+                    setIsItSpan({
+                        state: true,
+                        type: ancestorElementOfNode(range.startContainer, "SPAN").className,
+                        value: ancestorElementOfNode(range.startContainer, "SPAN").style.color,
+                        size: 0
+                    });
+                }
+            }
+
         } else {
             reformatText();
             setIsItB(false);
@@ -396,6 +415,13 @@ const App: React.FC = () => {
             setIsItS(false);
             setIsItSup(false);
             setIsItSub(false);
+
+            setIsItSpan({
+                state: false,
+                type: "",
+                value: "",
+                size: 0
+            });
         };
     }
 
