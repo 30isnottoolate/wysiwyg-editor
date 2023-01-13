@@ -24,7 +24,7 @@ const App: React.FC = () => {
 
             spanNode.style.color = fontColor;
 
-            removeTag(selectionFrag, "SPAN");
+            removeStyleTag(selectionFrag, "SPAN");
 
             spanNode.appendChild(selectionFrag);
 
@@ -37,18 +37,18 @@ const App: React.FC = () => {
         }
     }
 
-    const removeTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
+    const removeStyleTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
         if (node.hasChildNodes()) {
 
             node.childNodes.forEach((childNode) => {
                 if (childNode.nodeName === tag && childNode.hasChildNodes()) {
                     childNode.replaceWith(...childNode.childNodes);
-                    removeTag(node, tag);
+                    removeStyleTag(node, tag);
                 } else if (childNode.nodeName === tag && !childNode.hasChildNodes()) {
                     node.removeChild(childNode);
-                    removeTag(node, tag);
+                    removeStyleTag(node, tag);
                 } else if (childNode.hasChildNodes()) {
-                    removeTag(childNode, tag);
+                    removeStyleTag(childNode, tag);
                 }
             });
         }
@@ -58,7 +58,7 @@ const App: React.FC = () => {
         if (node.hasChildNodes()) {
             node.childNodes.forEach(childNode => {
                 if (childNode.nodeName === tag) {
-                    removeTag(childNode, tag);
+                    removeStyleTag(childNode, tag);
                 } else {
                     removeDoubleFormatting(childNode, tag);
                 }
@@ -127,7 +127,7 @@ const App: React.FC = () => {
 
             const nodeTags = ["B", "I", "U", "S", "SUP", "SUB"];
 
-            nodeTags.forEach(tag => removeTag(selectionFrag, tag));
+            nodeTags.forEach(tag => removeStyleTag(selectionFrag, tag));
 
             if (startAncestor === startNode && endAncestor === endNode) {
                 range.deleteContents();
@@ -265,7 +265,7 @@ const App: React.FC = () => {
                 selection.addRange(range);
 
             } else if (!nodes.every(item => doesNodeHaveAncestor(item, formatting))) {
-                removeTag(selectionFrag, formatting);
+                removeStyleTag(selectionFrag, formatting);
                 formatNode.appendChild(selectionFrag);
 
                 range.deleteContents();
@@ -278,8 +278,33 @@ const App: React.FC = () => {
         }
     }
 
+    const surroundWithStyleTag = (node: Node | ChildNode | DocumentFragment, style: string) => {
+        const formatNode = document.createElement(style);
+
+        formatNode.appendChild(node);
+
+        return formatNode;
+    }
+
     const removeFormatting = (formatting: string) => {
         const selection = document.getSelection();
+        const tagsToReapply: string[] = [];
+        const detectedStyles = {
+            B: isItB,
+            I: isItI,
+            U: isItU,
+            S: isItS,
+            SUP: isItSup,
+            SUB: isItSub
+        }
+
+        detectedStyles[formatting] = false;
+
+        for (let key in detectedStyles) {
+            if (detectedStyles[key]) {
+                tagsToReapply.push(key.toString());
+            }
+        }
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
@@ -293,9 +318,15 @@ const App: React.FC = () => {
                 const startAncestor = topAncestorOfNode(range.startContainer);
                 const endAncestor = topAncestorOfNode(range.endContainer);
 
-                const selectionFrag = range.cloneContents();
+                let selectionFrag: DocumentFragment | HTMLElement;
 
-                removeTag(selectionFrag, formatting);
+                selectionFrag = range.cloneContents();
+
+                removeStyleTag(selectionFrag, formatting);
+
+                tagsToReapply.forEach(item => {
+                    selectionFrag = surroundWithStyleTag(selectionFrag, item);
+                });
 
                 range.setStartBefore(startAncestor);
                 range.setEnd(startNode, startOffset);
@@ -407,7 +438,7 @@ const App: React.FC = () => {
                 } else ancestorFinder(node.parentNode);
             }
         }
-        
+
         ancestorFinder(node);
 
         if (ancestor === node) {
