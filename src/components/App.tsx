@@ -11,6 +11,7 @@ const App: React.FC = () => {
     const [isItS, setIsItS] = useState(false);
     const [isItSup, setIsItSup] = useState(false);
     const [isItSub, setIsItSub] = useState(false);
+    const [isItSpan, setIsItSpan] = useState({state: false, type: "", value: "", size: 0});
 
     const editorRef = useRef<HTMLDivElement>(null);
 
