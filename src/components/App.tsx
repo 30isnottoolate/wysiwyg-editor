@@ -16,7 +16,7 @@ const App: React.FC = () => {
     const editorRef = useRef<HTMLDivElement>(null);
 
     const handleSelection = () => {
-        const selection = window.getSelection();
+        const selection = document.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
@@ -79,7 +79,7 @@ const App: React.FC = () => {
     }
 
     const insertText = (text: string) => {
-        const selection = window.getSelection();
+        const selection = document.getSelection();
 
         if (selection && selection.rangeCount) {
             const range = selection.getRangeAt(0);
@@ -208,7 +208,7 @@ const App: React.FC = () => {
     }
 
     const removeAllFormatting = () => {
-        const selection = window.getSelection();
+        const selection = document.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
@@ -289,7 +289,7 @@ const App: React.FC = () => {
     }
 
     const applyFontColor = () => {
-        const selection = window.getSelection();
+        const selection = document.getSelection();
 
         if (selection && selection.rangeCount && selection.toString().length !== 0) {
             const range = selection.getRangeAt(0);
