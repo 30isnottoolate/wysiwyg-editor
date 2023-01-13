@@ -17,7 +17,7 @@ body {
     margin: 10px;
 }
 
-.tool, .font-color, .tool-expander {
+.tool, .font-color-tool, .tool-expander {
     background-color: #e2e8f0;
     text-align: center;
     vertical-align: middle;
@@ -32,7 +32,7 @@ body {
     margin-right: 5px;
 }
 
-.font-color {
+.font-color-tool {
     font-size: 15px;
     font-family: "Work Sans", Arial, sans-serif;
     width: 25px;
@@ -45,14 +45,14 @@ body {
 }
 
 .tool:hover,
-.font-color:hover,
+.font-color-tool:hover,
 .tool-expander:hover {
     background-color: #f1f5f9;
     border-color: #64748b;
 }
 
 .tool:active,
-.font-color:active,
+.font-color-tool:active,
 .tool-expander:active {
     background-color: #cbd5e1;
 }
@@ -84,6 +84,10 @@ body {
 .tool > span {
     font-size: 15px;
     font-family: "Work Sans", Arial, sans-serif;
+}
+
+.highlighted {
+    background-color: #cbd5e1; 
 }
 
 .color-picker {
@@ -161,7 +165,11 @@ body {
     outline: none;
 }
 
-#editor > * {
+#editor * {
     user-select: initial;
+}
+
+ul {
+    list-style-position: inside;
 }
 
