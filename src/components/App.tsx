@@ -356,6 +356,18 @@ const App: React.FC = () => {
                     selectionFrag = surroundWithStyleTag(selectionFrag, item);
                 });
 
+                if (isItSpan.state) {
+                    const tempFrag = selectionFrag;
+
+                    selectionFrag = document.createElement("SPAN");
+                    selectionFrag.className = isItSpan.type;
+                    selectionFrag.appendChild(tempFrag);
+
+                    if (isItSpan.type === "font-color") {
+                        selectionFrag.style.color = isItSpan.value;
+                    }
+                }
+
                 range.setStartBefore(startAncestor);
                 range.setEnd(startNode, startOffset);
                 const startFrag = range.cloneContents();
