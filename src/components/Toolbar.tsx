@@ -68,7 +68,7 @@ const Toolbar: React.FC<ToolbarProps> = (
             <div
                 className="color-tool" >
                 <button
-                    className="font-color"
+                    className="font-color-tool"
                     title="Font Color"
                     onClick={() => applyFontColor()}
                     style={{ color: fontColor }}>
