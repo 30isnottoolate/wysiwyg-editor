@@ -169,3 +169,7 @@ body {
 #editor * {
     user-select: initial;
 }
+
+ul {
+    list-style-position: inside;
+}
