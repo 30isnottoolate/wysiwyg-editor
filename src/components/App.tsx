@@ -23,6 +23,7 @@ const App: React.FC = () => {
             const spanNode = document.createElement("SPAN");
 
             spanNode.style.color = fontColor;
+            spanNode.className = "font-color"
 
             removeStyleTag(selectionFrag, "SPAN");
 
