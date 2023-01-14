@@ -324,7 +324,7 @@ const App: React.FC = () => {
             spanNode.style.backgroundColor = highlightColor;
             spanNode.className = "highlight-color"
 
-            removeStyleTag(selectionFrag, "SPAN");
+            removeSpanTag(selectionFrag, "highlight-color");
 
             spanNode.appendChild(selectionFrag);
 
