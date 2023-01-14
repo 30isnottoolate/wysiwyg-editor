@@ -546,6 +546,7 @@ const App: React.FC = () => {
                 removeFormatting={removeFormatting}
                 removeAllFormatting={removeAllFormatting}
                 applyFontColor={applyFontColor}
+                applyHighlightColor={applyHighlightColor}
                 fontColor={fontColor}
                 setFontColor={setFontColor}
                 highlightColor={highlightColor}

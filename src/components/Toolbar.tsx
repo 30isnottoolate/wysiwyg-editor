@@ -12,6 +12,7 @@ interface ToolbarProps {
     removeFormatting: (formatting: string) => void;
     removeAllFormatting: () => void;
     applyFontColor: () => void;
+    applyHighlightColor: () => void;
     fontColor: string;
     setFontColor: (color: string) => void;
     highlightColor: string;
