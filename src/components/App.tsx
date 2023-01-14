@@ -313,6 +313,30 @@ const App: React.FC = () => {
         }
     }
 
+    const applyHighlightColor = () => {
+        const selection = document.getSelection();
+
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+            const selectionFrag = range.cloneContents();
+            const spanNode = document.createElement("SPAN");
+
+            spanNode.style.backgroundColor = highlightColor;
+            spanNode.className = "highlight-color"
+
+            removeStyleTag(selectionFrag, "SPAN");
+
+            spanNode.appendChild(selectionFrag);
+
+            range.deleteContents();
+            range.insertNode(spanNode);
+            range.selectNode(spanNode);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
     const removeStyleTag = (node: Node | ChildNode | DocumentFragment, tag: string) => {
         if (node.hasChildNodes()) {
 
