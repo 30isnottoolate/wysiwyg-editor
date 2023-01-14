@@ -4,6 +4,7 @@ import Toolbar from "./Toolbar";
 
 const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
+    const [highlightColor, setHighlightColor] = useState("#ffff00");
 
     const [isItB, setIsItB] = useState(false);
     const [isItI, setIsItI] = useState(false);
