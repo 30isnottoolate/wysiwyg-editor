@@ -19,7 +19,8 @@ interface ToolbarProps {
 const Toolbar: React.FC<ToolbarProps> = (
     { isItB, isItI, isItU, isItS, isItSup, isItSub, applyFormatting, removeFormatting, removeAllFormatting, applyFontColor, fontColor, setFontColor }: ToolbarProps) => {
 
-    const [colorPickerActive, setColorPickerActive] = useState(false);
+    const [fontColorPickerActive, setFontColorPickerActive] = useState(false);
+    const [highlightColorPickerActive, setHighlightColorPickerActive] = useState(false);
 
     return (
         <div className="toolbar">
@@ -76,7 +77,10 @@ const Toolbar: React.FC<ToolbarProps> = (
                 </button>
                 <button
                     className="tool-expander"
-                    onClick={() => setColorPickerActive(prevState => !prevState)} >
+                    onClick={() => {
+                        setFontColorPickerActive(prevState => !prevState);
+                        setHighlightColorPickerActive(false);
+                    }} >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="8"
@@ -88,10 +92,43 @@ const Toolbar: React.FC<ToolbarProps> = (
                         />
                     </svg>
                 </button>
-                {colorPickerActive &&
+                {fontColorPickerActive &&
                     <ColorPicker
                         setFontColor={setFontColor}
-                        setColorPickerActive={setColorPickerActive}
+                        setColorPickerActive={setFontColorPickerActive}
+                    />
+                }
+            </div>
+            <div
+                className="color-tool" >
+                <button
+                    className="font-color-tool"
+                    title="Highlight Color"
+                    onClick={() => applyFontColor()}
+                    style={{ backgroundColor: fontColor }}>
+                    A
+                </button>
+                <button
+                    className="tool-expander"
+                    onClick={() => {
+                        setHighlightColorPickerActive(prevState => !prevState);
+                        setFontColorPickerActive(false);
+                    }} >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="8"
+                        height="8"
+                        viewBox="-1 0 18 12" >
+                        <polygon
+                            points="0,0 8,10 16,0 8,10 0,0"
+                            style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }}
+                        />
+                    </svg>
+                </button>
+                {highlightColorPickerActive &&
+                    <ColorPicker
+                        setFontColor={setFontColor}
+                        setColorPickerActive={setHighlightColorPickerActive}
                     />
                 }
             </div>
