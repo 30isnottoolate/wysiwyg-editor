@@ -14,6 +14,8 @@ interface ToolbarProps {
     applyFontColor: () => void;
     fontColor: string;
     setFontColor: (color: string) => void;
+    highlightColor: string;
+    setHighlightColor: (color: string) => void;
 }
 
 const Toolbar: React.FC<ToolbarProps> = (

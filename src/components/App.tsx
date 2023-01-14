@@ -524,6 +524,8 @@ const App: React.FC = () => {
                 applyFontColor={applyFontColor}
                 fontColor={fontColor}
                 setFontColor={setFontColor}
+                highlightColor={highlightColor}
+                setHighlightColor={setHighlightColor}
             />
             <div id="editor-container">
                 <div
