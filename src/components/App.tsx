@@ -12,7 +12,8 @@ const App: React.FC = () => {
     const [isItS, setIsItS] = useState(false);
     const [isItSup, setIsItSup] = useState(false);
     const [isItSub, setIsItSub] = useState(false);
-    const [isItSpan, setIsItSpan] = useState({ state: false, type: "", value: "", size: 0 });
+    const [isItFontColor, setIsItFontColor] = useState({ state: false, color: "" });
+    const [isItHighlightColor, setIsItHighlightColor] = useState({ state: false, color: "" });
 
     const editorRef = useRef<HTMLDivElement>(null);
 
@@ -33,12 +34,16 @@ const App: React.FC = () => {
             if (ancestorElementOfNode(range.startContainer, "SPAN").className !== "empty" &&
                 ancestorElementOfNode(range.startContainer, "SPAN") === ancestorElementOfNode(range.endContainer, "SPAN")) {
                 if (ancestorElementOfNode(range.startContainer, "SPAN").className === "font-color") {
-
-                    setIsItSpan({
+                    setIsItFontColor({
                         state: true,
-                        type: ancestorElementOfNode(range.startContainer, "SPAN").className,
-                        value: ancestorElementOfNode(range.startContainer, "SPAN").style.color,
-                        size: 0
+                        color: ancestorElementOfNode(range.startContainer, "SPAN").style.color
+                    });
+                }
+                
+                if (ancestorElementOfNode(range.startContainer, "SPAN").className === "highlight-color") {
+                    setIsItHighlightColor({
+                        state: true,
+                        color: ancestorElementOfNode(range.startContainer, "SPAN").style.backgroundColor
                     });
                 }
             }
@@ -52,11 +57,14 @@ const App: React.FC = () => {
             setIsItSup(false);
             setIsItSub(false);
 
-            setIsItSpan({
+            setIsItFontColor({
                 state: false,
-                type: "",
-                value: "",
-                size: 0
+                color: ""
+            });
+
+            setIsItHighlightColor({
+                state: false,
+                color: ""
             });
         };
     }
@@ -172,16 +180,22 @@ const App: React.FC = () => {
                     selectionFrag = surroundWithStyleTag(selectionFrag, item);
                 });
 
-                if (isItSpan.state) {
+                if (isItFontColor.state) {
                     const tempFrag = selectionFrag;
 
                     selectionFrag = document.createElement("SPAN");
-                    selectionFrag.className = isItSpan.type;
+                    selectionFrag.className = "font-color";
                     selectionFrag.appendChild(tempFrag);
+                    selectionFrag.style.color = isItFontColor.color;
+                }
 
-                    if (isItSpan.type === "font-color") {
-                        selectionFrag.style.color = isItSpan.value;
-                    }
+                if (isItHighlightColor.state) {
+                    const tempFrag = selectionFrag;
+
+                    selectionFrag = document.createElement("SPAN");
+                    selectionFrag.className = "highlight-color";
+                    selectionFrag.appendChild(tempFrag);
+                    selectionFrag.style.backgroundColor = isItHighlightColor.color;
                 }
 
                 range.setStartBefore(startAncestor);
