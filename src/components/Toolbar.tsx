@@ -19,7 +19,9 @@ interface ToolbarProps {
 }
 
 const Toolbar: React.FC<ToolbarProps> = (
-    { isItB, isItI, isItU, isItS, isItSup, isItSub, applyFormatting, removeFormatting, removeAllFormatting, applyFontColor, fontColor, setFontColor }: ToolbarProps) => {
+    { isItB, isItI, isItU, isItS, isItSup, isItSub, 
+        applyFormatting, removeFormatting, removeAllFormatting, applyFontColor, 
+        fontColor, setFontColor, highlightColor, setHighlightColor }: ToolbarProps) => {
 
     const [fontColorPickerActive, setFontColorPickerActive] = useState(false);
     const [highlightColorPickerActive, setHighlightColorPickerActive] = useState(false);
@@ -107,7 +109,7 @@ const Toolbar: React.FC<ToolbarProps> = (
                     className="font-color-tool"
                     title="Highlight Color"
                     onClick={() => applyFontColor()}
-                    style={{ backgroundColor: fontColor }}>
+                    style={{ backgroundColor: highlightColor }}>
                     A
                 </button>
                 <button
@@ -129,7 +131,7 @@ const Toolbar: React.FC<ToolbarProps> = (
                 </button>
                 {highlightColorPickerActive &&
                     <ColorPicker
-                        setFontColor={setFontColor}
+                        setFontColor={setHighlightColor}
                         setColorPickerActive={setHighlightColorPickerActive}
                     />
                 }
