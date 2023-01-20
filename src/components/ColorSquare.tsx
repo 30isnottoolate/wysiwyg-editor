@@ -1,7 +1,7 @@
 import React from 'react';
 
 interface ColorSquareProps {
-    clickHandler: (event: React.MouseEvent) => void;
+    clickHandler: (event: React.MouseEvent<HTMLDivElement>) => void;
     color: string;
 }
 
