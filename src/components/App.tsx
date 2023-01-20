@@ -150,10 +150,10 @@ const App: React.FC = () => {
             SUB: isItSub
         }
 
-        detectedStyles[formatting] = false;
+        detectedStyles[formatting as keyof typeof detectedStyles] = false;
 
         for (let key in detectedStyles) {
-            if (detectedStyles[key]) {
+            if (detectedStyles[key as keyof typeof detectedStyles]) {
                 tagsToReapply.push(key.toString());
             }
         }
