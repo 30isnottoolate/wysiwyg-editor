@@ -39,7 +39,7 @@ const App: React.FC = () => {
                         color: ancestorElementOfNode(range.startContainer, "SPAN").style.color
                     });
                 }
-                
+
                 if (ancestorElementOfNode(range.startContainer, "SPAN").className === "highlight-color") {
                     setIsItHighlightColor({
                         state: true,
@@ -591,8 +591,8 @@ const App: React.FC = () => {
                     spellCheck={false}
                     contentEditable={true}
                     suppressContentEditableWarning={true}
-                    onKeyDown={event => handleKeyDown(event)}
                     onInput={event => handleInput(event)}
+                    onKeyDown={event => handleKeyDown(event)}
                     onSelect={handleSelection} >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
