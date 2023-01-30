@@ -86,6 +86,7 @@
 
 .tool-expander > svg {
     box-sizing: content-box;
+    transition: transform 0.25s ease-in-out;
 }
 
 .highlighted {

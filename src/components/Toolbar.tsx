@@ -90,7 +90,8 @@ const Toolbar: React.FC<ToolbarProps> = (
                         xmlns="http://www.w3.org/2000/svg"
                         width="8"
                         height="8"
-                        viewBox="-1 0 18 12" >
+                        viewBox="-1 0 18 12"
+                        style={{transform: `rotate(${fontColorPickerActive ? 180 : 0}deg)`}} >
                         <polygon
                             points="0,0 8,10 16,0 8,10 0,0"
                             style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }}
@@ -123,10 +124,11 @@ const Toolbar: React.FC<ToolbarProps> = (
                         xmlns="http://www.w3.org/2000/svg"
                         width="8"
                         height="8"
-                        viewBox="-1 0 18 12" >
+                        viewBox="-1 0 18 12"
+                        style={{transform: `rotate(${highlightColorPickerActive ? 180 : 0}deg)`}} >
                         <polygon
                             points="0,0 8,10 16,0 8,10 0,0"
-                            style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }}
+                            style={{ fill: "none", stroke: "#000000", strokeWidth: "3px"}}
                         />
                     </svg>
                 </button>
