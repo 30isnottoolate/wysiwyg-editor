@@ -72,9 +72,9 @@ const Toolbar: React.FC<ToolbarProps> = (
                 R
             </button>
             <div
-                className="color-tool" >
+                className="color-tool-set" >
                 <button
-                    className="font-color-tool"
+                    className="color-tool"
                     title="Font Color"
                     onClick={() => applyFontColor()}
                     style={{ color: fontColor }}>
@@ -105,9 +105,9 @@ const Toolbar: React.FC<ToolbarProps> = (
                 }
             </div>
             <div
-                className="color-tool" >
+                className="color-tool-set" >
                 <button
-                    className="font-color-tool"
+                    className="color-tool"
                     title="Highlight Color"
                     onClick={() => applyHighlightColor()}
                     style={{ backgroundColor: highlightColor }}>
