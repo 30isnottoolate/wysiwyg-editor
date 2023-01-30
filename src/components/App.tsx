@@ -241,6 +241,9 @@ const App: React.FC = () => {
 
             nodeTags.forEach(tag => removeStyleTag(selectionFrag, tag));
 
+            removeSpanTag(selectionFrag, "font-color");
+            removeSpanTag(selectionFrag, "highlight-color");
+
             if (startAncestor === startNode && endAncestor === endNode) {
                 range.deleteContents();
                 range.insertNode(selectionFrag);
