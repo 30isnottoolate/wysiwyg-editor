@@ -139,12 +139,10 @@ body {
 }
 
 #editor-container {
-    display: grid;
-    justify-items: center;
     background-color: #d1d5db;
-    width: calc(100vw);
+    width: 100vw;
     height: calc(100vh - 65px);
-    padding: 25px;
+    padding: 1rem calc((100vw - 52.625rem) / 2);
     border-top: 1px solid #a1a1aa;
     overflow: scroll;
 }
@@ -152,10 +150,10 @@ body {
 #editor {
     background-color: #f9fafb;
     font-family: "Roboto", Arial, Helvetica, sans-serif;
-    width: 210mm;
-    height: 297mm;
-    padding: 75px;
-    margin: 10px;
+    width: 49.625rem;
+    min-height: 70.125rem;
+    padding: 4.5rem;
+    margin: 1rem;
     box-shadow: 3px 3px 6px 3px #6b728066;
     white-space: pre-wrap;
     user-select: initial;
