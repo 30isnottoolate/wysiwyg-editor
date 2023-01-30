@@ -138,7 +138,7 @@
     position: absolute;
     width: 0;
     height: 0;
-    z-index: 5;
+    z-index: -10;
     transform: translate(0.5rem, 0.25rem);
 }
 
