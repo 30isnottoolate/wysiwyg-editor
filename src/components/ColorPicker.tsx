@@ -12,11 +12,11 @@ const colors = [
     "#000000", "#a3a3a3", "#7f1d1d", "#9a3412", "#713f12", "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
 
 interface ColorPickerProps {
-    setFontColor: (color: string) => void;
+    setColor: (color: string) => void;
     setColorPickerActive: (state: boolean) => void;
 }
 
-const ColorPicker: React.FC<ColorPickerProps> = ({ setFontColor, setColorPickerActive }: ColorPickerProps) => {
+const ColorPicker: React.FC<ColorPickerProps> = ({ setColor, setColorPickerActive }: ColorPickerProps) => {
 
     const [customColors, setCustomColors] = useState(() => {
         if (localStorage["customColors"] && localStorage["customColors"].split(",").length === 10) {
@@ -40,13 +40,13 @@ const ColorPicker: React.FC<ColorPickerProps> = ({ setFontColor, setColorPickerA
     }
 
     const handleColorSelection = (event: React.MouseEvent<HTMLDivElement>) => {
-        setFontColor(event.currentTarget.style.backgroundColor);
+        setColor(event.currentTarget.style.backgroundColor);
         setColorPickerActive(false);
     }
 
     const handleCustomColorSelection = (event: React.MouseEvent<HTMLDivElement>) => {
         if (event.detail === 1) {
-            setFontColor(event.currentTarget.style.backgroundColor);
+            setColor(event.currentTarget.style.backgroundColor);
             setColorPickerActive(false);
         }
     }

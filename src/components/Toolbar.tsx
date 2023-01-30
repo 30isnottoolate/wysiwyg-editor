@@ -100,7 +100,7 @@ const Toolbar: React.FC<ToolbarProps> = (
                 </button>
                 {fontColorPickerActive &&
                     <ColorPicker
-                        setFontColor={setFontColor}
+                        setColor={setFontColor}
                         setColorPickerActive={setFontColorPickerActive}
                     />
                 }
@@ -134,7 +134,7 @@ const Toolbar: React.FC<ToolbarProps> = (
                 </button>
                 {highlightColorPickerActive &&
                     <ColorPicker
-                        setFontColor={setHighlightColor}
+                        setColor={setHighlightColor}
                         setColorPickerActive={setHighlightColorPickerActive}
                     />
                 }
