@@ -19,7 +19,7 @@
     padding: 1rem;
 }
 
-.tool, .font-color-tool, .tool-expander {
+.tool, .color-tool, .tool-expander {
     background-color: #e2e8f0;
     text-align: center;
     vertical-align: middle;
@@ -29,45 +29,22 @@
     cursor: pointer;
 }
 
-.tool {
-    width: 1.5rem;
-    margin-right: 0.25rem;
-}
-
-.font-color-tool {
-    font-size: 0.875rem;
-    font-family: "Work Sans", Arial, sans-serif;
-    width: 1.5rem;
-    margin-right: -0.0625rem;
-}
-
-.tool-expander {
-    width: 0.75rem;
-    height: 1.5rem;
-}
-
 .tool:hover,
-.font-color-tool:hover,
+.color-tool:hover,
 .tool-expander:hover {
     background-color: #f1f5f9;
     border-color: #64748b;
 }
 
 .tool:active,
-.font-color-tool:active,
+.color-tool:active,
 .tool-expander:active {
     background-color: #cbd5e1;
 }
 
-.color-tool {
-    display: inline-block;
-    width: 2.1875rem;
-    height: 1.5rem;
+.tool {
+    width: 1.5rem;
     margin-right: 0.25rem;
-}
-
-.tool-expander > svg {
-    box-sizing: content-box;
 }
 
 .italic {
@@ -86,6 +63,29 @@
 .tool > span {
     font-size: 0.875rem;
     font-family: "Work Sans", Arial, sans-serif;
+}
+
+.color-tool-set {
+    display: inline-block;
+    width: 2.1875rem;
+    height: 1.5rem;
+    margin-right: 0.25rem;
+}
+
+.color-tool {
+    font-size: 0.875rem;
+    font-family: "Work Sans", Arial, sans-serif;
+    width: 1.5rem;
+    margin-right: -0.0625rem;
+}
+
+.tool-expander {
+    width: 0.75rem;
+    height: 1.5rem;
+}
+
+.tool-expander > svg {
+    box-sizing: content-box;
 }
 
 .highlighted {
