@@ -71,7 +71,7 @@ const App: React.FC = () => {
 
     const handleInput = (event: React.FormEvent<HTMLDivElement>) => {
         if (event.currentTarget.lastChild && event.currentTarget.lastChild.nodeName !== "BR") {
-            event.currentTarget.append(document.createElement("br"));
+            event.currentTarget.append(document.createElement("BR"));
         }
         editorRef.current && editorRef.current.normalize();
         reformatText();
