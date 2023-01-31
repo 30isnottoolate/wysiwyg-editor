@@ -281,30 +281,6 @@ const App: React.FC = () => {
         }
     }
 
-    const applyFontColor = () => {
-        const selection = document.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-            const selectionFrag = range.cloneContents();
-            const spanNode = document.createElement("SPAN");
-
-            spanNode.style.color = fontColor;
-            spanNode.className = "font-color"
-
-            removeSpanTag(selectionFrag, "font-color");
-
-            spanNode.appendChild(selectionFrag);
-
-            range.deleteContents();
-            range.insertNode(spanNode);
-            range.selectNode(spanNode);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-    }
-
     const applyColor = (className: string) => {
         const selection = document.getSelection();
 
@@ -319,30 +295,6 @@ const App: React.FC = () => {
             if (className === "bg-color") spanNode.style.backgroundColor = highlightColor;
 
             removeSpanTag(selectionFrag, className);
-
-            spanNode.appendChild(selectionFrag);
-
-            range.deleteContents();
-            range.insertNode(spanNode);
-            range.selectNode(spanNode);
-
-            selection.removeAllRanges();
-            selection.addRange(range);
-        }
-    }
-
-    const applyHighlightColor = () => {
-        const selection = document.getSelection();
-
-        if (selection && selection.rangeCount && selection.toString().length !== 0) {
-            const range = selection.getRangeAt(0);
-            const selectionFrag = range.cloneContents();
-            const spanNode = document.createElement("SPAN");
-
-            spanNode.style.backgroundColor = highlightColor;
-            spanNode.className = "bg-color"
-
-            removeSpanTag(selectionFrag, "bg-color");
 
             spanNode.appendChild(selectionFrag);
 
@@ -386,8 +338,8 @@ const App: React.FC = () => {
                 applyFormatting={applyFormatting}
                 removeFormatting={removeFormatting}
                 removeAllFormatting={removeAllFormatting}
-                applyFontColor={applyFontColor}
-                applyHighlightColor={applyHighlightColor}
+                applyFontColor={() => applyColor("font-color")}
+                applyHighlightColor={() => applyColor("bg-color")}
                 fontColor={fontColor}
                 setFontColor={setFontColor}
                 highlightColor={highlightColor}
