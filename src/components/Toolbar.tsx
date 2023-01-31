@@ -29,11 +29,7 @@ const Toolbar: React.FC<ToolbarProps> = (
         applyFontColor, applyHighlightColor, fontColor, setFontColor, highlightColor, setHighlightColor }: ToolbarProps) => {
 
     return (
-        <div
-            className="toolbar" onMouseDown={() => {
-                setFontColorPickerActive(false);
-                setHighlightColorPickerActive(false);
-            }}>
+        <div className="toolbar">
             {
                 [{ title: "Bold",           state: isItB,       symbol: "B",    label: <b>B</b> },
                 { title: "Italic",          state: isItI,       symbol: "I",    label: <i>I</i> },

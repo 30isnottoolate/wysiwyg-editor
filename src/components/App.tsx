@@ -331,27 +331,30 @@ const App: React.FC = () => {
 
     return (
         <>
-            <Toolbar
-                isItB={isItB}
-                isItI={isItI}
-                isItU={isItU}
-                isItS={isItS}
-                isItSup={isItSup}
-                isItSub={isItSub}
-                applyFormatting={applyFormatting}
-                removeFormatting={removeFormatting}
-                removeAllFormatting={removeAllFormatting}
-                fontColorPickerActive={fontColorPickerActive}
-                setFontColorPickerActive={setFontColorPickerActive}
-                highlightColorPickerActive={highlightColorPickerActive}
-                setHighlightColorPickerActive={setHighlightColorPickerActive}
-                applyFontColor={() => applyColor("font-color")}
-                applyHighlightColor={() => applyColor("bg-color")}
-                fontColor={fontColor}
-                setFontColor={setFontColor}
-                highlightColor={highlightColor}
-                setHighlightColor={setHighlightColor}
-            />
+            <header>
+                <Toolbar
+                    isItB={isItB}
+                    isItI={isItI}
+                    isItU={isItU}
+                    isItS={isItS}
+                    isItSup={isItSup}
+                    isItSub={isItSub}
+                    applyFormatting={applyFormatting}
+                    removeFormatting={removeFormatting}
+                    removeAllFormatting={removeAllFormatting}
+                    fontColorPickerActive={fontColorPickerActive}
+                    setFontColorPickerActive={setFontColorPickerActive}
+                    highlightColorPickerActive={highlightColorPickerActive}
+                    setHighlightColorPickerActive={setHighlightColorPickerActive}
+                    applyFontColor={() => applyColor("font-color")}
+                    applyHighlightColor={() => applyColor("bg-color")}
+                    fontColor={fontColor}
+                    setFontColor={setFontColor}
+                    highlightColor={highlightColor}
+                    setHighlightColor={setHighlightColor}
+                />
+                <p id="logo">WYSIWYG Editor<br/><span>© {new Date().getFullYear()} Akos Varga, aka 30isnottoolate</span></p>
+            </header>
             <div
                 id="editor-container"
                 onMouseDown={() => {
