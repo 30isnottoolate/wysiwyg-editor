@@ -41,10 +41,10 @@ const App: React.FC = () => {
                     color: ancestorOfNode(range.startContainer, "SPAN", "font-color").style.color
                 });
             }
-            if (ancestorOfNode(range.startContainer, "SPAN", "highlight-color") === ancestorOfNode(range.endContainer, "SPAN", "highlight-color")) {
+            if (ancestorOfNode(range.startContainer, "SPAN", "bg-color") === ancestorOfNode(range.endContainer, "SPAN", "bg-color")) {
                 setIsItHighlightColor({
                     state: true,
-                    color: ancestorOfNode(range.startContainer, "SPAN", "highlight-color").style.backgroundColor
+                    color: ancestorOfNode(range.startContainer, "SPAN", "bg-color").style.backgroundColor
                 });
             }
 
@@ -204,7 +204,7 @@ const App: React.FC = () => {
                     const tempFrag = selectionFrag;
 
                     selectionFrag = document.createElement("SPAN");
-                    selectionFrag.className = "highlight-color";
+                    selectionFrag.className = "bg-color";
                     selectionFrag.appendChild(tempFrag);
                     selectionFrag.style.backgroundColor = isItHighlightColor.color;
                 }
@@ -253,7 +253,7 @@ const App: React.FC = () => {
             nodeTags.forEach(tag => removeStyleTag(selectionFrag, tag));
 
             removeSpanTag(selectionFrag, "font-color");
-            removeSpanTag(selectionFrag, "highlight-color");
+            removeSpanTag(selectionFrag, "bg-color");
 
             if (startAncestor === startNode && endAncestor === endNode) {
                 range.deleteContents();
@@ -350,9 +350,9 @@ const App: React.FC = () => {
             const spanNode = document.createElement("SPAN");
 
             spanNode.style.backgroundColor = highlightColor;
-            spanNode.className = "highlight-color"
+            spanNode.className = "bg-color"
 
-            removeSpanTag(selectionFrag, "highlight-color");
+            removeSpanTag(selectionFrag, "bg-color");
 
             spanNode.appendChild(selectionFrag);
 
