@@ -1,7 +1,7 @@
 import React, { useState, useRef } from "react";
 import {
     insertText, removeStyleTag, removeSpanTag, surroundWithStyleTag, removeDoubleFormatting, mergeSiblings,
-    removeChildlessNodes, ancestorElementOfNode, topAncestorOfNode, doesNodeHaveAncestor, textNodesOfSelection
+    removeChildlessNodes, ancestorOfNode, topAncestorOfNode, doesNodeHaveAncestor, textNodesOfSelection
 } from "../utilities/helperFunctions";
 import "./App.css";
 import Toolbar from "./Toolbar";
@@ -67,34 +67,6 @@ const App: React.FC = () => {
                 color: ""
             });
         };
-    }
-
-    const ancestorOfNode = (referenceNode: Node, ancestorNodeName: string, ancestorClassName: string = "unknown") => {
-        let ancestorElement: HTMLElement;
-
-        ancestorElement = document.createElement("SPAN");
-        ancestorElement.className = "empty";
-
-        const ancestorFinder = (referenceNode: Node, ancestorNodeName: string, ancestorClassName: string = "unknown") => {
-            if (referenceNode.parentElement) {
-
-                if ((referenceNode.parentElement.nodeName !== ancestorNodeName && referenceNode.parentElement.id !== "editor") ||
-                    (referenceNode.parentElement.nodeName === ancestorNodeName && ancestorClassName !== "unknown" &&
-                        referenceNode.parentElement.className !== ancestorClassName)) {
-
-                    ancestorFinder(referenceNode.parentElement, ancestorNodeName, ancestorClassName);
-
-                } else if (referenceNode.parentElement.nodeName === ancestorNodeName &&
-                    (ancestorClassName === "unknown" || referenceNode.parentElement.className === ancestorClassName)) {
-
-                    ancestorElement = referenceNode.parentElement;
-                }
-            }
-        }
-
-        ancestorFinder(referenceNode, ancestorNodeName, ancestorClassName);
-
-        return ancestorElement;
     }
 
     const handleInput = (event: React.FormEvent<HTMLDivElement>) => {

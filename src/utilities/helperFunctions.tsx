@@ -99,30 +99,34 @@ const removeChildlessNodes = (node: Node) => {
     }
 }
 
-const ancestorElementOfNode = (node: Node, ancestorNodeName: string) => {
-    let ancestor = node.parentElement;
 
-    const ancestorFinder = (node: Node, ancestorNodeName: string) => {
-        if (node.parentElement) {
-            if (node.parentElement.nodeName !== ancestorNodeName && node.parentElement.nodeName !== "DIV") {
-                ancestorFinder(node.parentElement, ancestorNodeName);
-            } else if (node.parentElement.nodeName === ancestorNodeName) {
-                ancestor = node.parentElement;
-            } else if (node.parentElement.nodeName === "DIV") {
-                ancestor = document.createElement("SPAN");
-                ancestor.className = "empty";
+
+const ancestorOfNode = (referenceNode: Node, ancestorNodeName: string, ancestorClassName: string = "unknown") => {
+    let ancestorElement: HTMLElement;
+
+    ancestorElement = document.createElement("SPAN");
+    ancestorElement.className = "empty";
+
+    const ancestorFinder = (referenceNode: Node, ancestorNodeName: string, ancestorClassName: string = "unknown") => {
+        if (referenceNode.parentElement) {
+
+            if ((referenceNode.parentElement.nodeName !== ancestorNodeName && referenceNode.parentElement.id !== "editor") ||
+                (referenceNode.parentElement.nodeName === ancestorNodeName && ancestorClassName !== "unknown" &&
+                    referenceNode.parentElement.className !== ancestorClassName)) {
+
+                ancestorFinder(referenceNode.parentElement, ancestorNodeName, ancestorClassName);
+
+            } else if (referenceNode.parentElement.nodeName === ancestorNodeName &&
+                (ancestorClassName === "unknown" || referenceNode.parentElement.className === ancestorClassName)) {
+
+                ancestorElement = referenceNode.parentElement;
             }
         }
     }
 
-    ancestorFinder(node, ancestorNodeName);
+    ancestorFinder(referenceNode, ancestorNodeName, ancestorClassName);
 
-    if (!ancestor) {
-        ancestor = document.createElement("SPAN");
-        ancestor.className = "empty";
-    }
-
-    return ancestor;
+    return ancestorElement;
 }
 
 const ancestorWithNextSibling = (node: Node) => {
@@ -215,4 +219,4 @@ const textNodesOfSelection = (startNode: Node, endNode: Node) => {
 }
 
 export {insertText, removeStyleTag, removeSpanTag, surroundWithStyleTag, removeDoubleFormatting, mergeSiblings, 
-    removeChildlessNodes, ancestorElementOfNode, ancestorWithNextSibling, topAncestorOfNode, doesNodeHaveAncestor, textNodesOfSelection};
+    removeChildlessNodes, ancestorOfNode, ancestorWithNextSibling, topAncestorOfNode, doesNodeHaveAncestor, textNodesOfSelection};
