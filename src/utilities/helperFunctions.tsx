@@ -39,12 +39,12 @@ const removeSpanTag = (node: Node | ChildNode | DocumentFragment, spanClass: str
             if (childNode.nodeName === "SPAN" && childNode.firstChild &&
                 childNode.firstChild.parentElement && childNode.firstChild.parentElement.className === spanClass) {
                 childNode.replaceWith(...childNode.childNodes);
-                removeStyleTag(node, spanClass);
+                removeSpanTag(node, spanClass);
             } else if (childNode.nodeName === "SPAN" && !childNode.hasChildNodes()) {
                 node.removeChild(childNode);
-                removeStyleTag(node, spanClass);
+                removeSpanTag(node, spanClass);
             } else if (childNode.hasChildNodes()) {
-                removeStyleTag(childNode, spanClass);
+                removeSpanTag(childNode, spanClass);
             }
         });
     }
