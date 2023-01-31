@@ -305,6 +305,32 @@ const App: React.FC = () => {
         }
     }
 
+    const applyColor = (className: string) => {
+        const selection = document.getSelection();
+
+        if (selection && selection.rangeCount && selection.toString().length !== 0) {
+            const range = selection.getRangeAt(0);
+            const selectionFrag = range.cloneContents();
+            const spanNode = document.createElement("SPAN");
+
+            spanNode.className = className;
+
+            if (className === "font-color") spanNode.style.color = fontColor;
+            if (className === "bg-color") spanNode.style.backgroundColor = highlightColor;
+
+            removeSpanTag(selectionFrag, className);
+
+            spanNode.appendChild(selectionFrag);
+
+            range.deleteContents();
+            range.insertNode(spanNode);
+            range.selectNode(spanNode);
+
+            selection.removeAllRanges();
+            selection.addRange(range);
+        }
+    }
+
     const applyHighlightColor = () => {
         const selection = document.getSelection();
 
