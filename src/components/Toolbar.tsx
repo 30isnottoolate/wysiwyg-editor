@@ -34,42 +34,23 @@ const Toolbar: React.FC<ToolbarProps> = (
                 setFontColorPickerActive(false);
                 setHighlightColorPickerActive(false);
             }}>
-            <button
-                className={`tool ${isItB ? "highlighted" : ""}`}
-                title="Bold"
-                onClick={() => isItB ? removeFormatting("B") : applyFormatting("B")}>
-                <b>B</b>
-            </button>
-            <button
-                className={`tool italic ${isItI ? "highlighted" : ""}`}
-                title="Italic"
-                onClick={() => isItI ? removeFormatting("I") : applyFormatting("I")}>
-                <i>I</i>
-            </button>
-            <button
-                className={`tool ${isItU ? "highlighted" : ""}`}
-                title="Underline"
-                onClick={() => isItU ? removeFormatting("U") : applyFormatting("U")}>
-                <u>U</u>
-            </button>
-            <button
-                className={`tool ${isItS ? "highlighted" : ""}`}
-                title="Strikethrough"
-                onClick={() => isItS ? removeFormatting("S") : applyFormatting("S")}>
-                <s>S</s>
-            </button>
-            <button
-                className={`tool ${isItSup ? "highlighted" : ""}`}
-                title="Superscript"
-                onClick={() => isItSup ? removeFormatting("SUP") : applyFormatting("SUP")}>
-                A<sup>2</sup>
-            </button>
-            <button
-                className={`tool ${isItSub ? "highlighted" : ""}`}
-                title="Subscript"
-                onClick={() => isItSub ? removeFormatting("SUB") : applyFormatting("SUB")}>
-                A<sub>2</sub>
-            </button>
+            {
+                [{ title: "Bold",           state: isItB,       symbol: "B",    label: <b>B</b> },
+                { title: "Italic",          state: isItI,       symbol: "I",    label: <i>I</i> },
+                { title: "Underline",       state: isItU,       symbol: "U",    label: <u>U</u> },
+                { title: "Strikethrough",   state: isItS,       symbol: "S",    label: <s>S</s> },
+                { title: "Superscript",     state: isItSup,     symbol: "SUP",  label: <>A<sup>2</sup></> },
+                { title: "Subscript",       state: isItSub,     symbol: "SUB",  label: <>A<sub>2</sub></> }]
+                    .map((item, index) =>
+                        <button
+                            key={index}
+                            className={`tool ${item.symbol === "I" && "italic"} ${item.state ? "highlighted" : ""}`}
+                            title={item.title}
+                            onClick={() => item.state ? removeFormatting(item.symbol) : applyFormatting(item.symbol)}>
+                            {item.label}
+                        </button>
+                    )
+            }
             <button
                 className="tool"
                 title="Remove All Formating"
