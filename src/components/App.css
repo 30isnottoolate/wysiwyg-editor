@@ -168,6 +168,10 @@
     outline: none;
 }
 
+#editor::selection {
+    background: #d1d5db;
+  }
+
 #editor * {
     user-select: initial;
 }
