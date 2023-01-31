@@ -12,8 +12,8 @@ const colors = [
     "#000000", "#a3a3a3", "#7f1d1d", "#9a3412", "#713f12", "#3f6212", "#14532d", "#0c4a6e", "#581c87", "#701a75"];
 
 interface ColorPickerProps {
-    setColor: (color: string) => void;
-    setColorPickerActive: (state: boolean) => void;
+    setColor: React.Dispatch<React.SetStateAction<string>>;
+    setColorPickerActive: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const ColorPicker: React.FC<ColorPickerProps> = ({ setColor, setColorPickerActive }: ColorPickerProps) => {

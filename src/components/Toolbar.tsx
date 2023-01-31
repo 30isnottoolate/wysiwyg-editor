@@ -11,21 +11,22 @@ interface ToolbarProps {
     applyFormatting: (formatting: string) => void;
     removeFormatting: (formatting: string) => void;
     removeAllFormatting: () => void;
+    fontColorPickerActive: boolean;
+    setFontColorPickerActive: React.Dispatch<React.SetStateAction<boolean>>;
+    highlightColorPickerActive: boolean;
+    setHighlightColorPickerActive: React.Dispatch<React.SetStateAction<boolean>>;
     applyFontColor: () => void;
     applyHighlightColor: () => void;
     fontColor: string;
-    setFontColor: (color: string) => void;
+    setFontColor: React.Dispatch<React.SetStateAction<string>>;
     highlightColor: string;
-    setHighlightColor: (color: string) => void;
+    setHighlightColor: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Toolbar: React.FC<ToolbarProps> = (
-    { isItB, isItI, isItU, isItS, isItSup, isItSub, 
-        applyFormatting, removeFormatting, removeAllFormatting, applyFontColor, applyHighlightColor, 
-        fontColor, setFontColor, highlightColor, setHighlightColor }: ToolbarProps) => {
-
-    const [fontColorPickerActive, setFontColorPickerActive] = useState(false);
-    const [highlightColorPickerActive, setHighlightColorPickerActive] = useState(false);
+    { isItB, isItI, isItU, isItS, isItSup, isItSub, applyFormatting, removeFormatting, removeAllFormatting, 
+        fontColorPickerActive, setFontColorPickerActive, highlightColorPickerActive, setHighlightColorPickerActive, 
+        applyFontColor, applyHighlightColor, fontColor, setFontColor, highlightColor, setHighlightColor }: ToolbarProps) => {
 
     return (
         <div className="toolbar">
@@ -83,7 +84,7 @@ const Toolbar: React.FC<ToolbarProps> = (
                 <button
                     className="tool-expander"
                     onClick={() => {
-                        setFontColorPickerActive(prevState => !prevState);
+                        setFontColorPickerActive((prevState: boolean) => !prevState);
                         setHighlightColorPickerActive(false);
                     }} >
                     <svg
@@ -91,7 +92,7 @@ const Toolbar: React.FC<ToolbarProps> = (
                         width="8"
                         height="8"
                         viewBox="-1 0 18 12"
-                        style={{transform: `rotate(${fontColorPickerActive ? 180 : 0}deg)`}} >
+                        style={{ transform: `rotate(${fontColorPickerActive ? 180 : 0}deg)` }} >
                         <polygon
                             points="0,0 8,10 16,0 8,10 0,0"
                             style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }}
@@ -117,7 +118,7 @@ const Toolbar: React.FC<ToolbarProps> = (
                 <button
                     className="tool-expander"
                     onClick={() => {
-                        setHighlightColorPickerActive(prevState => !prevState);
+                        setHighlightColorPickerActive((prevState: boolean) => !prevState);
                         setFontColorPickerActive(false);
                     }} >
                     <svg
@@ -125,10 +126,10 @@ const Toolbar: React.FC<ToolbarProps> = (
                         width="8"
                         height="8"
                         viewBox="-1 0 18 12"
-                        style={{transform: `rotate(${highlightColorPickerActive ? 180 : 0}deg)`}} >
+                        style={{ transform: `rotate(${highlightColorPickerActive ? 180 : 0}deg)` }} >
                         <polygon
                             points="0,0 8,10 16,0 8,10 0,0"
-                            style={{ fill: "none", stroke: "#000000", strokeWidth: "3px"}}
+                            style={{ fill: "none", stroke: "#000000", strokeWidth: "3px" }}
                         />
                     </svg>
                 </button>
