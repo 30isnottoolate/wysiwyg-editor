@@ -24,12 +24,16 @@ interface ToolbarProps {
 }
 
 const Toolbar: React.FC<ToolbarProps> = (
-    { isItB, isItI, isItU, isItS, isItSup, isItSub, applyFormatting, removeFormatting, removeAllFormatting, 
-        fontColorPickerActive, setFontColorPickerActive, highlightColorPickerActive, setHighlightColorPickerActive, 
+    { isItB, isItI, isItU, isItS, isItSup, isItSub, applyFormatting, removeFormatting, removeAllFormatting,
+        fontColorPickerActive, setFontColorPickerActive, highlightColorPickerActive, setHighlightColorPickerActive,
         applyFontColor, applyHighlightColor, fontColor, setFontColor, highlightColor, setHighlightColor }: ToolbarProps) => {
 
     return (
-        <div className="toolbar">
+        <div
+            className="toolbar" onMouseDown={() => {
+                setFontColorPickerActive(false);
+                setHighlightColorPickerActive(false);
+            }}>
             <button
                 className={`tool ${isItB ? "highlighted" : ""}`}
                 title="Bold"

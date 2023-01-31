@@ -10,6 +10,9 @@ const App: React.FC = () => {
     const [fontColor, setFontColor] = useState("#ff0000");
     const [highlightColor, setHighlightColor] = useState("#ffff00");
 
+    const [fontColorPickerActive, setFontColorPickerActive] = useState(false);
+    const [highlightColorPickerActive, setHighlightColorPickerActive] = useState(false);
+
     const [isItB, setIsItB] = useState(false);
     const [isItI, setIsItI] = useState(false);
     const [isItU, setIsItU] = useState(false);
@@ -338,6 +341,10 @@ const App: React.FC = () => {
                 applyFormatting={applyFormatting}
                 removeFormatting={removeFormatting}
                 removeAllFormatting={removeAllFormatting}
+                fontColorPickerActive={fontColorPickerActive}
+                setFontColorPickerActive={setFontColorPickerActive}
+                highlightColorPickerActive={highlightColorPickerActive}
+                setHighlightColorPickerActive={setHighlightColorPickerActive}
                 applyFontColor={() => applyColor("font-color")}
                 applyHighlightColor={() => applyColor("bg-color")}
                 fontColor={fontColor}
@@ -345,7 +352,12 @@ const App: React.FC = () => {
                 highlightColor={highlightColor}
                 setHighlightColor={setHighlightColor}
             />
-            <div id="editor-container">
+            <div
+                id="editor-container"
+                onMouseDown={() => {
+                    setFontColorPickerActive(false);
+                    setHighlightColorPickerActive(false);
+                }}>
                 <div
                     id="editor"
                     ref={editorRef}
