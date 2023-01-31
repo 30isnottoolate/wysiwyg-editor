@@ -69,14 +69,6 @@ const App: React.FC = () => {
         };
     }
 
-    const handleInput = (event: React.FormEvent<HTMLDivElement>) => {
-        if (event.currentTarget.lastChild && event.currentTarget.lastChild.nodeName !== "BR") {
-            event.currentTarget.append(document.createElement("BR"));
-        }
-        editorRef.current && editorRef.current.normalize();
-        reformatText();
-    }
-
     const handleKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
         if (event.key === "Enter") {
             event.preventDefault();
@@ -342,6 +334,10 @@ const App: React.FC = () => {
 
         if (editorRef.current) {
 
+            if (editorRef.current.lastChild && editorRef.current.lastChild.nodeName !== "BR") {
+                editorRef.current.append(document.createElement("BR"));
+            }
+
             nodeTags.forEach(tag => {
                 editorRef.current && removeDoubleFormatting(editorRef.current, tag);
                 editorRef.current && mergeSiblings(editorRef.current, tag);
@@ -378,15 +374,14 @@ const App: React.FC = () => {
                     spellCheck={false}
                     contentEditable={true}
                     suppressContentEditableWarning={true}
-                    onInput={event => handleInput(event)}
+                    onInput={reformatText}
                     onKeyDown={event => handleKeyDown(event)}
                     onSelect={handleSelection} >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit,
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud <b>exercitation ullamco </b><b className="123">laboris <b></b>nisi ut <i>aliquip <b><i>ex</i></b> ea commodo</i> consequat. Duis</b> aute irure
+                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
                     dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
                     sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                    <br />
                 </div>
             </div>
         </>
