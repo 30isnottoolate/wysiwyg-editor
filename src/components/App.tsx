@@ -353,7 +353,7 @@ const App: React.FC = () => {
                     highlightColor={highlightColor}
                     setHighlightColor={setHighlightColor}
                 />
-                <p id="logo">WYSIWYG Editor<br/><span>© {new Date().getFullYear()} Akos Varga, aka 30isnottoolate</span></p>
+                <p id="logo">WYSIWYG Editor<br /><span>© {new Date().getFullYear()} Akos Varga, aka 30isnottoolate</span></p>
             </header>
             <div
                 id="editor-container"
@@ -370,11 +370,40 @@ const App: React.FC = () => {
                     onInput={reformatText}
                     onKeyDown={event => handleKeyDown(event)}
                     onSelect={handleSelection} >
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis
-                    nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure
-                    dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                    sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et 
+                    dolore magna aliqua. In est ante in nibh mauris cursus mattis molestie. Eu facilisis sed odio morbi quis 
+                    commodo odio aenean. Amet massa vitae tortor condimentum. Amet porttitor eget dolor morbi non arcu risus 
+                    quis. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Sit amet volutpat consequat 
+                    mauris nunc. Sed viverra ipsum nunc aliquet. Nisl nisi scelerisque eu ultrices vitae auctor. Metus 
+                    aliquam eleifend mi in nulla posuere sollicitudin. Sit amet consectetur adipiscing elit duis. Vel quam 
+                    elementum pulvinar etiam non. Lorem dolor sed viverra ipsum nunc aliquet bibendum. Sapien nec sagittis 
+                    aliquam malesuada bibendum arcu vitae.<br/><br/>
+                    Malesuada bibendum arcu vitae elementum curabitur vitae nunc sed velit. Nunc sed augue lacus viverra 
+                    vitae. Consectetur adipiscing elit duis tristique sollicitudin nibh sit amet commodo. Mollis nunc sed 
+                    id semper risus. Lorem ipsum dolor sit amet consectetur adipiscing elit. Dictumst vestibulum rhoncus est 
+                    pellentesque elit ullamcorper dignissim cras tincidunt. Faucibus vitae aliquet nec ullamcorper sit amet 
+                    risus nullam. Vel eros donec ac odio tempor orci. Sagittis orci a scelerisque purus semper eget. Eros in 
+                    cursus turpis massa tincidunt dui ut ornare. A diam maecenas sed enim ut sem. Dictum fusce ut placerat 
+                    orci nulla pellentesque dignissim enim sit. Arcu ac tortor dignissim convallis aenean et tortor. Amet 
+                    nulla facilisi morbi tempus iaculis urna id volutpat lacus.<br/><br/>
+                    Volutpat blandit aliquam etiam erat velit scelerisque in dictum non. Non sodales neque sodales ut etiam 
+                    sit. Vitae turpis massa sed elementum tempus egestas sed sed risus. Orci nulla pellentesque dignissim 
+                    enim sit amet. Mauris commodo quis imperdiet massa tincidunt. Id velit ut tortor pretium viverra. Blandit 
+                    aliquam etiam erat velit scelerisque in dictum. Tellus in metus vulputate eu scelerisque felis imperdiet. 
+                    Morbi blandit cursus risus at ultrices. Faucibus in ornare quam viverra orci sagittis eu. Aliquet porttitor 
+                    lacus luctus accumsan tortor posuere ac ut. Congue quisque egestas diam in. Tristique nulla aliquet enim 
+                    tortor at auctor. In massa tempor nec feugiat nisl pretium fusce id velit. Elementum nisi quis eleifend 
+                    quam adipiscing. Duis tristique sollicitudin nibh sit amet commodo nulla facilisi nullam. Lectus magna 
+                    fringilla urna porttitor. Quis imperdiet massa tincidunt nunc. Velit dignissim sodales ut eu sem integer 
+                    vitae justo eget.<br/><br/>
+                    Lobortis elementum nibh tellus molestie. Tortor id aliquet lectus proin nibh nisl condimentum. Pellentesque 
+                    diam volutpat commodo sed egestas. Amet nulla facilisi morbi tempus iaculis urna id volutpat lacus. 
+                    Sollicitudin aliquam ultrices sagittis orci a scelerisque. Sit amet consectetur adipiscing elit ut aliquam 
+                    purus sit amet. Massa eget egestas purus viverra accumsan. Pharetra sit amet aliquam id diam maecenas 
+                    ultricies mi eget. Feugiat vivamus at augue eget arcu dictum varius duis at. Erat nam at lectus urna duis 
+                    convallis convallis tellus id. Id faucibus nisl tincidunt eget. Pharetra massa massa ultricies mi quis. 
+                    Vestibulum lectus mauris ultrices eros in cursus turpis massa tincidunt. Morbi tempus iaculis urna id 
+                    volutpat lacus.
                 </div>
             </div>
         </>
